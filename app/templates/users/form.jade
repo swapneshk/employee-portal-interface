@@ -1,0 +1,167 @@
+.container.user-form
+  form.form-horizontal(name="userForm")
+    .row.page-header
+      .col-sm-4
+        h1 Edit User
+          span {{ user.first_name + " " + user.last_name }}
+      .col-sm-4.text-center
+      .col-sm-4
+        .pull-right
+          button.btn.btn-success.btn-med(ng-click="update()", ng-disabled="userForm.$invalid")
+            i.fa.fa-edit
+            |  Save Profile
+          | &nbsp;
+          a.btn.btn-default.btn-med(ng-click="cancel()") Cancel
+
+    .row
+      .col-md-7
+        .panel
+          .panel-heading
+            | User Details
+          .panel-body
+            fieldset
+              .form-group
+                label.col-sm-2.control-label(for="first_name") First Name
+                .col-sm-10
+                  input.form-control(name="first_name", type="text", placeholder="First Name", ng-model="user.first_name", required)
+              .form-group
+                label.col-sm-2.control-label(for="last_name") Last Name
+                .col-sm-10
+                  input.form-control(name="last_name", type="text", placeholder="Last Name", ng-model="user.last_name", required)
+
+        .panel
+          .panel-heading
+            | Address Details
+          .panel-body
+            fieldset
+              .form-group
+                label.col-sm-2.control-label Address
+                .col-sm-10
+                  input.form-control(name="address-line1", type="text", placeholder="Street Address", ng-model="user.address", required)
+              .form-group
+                label.col-sm-2.control-label &nbsp;
+                .col-sm-10
+                  input.form-control(name="address-line2", type="text", placeholder="Apt. #, Suite #", ng-model="user.address2")
+              .form-group
+                label.col-sm-2.control-label City, State, Zip
+                .col-sm-6
+                  input.form-control(name="city", type="text", placeholder="City", ng-model="user.city", required)
+                .col-sm-2
+                  input.form-control(name="state", type="text", placeholder="State", maxlength="2", ng-model="user.state", required)
+                .col-sm-2
+                  input.form-control(name="zip", type="text", placeholder="Zip", ng-model="user.zip", required)
+
+        .panel
+          .panel-heading
+            | Contact
+          .panel-body
+            fieldset
+              .form-group
+                label.col-sm-2.control-label(for="email") Email
+                .col-sm-10
+                  input.form-control(name="email", type="email", placeholder="Email", ng-model="user.email", required)
+              .form-group
+                label.col-sm-2.control-label(for="phone") Phone
+                .col-sm-10
+                  input.form-control.mask-phone(name="phone", type="phone", placeholder="(xxx) xxx-xxxx", ng-model="user.phone", required)
+
+        .panel
+          .panel-heading
+            | Additional Information
+          .panel-body
+            fieldset
+              .form-group
+                label.col-sm-2.control-label(for="description") Description
+                .col-sm-10
+                  textarea.form-control(name="description", ng-model="user.description")
+              .form-group
+                label.col-sm-2.control-label(for="dob") Birthday
+                .col-sm-10
+                  input.form-control.datepicker(name="dob", type="text", placeholder="{{ placeholder.dob }}", ng-model="user.dob")
+              .form-group
+                label.col-sm-2.control-label(for="license") Drivers' License
+                .col-sm-10
+                  input.form-control(name="license", type="text", ng-model="user.license")
+
+
+      .col-md-5
+        .panel.panel-info
+          .panel-heading Profile Image
+          .panel-body
+            a.thumbnail.user-profile-image
+              img(ng-if="user.profile_image", src="user.profile_image")
+              img(ng-if="!user.profile_image", src="http://placehold.it/200x240")
+            a.btn.btn-med(href="#image-modal", data-toggle="modal")
+              i.fa.fa-user
+              |  Upload Image
+
+        .panel.panel-warning
+          .panel-heading Security
+          .panel-body
+            fieldset(ng-if="session.currentUser.isAdmin() && !isCurrentUser()")
+              //- legend Security
+              .form-group
+                label.col-sm-2.control-label(for="password") Password
+                .col-sm-10
+                  a.btn.btn-med.btn-warning(href="#") Reset Password
+
+            fieldset(ng-if="isCurrentUser()")
+              //- legend Security
+              .form-group
+                label.col-sm-2.control-label(for="password") Password
+                .col-sm-10
+                  input.form-control(name="password", type="password", placeholder="Password", ng-model="password")
+                  p.help-block.text-warning
+                    i.fa.fa-exclamation-triangle
+                    |  Leave this blank if you don't want to change it
+              .form-group
+                label.col-sm-2.control-label(for="verify") Verify
+                .col-sm-10
+                  input.form-control(name="verify", type="password", placeholder="Verify Password", ng-model="verify")
+
+        .panel
+          .panel-heading Training Documents
+          .panel-body
+            fieldset
+              .checkbox
+                label
+                  input(name="has_honor_code" type="checkbox")
+                  |  Honor Code
+              .checkbox
+                label
+                  input(name="has_dmv_record" type="checkbox")
+                  |  DMV Record
+              .checkbox
+                label
+                  input(name="has_training_manual" type="checkbox")
+                  |  Training Manual
+              .checkbox
+                label
+                  input(name="has_direct_deposit" type="checkbox")
+                  |  Direct Deposit
+              .checkbox
+                label
+                  input(name="has_equipment_delivery" type="checkbox")
+                  |  Equipment Delivery
+
+  .modal.fade#image-modal
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type="button", data-dismiss="modal" aria-hidden="true") &times;
+          h3.modal-title Add An Image
+        .modal-body
+          .form-group
+            label.control-label Image
+        .modal-footer
+          a.btn.btn-med(data-dismiss="modal", aria-hidden="true") Close
+          a.btn.btn-med.btn-primary(ng-click="saveImage()") Save Image
+
+script.
+  $(function() {
+    $(".datepicker").datepicker();
+
+    $('.mask-phone').mask("(999) 999-9999", {
+        placeholder: " "
+    });
+  });

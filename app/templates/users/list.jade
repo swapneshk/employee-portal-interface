@@ -1,0 +1,38 @@
+.container
+  .row.page-header
+    .col-sm-4
+      h1 Employees
+    .col-sm-4.text-center
+    .col-sm-4
+      button.btn.btn-primary.btn-med.pull-right
+        i.fa.fa-plus
+        |  Add Employee
+
+  .row.table-top
+    .col-md-12
+
+  table.table.table-hover
+    thead
+      tr
+        th Name
+        th Email
+        th Status
+        th &nbsp;
+    tbody
+      tr(ng-repeat="user in users")
+        td
+          b
+            a(href="/users/{{ user._id }}") {{ user.first_name + " " + user.last_name }}
+        td
+          {{ user.email }}
+        td
+          span.label.label-success Active
+        td
+          .dropdown.pull-right
+            a.btn.btn-icon-only.dropdown-toggle.pull-right(href="", data-toggle="dropdown")
+              i.fa.fa-gear
+              | &nbsp;
+              b.caret
+            ul.dropdown-menu
+              li
+                a(href="") Edit
