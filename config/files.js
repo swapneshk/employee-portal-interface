@@ -23,6 +23,18 @@ module.exports = function(lineman) {
         "vendor/components/angular-route/angular-route.js",
         "vendor/components/angular-resource/angular-resource.js",
         "vendor/components/angular-moment/angular-moment.js",
+        
+        "vendor/components/nprogress/nprogress.js",
+        "vendor/components/moment/moment.js",
+        "vendor/components/fullcalendar/fullcalendar.min.js",
+        "vendor/components/simpleWeather/jquery.simpleWeather.min.js",
+        "vendor/components/flot/jquery.flot.js",
+        "vendor/components/flot/jquery.flot.resize.js",
+        "vendor/components/flot/jquery.flot.time.min.js",
+        "vendor/components/raphael/raphael-min.js",
+        "vendor/components/morrisjs/morris.min.js",
+        "vendor/components/jqueryui-touch-punch/jquery.ui.touch-punch.min.js",
+        "vendor/components/modernizr/modernizr.js",
 
         "vendor/js/**/*.js"
       ],

@@ -30,7 +30,7 @@ Modernizr.addTest('retina', function () {
 
 Modernizr.load([{
     test: Modernizr.retina,
-    yep: 'assets/plugins/retina.js'
+    yep: 'retina.js'
 }]);
 
 
