@@ -8,4 +8,13 @@ For the brevity of script inclusion I included an html file instead of jade temp
 3) Images are going this time although scripts are not including as I need to include scripts present in the plugin folder which resides at -
     -> vendor/plugins.
     
-4) For the change     
+4) For the change I added plugins at config/files.js-
+    plugins: [
+      "vendor/plugins/**/*.js"
+    ],
+    
+    To find plugins files.
+    
+5) In test.html I added the scripts at last like - <script src="/plugins/mandatoryJs.min.js"></script>
+
+However they are breaking when compiling into a vendor.js.
