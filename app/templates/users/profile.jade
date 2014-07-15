@@ -1,0 +1,88 @@
+.container.profile
+  .row.page-header
+    .col-sm-4
+      h1 {{ user.first_name + " " + user.last_name }}
+    .col-sm-4.text-center
+    .col-sm-4
+      a.btn.btn-primary.btn-med.pull-right(ng-click="showEditForm()")
+        i.fa.fa-edit
+        |  Edit Profile
+
+  // Tile counts
+  .row.hide
+    .col-md-3.col-xs-12.col-sm-6
+      a.info-tiles.tiles-toyo(href="#")
+        .tiles-heading Profit
+        .tiles-body-alt
+          .text-center
+            span.text-top $
+            | 854
+          small +8.7% from last week
+        .tiles-footer more info
+    .col-md-3.col-xs-12.col-sm-6
+      a.info-tiles.tiles-success(href="#")
+        .tiles-heading Revenue
+        .tiles-body-alt
+          .text-center
+            span.text-top $
+            | 22.7
+          small -13.5% from last week
+        .tiles-footer go to accounts
+    .col-md-3.col-xs-12.col-sm-6
+      a.info-tiles.tiles-orange(href="#")
+        .tiles-heading Members
+        .tiles-body-alt
+          i.fa.fa-group
+          .text-center
+            | 109
+          small new users registered
+        .tiles-footer manage members
+    .col-md-3.col-xs-12.col-sm-6
+      a.info-tiles.tiles-alizarin(href="#")
+        .tiles-heading Orders
+        .tiles-body-alt
+          i.fa.fa-shopping-cart
+          .text-center
+            | 57
+          small new orders received
+        .tiles-footer manage orders
+
+  .row
+    .col-md-6
+      a.pull-left.thumbnail(href="#")
+        img(src="http://placehold.it/200x240")
+      div
+        ul.list-unstyled
+          li
+            address
+              {{ user.address }}<br/>
+              {{ user.city + ", " + user.state + " " + user.zip }}<br/>
+              a.btn.btn-med.btn-primary.map-it(href="//maps.google.com/?q={{ user.address + ', ' + user.city + ', ' + user.state + ', ' + user.zip }}", target="_blank")
+                i.fa.fa-map-marker
+                |  Map It
+
+          li
+            i.fa.fa-envelope
+            a(href="mailto:{{ user.email }}")
+              |  {{ user.email }}
+          li
+            i.fa.fa-phone
+            |  {{ user.phone }}
+
+    .col-md-6
+      p
+        | Lorem ipsum Incididunt ex mollit ullamco culpa laboris nulla aliqua magna culpa commodo in cupidatat consectetur nostrud occaecat veniam Ut voluptate aliqua dolore pariatur sunt non quis amet reprehenderit laboris exercitation laborum anim fugiat quis ut sed.
+
+  .row
+    .col-md-2
+      ul.nav
+        li
+          a(href="#")
+            i.fa.fa-thumb-tack
+            |  Availability
+        li
+          a(href="#")
+            i.fa.fa-calendar
+            |  Schedule
+    .col-md-10
+

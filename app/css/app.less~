@@ -1,0 +1,212 @@
+// Core variables and mixins
+  @import "../../vendor/components/bootstrap/less/variables";
+  @import "variables";
+  @import "../../vendor/components/bootstrap/less/mixins";
+  @import "mixins";
+
+// Reset
+  @import "../../vendor/components/bootstrap/less/normalize";
+  @import "../../vendor/components/bootstrap/less/print";
+
+// Core CSS
+  @import "../../vendor/components/bootstrap/less/scaffolding";
+  @import "../../vendor/components/bootstrap/less/type";
+  @import "../../vendor/components/bootstrap/less/grid";
+  @import "../../vendor/components/bootstrap/less/forms";
+  @import "../../vendor/components/bootstrap/less/buttons";
+  @import "../../vendor/components/bootstrap/less/button-groups";
+  @import "../../vendor/components/bootstrap/less/input-groups";
+
+// Components
+  @import "../../vendor/components/bootstrap/less/component-animations";
+  //@import "../../vendor/components/bootstrap/less/glyphicons";
+  @import "../../vendor/components/font-awesome/less/font-awesome";
+  @import "../../vendor/components/bootstrap/less/dropdowns";
+  @import "../../vendor/components/bootstrap/less/alerts";
+  @import "../../vendor/components/bootstrap/less/close";
+  @import "../../vendor/components/bootstrap/less/navbar";
+  @import "../../vendor/components/bootstrap/less/navs";
+
+  @import "../../vendor/components/bootstrap/less/thumbnails";
+  // @import "../../vendor/components/bootstrap/less/carousel";
+  // @import "../../vendor/components/bootstrap/less/code";
+  @import "../../vendor/components/bootstrap/less/tables";
+  // @import "../../vendor/components/bootstrap/less/breadcrumbs";
+  // @import "../../vendor/components/bootstrap/less/pagination";
+  // @import "../../vendor/components/bootstrap/less/pager";
+  @import "../../vendor/components/bootstrap/less/labels";
+  @import "../../vendor/components/bootstrap/less/badges";
+  // @import "../../vendor/components/bootstrap/less/jumbotron";
+  // @import "../../vendor/components/bootstrap/less/progress-bars";
+  // @import "../../vendor/components/bootstrap/less/media";
+  // @import "../../vendor/components/bootstrap/less/list-group";
+  // @import "../../vendor/components/bootstrap/less/panels";
+  // @import "../../vendor/components/bootstrap/less/wells";
+  @import "../../vendor/components/bootstrap/less/modals";
+  // @import "../../vendor/components/bootstrap/less/tooltip";
+  // @import "../../vendor/components/bootstrap/less/popovers";
+
+// Utility classes
+  @import "../../vendor/components/bootstrap/less/utilities";
+  @import "../../vendor/components/bootstrap/less/responsive-utilities";
+
+
+// Custom classes
+  @import "fonts";
+  @import "buttons";
+  @import "notifications";
+  @import "tiles";
+  @import "tables";
+  @import "navbar";
+  @import "footer";
+  @import "labels_badges";
+  @import "forms";
+  @import "grid";
+  @import "panels";
+
+
+html {
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+html, body {
+  font-family: @font-family-sans-serif;
+  height: 99%;
+  // font-weight: 400;
+  font-size: @font-size-base;
+  line-height: @line-height-base;
+  color: @text-color;
+}
+
+h1,h2,h3,h4,h5,h6,
+legend {
+  line-height: @headings-line-height;
+  font-weight: @headings-font-weight;
+  font-family: @font-family-condensed;
+}
+h1 small, h2 small, h3 small, h4 small, h5 small {
+  margin-left: 15px;
+  font-style: italic;
+}
+
+input,
+button,
+select,
+textarea {
+  font-family: @font-family-sans-serif;
+}
+
+label {
+  small {
+    font-size: smaller;
+    font-style: italic;
+    color: #D14;
+  }
+}
+
+input[readonly],
+select[readonly],
+textarea[readonly] {
+  display: block;
+  background-color: @input-bg;
+  border-color: @input-border;
+  color: @input-color;
+  .box-shadow(inset 0 1px 2px rgba(0, 0, 0, 0.025));
+  cursor: not-allowed;
+}
+
+h5 {
+  a {
+    font-family: @font-family-sans-serif;
+    font-weight: normal;
+  }
+}
+
+
+body {
+  overflow-x: hidden;
+}
+
+label {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-weight: normal;
+}
+#page-content {
+  overflow: hidden;
+  position: relative;
+  background: #fff;
+  padding-bottom: 60px;
+}
+
+.page-container {
+  overflow: hidden;
+  position: relative;
+  top: 41px;
+}
+
+.container {
+  width: 100%;
+}
+
+.page-header {
+  margin-top: 0;
+  margin-bottom: 40px;
+  border: 0;
+
+  & h1 span {
+    margin-left: 15px;
+    font-weight: bold;
+  }
+
+  h1,h2,h3,h4,h5 {
+    margin: 0;
+  }
+}
+
+
+.verticalcenter {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  margin-top: -186px;
+  margin-left: -200px;
+}
+.panel.login {
+  width: 400px;
+  margin: 0 0 20px;
+  border-radius: 1px;
+}
+
+.container.profile a.thumbnail {
+  margin: 0 20px 20px 0;
+}
+
+.profile .list-unstyled li {
+  padding: 5px 0;
+  line-height: 20px;
+  border-bottom: 1px solid @gray-lighter;
+}
+
+.profile .map-it {
+  margin-top: 5px;
+}
+
+.control-label {
+  font-size: smaller;
+  text-transform: uppercase;
+}
+
+footer .script-time {
+  line-height: 40px;
+}
+
+.user-profile-image {
+  display: block;
+  width: 200px;
+  overflow: hidden;
+}
+.user-profile-image > img {
+  // max-width: none;
+}
