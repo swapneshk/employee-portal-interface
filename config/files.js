@@ -28,7 +28,6 @@ module.exports = function(lineman) {
       ],
       app: [
         "app/js/app.js",
-        "app/js/assets/plugins/simple-weather/jquery.simpleWeather.js",
         "app/js/**/*.js"
       ],
       plugins: [
