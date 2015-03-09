@@ -1,0 +1,73 @@
+.top-page.clearfix
+  .page-title.pull-left
+    h3.pull-left
+      strong Manage Events
+  .pull-right
+    a.btn.btn-success.m-t-10(href="/addevent")
+      i.fa.fa-plus.p-r-10
+      | Add an Event
+.top-menu
+  button.btn.btn-dark(href="#", ng-click="showall()")
+    strong All
+    span.label.label-danger.m-l-10 {{allEventNum}}
+  | &nbsp;  
+  button.btn.btn-default(href="#", ng-click="showactive()")
+    | Active
+    span.label.label-default.m-l-10 {{activeEvent}}
+  | &nbsp;
+  button.btn.btn-default(href="#", ng-click="showinactive()")
+    | In Active
+    span.label.label-default.m-l-10 {{inActiveEvent}}
+  | &nbsp;
+  button.btn.btn-default(href="#", ng-click="showisrecurring()")
+    | Is Recurring
+    span.label.label-default.m-l-10 {{isRecurringEvent}}
+  | &nbsp;
+.row
+  .col-md-12
+    .events-filter.clearfix
+      .col-md-3
+        input.form-control(type="text", placeholder="Search event", ng-model="query")
+.row
+  .col-md-12.table-responsive
+    table#events-table.table.table-tools.table-striped(cellpadding="0", cellspacing="0", border="0")
+      tbody
+        tr
+          th
+            b Name
+          th
+            b Description
+          th
+            b Start date
+          th
+            b End date
+          th
+            b Number Of People
+          //
+            th
+              b Type  
+          td
+            b Action
+        tr(ng-repeat="event in foreventCount = (allEvents | filter:query)")
+          td
+            | {{event.name}}
+          td
+            | {{event.description}}
+          td
+            | {{event.start_date | date: 'yyyy-MM-dd'}}
+          td
+            | {{event.end_date| date: 'yyyy-MM-dd'}}
+          td
+            | {{event.event_data.number_of_people}}	
+          //
+            td.text-center
+              span.label.label-success.w-300 {{event.event_data.type}}
+          td.text-center
+            a.edit.btn.btn-sm.btn-icon.btn-rounded.btn-default(href="/event/edit/{{event._id}}", rel="tooltip", title="Edit this Event", type="button")
+              i.fa.fa-pencil
+            //
+              a.delete.btn.btn-sm.btn-icon.btn-rounded.btn-default(href="#", rel="tooltip", title="Delete this Event", type="button")
+                i.fa.fa-times 
+        tr(ng-hide="foreventCount.length") 
+          td 
+            b No Matching Result.      

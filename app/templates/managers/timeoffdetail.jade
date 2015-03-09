@@ -1,0 +1,59 @@
+.page-title
+  h3
+    strong Time Off Request Detail
+.row
+  .col-md-12
+    .tabcordion
+      #myTabContent.tab-content
+        #product_general.tab-pane.fade.active.in
+            table.table.table-striped.table-hover
+              tbody.no-bd-y
+                tr
+                  td(colspan='2')
+                    img.img-responsive(src="{{siteurl}}:3030/public/{{allTimeoffs[0].employee_id.prof_image}}", width="120", height="120", ng-if="allTimeoffs[0].prof_image")
+                tr
+                  td
+                    span.c-blue
+                        strong First Name :
+                    |  {{allTimeoffs[0].employee_id.first_name}}
+                  td
+                    span.c-blue
+                        strong Last Name :
+                    |  {{allTimeoffs[0].employee_id.last_name}}
+                tr
+                  td
+                    span.c-blue
+                        strong TimeOff From :
+                    |  {{allTimeoffs[0].startdate | date: 'yyyy-MM-dd'}}
+                  td
+                    span.c-blue
+                        strong TimeOff To :
+                    |  {{allTimeoffs[0].enddate | date: 'yyyy-MM-dd'}}
+                tr
+                  td
+                    span.c-blue
+                        strong Apply Date :
+                    |  {{allTimeoffs[0].applyDate | date: 'yyyy-MM-dd'}}
+                  td
+                    span.c-blue
+                        strong TimeOff Type :
+                    |  {{allTimeoffs[0].daytype}}
+                tr
+                  td(colspan='2')
+                    span.c-blue
+                        strong Description :
+                    |  {{allTimeoffs[0].description}}
+                tr
+                  td(colspan='2')
+                        input.form-control(type="radio", name="app_rej", ng-model="allTimeoffs[0].status", value="approve")
+                        | &nbsp;&nbsp;Approve
+                        input.form-control(type="radio", name="app_rej", ng-model="allTimeoffs[0].status", value="reject")
+                        | &nbsp;&nbsp;Reject
+                tr
+                  td(colspan='2')
+                        textarea.form-control(placeholder="Description", ng-model="allTimeoffs[0].manager_comment", rows="6")
+                tr
+                  td(colspan='2').text-right
+                         button.btn.btn-success.m-t-10(href="#" ng-click="timeoffResponse(allTimeoffs[0])")
+                          i.fa.fa-check
+                          | Send Confirmation

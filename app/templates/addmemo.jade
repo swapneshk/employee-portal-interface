@@ -1,0 +1,35 @@
+.page-title
+  h3
+    strong Add Memo
+.row
+  .col-md-12
+    .tabcordion
+      #myTabContent.tab-content
+        #product_general.tab-pane.fade.active.in
+          .row
+            .col-md-12
+              form#form1.form-horizontal(name="memoForm", novalidate="")
+                .form-group
+                  label.col-sm-3.control-label
+                    | Select Employee
+                  .col-sm-7
+                    div(multi-select="" input-model="modernWebBrowsers", button-label="email", item-label="first_name", tick-property="ticked")
+                .form-group
+                  label.col-sm-3.control-label
+                    | Memo Title
+                    span.asterisk *
+                  .col-sm-7
+                    input.form-control(type="text", placeholder="Enter title", ng-model="memo.title", required="required")
+                .form-group
+                  label.col-sm-3.control-label
+                    | Description
+                    span.asterisk
+                  .col-sm-7
+                    textarea.form-control(placeholder="Enter description", ng-model="memo.description", rows="6") 
+              .col-md-12.m-t-20.m-b-40.align-center
+                a.btn.btn-default.m-r-10.m-t-10(href="/memolist", ng-click="cleardata()")
+                  i.fa.fa-reply
+                  | Back
+                button.btn.btn-success.m-t-10(href="#" ng-click="addMemo(memo)")
+                  i.fa.fa-check
+                  | Save changes

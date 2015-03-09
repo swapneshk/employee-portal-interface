@@ -1,0 +1,26 @@
+nav#sidebar
+  #main-menu
+    ul.sidebar-nav
+      li(ng-class="{current:isActive('/dashboard')}")
+        a(href="/dashboard", ng-click="pagetitle('Dashboard')")
+          i.fa.fa-dashboard
+          span.sidebar-text Dashboard
+        li(ng-class="{current:isActive('/viewpayrolllist')}")
+          a(href="/viewpayrolllist", ng-click="pagetitle('Payrolls')")
+            i.glyph-icon.flaticon-calendar53
+            span.sidebar-text Payroll
+      br
+  .footer-widget
+    .footer-gradient
+    .sidebar-footer.clearfix
+      //
+        a.pull-left(href="profil_edit.html", rel="tooltip", data-placement="top", data-original-title="Settings")
+          i.glyph-icon.flaticon-settings21
+      //
+        a.pull-left.toggle_fullscreen(href="#", rel="tooltip", data-placement="top", data-original-title="Fullscreen")
+          i.glyph-icon.flaticon-fullscreen3
+      //
+        a.pull-left(href="lockscreen.html", rel="tooltip", data-placement="top", data-original-title="Lockscreen")
+          i.glyph-icon.flaticon-padlock23
+      a.pull-left(href="#", title="Logout", ng-click="logout()", ng-controller="LogoutController")
+        i.fa.fa-power-off

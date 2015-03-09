@@ -1,0 +1,77 @@
+.m-b-20.clearfix
+  .page-title.pull-left
+    h3.pull-left
+      strong Employee Listing
+//
+  .row(ng-show="haveResult")
+    .col-md-12(style="padding-left: 0px;padding-bottom: 8px;")
+      .events-filter.clearfix
+        .col-md-3
+          input.datepicker.form-control(type="text", ng-model="filter.start_date", style="padding:8px;", placeholder="Start date") 
+        .col-md-3  
+          input.datepicker.form-control(type="text", ng-model="filter.end_date", style="padding:8px;", placeholder="End date") 
+        .col-md-3  
+          button.btn.btn-success.m-t-6(ng-click="filterEmp()")
+            i.fa.fa-search 
+            |  Search Availability
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        .col-md-3
+              input.form-control(ng-model='searchText', placeholder='Enter a keyword')
+        .col-md-9
+          .DTTT_container
+            a.btn.btn-success.m-t-10(href="/addemployee")
+              i.fa.fa-plus.p-r-10
+              | Add Employee
+      .panel-body
+        .row
+          .col-md-12.col-sm-12.col-xs-12.table-responsive(ng-if="haveResult")
+            table.table.table-striped.table-hover
+              thead.no-bd
+                tr
+                  th
+                    a(href="", ng-click="reverse=!reverse;order('first_name', reverse)")
+                      strong First Name
+                  th
+                    a(href="", ng-click="reverse=!reverse;order('last_name', reverse)")
+                      strong Last Name
+                  th
+                    a(href="")
+                      strong Image
+                  th
+                    a(href="", ng-click="reverse=!reverse;order('address.line1', reverse)")
+                      strong Address
+                  th
+                    a(href="", ng-click="reverse=!reverse;order('phone', reverse)")
+                      strong Phone
+                  th
+                    a(href="", ng-click="reverse=!reverse;order('date_of_birth', reverse)")
+                      strong Date Of Birth
+                  th.text-center
+                    a(href="", ng-click="reverse=!reverse;order('active', reverse)")
+                      strong Status
+                  th.text-center
+                    a(href="")
+                      strong Scheduling
+              tbody.no-bd-y
+                tr(ng-repeat="emp in empData| filter:searchText" ng-click="showEmp(emp._id)" style="cursor:pointer")
+                  td {{emp.first_name}}
+                  td {{emp.last_name}}
+                  td
+                    img.img-responsive(src="{{siteurl}}:3030/public/{{emp.prof_image}}", width="120", height="120", ng-if="emp.prof_image")
+                  td {{emp.address.line1}} {{emp.address.line2}}
+                  td(ng-bind="emp.phone")
+                  td {{emp.date_of_birth | date: 'yyyy-MM-dd' }}
+                  td(ng-if="emp.active == true") 
+                    | Active
+                  td(ng-if="emp.active !== true") 
+                    .label.label-danger In Active
+                  td.text-center
+                    a.btn.btn-primary(href="/employee/availibility/:{{emp._id}}") Align
+            .row
+              include paging.jade
+          .alert.alert-info.fade.in.text-center(ng-if="!haveResult")
+            h3
+              | No Employees for you this time.

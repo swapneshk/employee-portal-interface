@@ -4,12 +4,12 @@ angular.module("app").factory("AuthenticationService", function($http, SessionSe
     authenticateUser: function (credentials) {
       var defer = $q.defer();
 
-      $http.post("/login", { email: credentials.email, password: credentials.password }).then(function( response ) {
+      $http.post("/api/login", { email: credentials.email, password: credentials.password }).then(function( response ) {
         if (response.data.success) {
-          var user = new User();
-          angular.extend(user, response.data.user);
-          SessionService.storeUser(user);
-          defer.resolve(true);
+            var user = new User();
+            angular.extend(user, response.data.user);
+            SessionService.storeUser(user);
+            defer.resolve(true);
         } else {
           defer.resolve(false);
         }
@@ -29,10 +29,31 @@ angular.module("app").factory("AuthenticationService", function($http, SessionSe
     },
 
     authorizeCurrentUserForRoute: function( role ) {
-      if (SessionService.isAuthorized(role) === true) {
-        return true;
-      } else {
-        return $q.reject("Not Authorized");
+      if (role == 'adminManager') {
+          if (SessionService.isAuthorized('admin') === true) {
+            return true;
+          }else if (SessionService.isAuthorized('manager') === true) {
+            return true;
+          } else {
+            return $q.reject("Not Authorized");
+          }
+      }else if (role == 'adminManagerUser') {
+          if (SessionService.isAuthorized('admin') === true) {
+            return true;
+          }else if (SessionService.isAuthorized('manager') === true) {
+            return true;
+          }else if (SessionService.isAuthenticated()) {
+            return true;
+          } else {
+            return $q.reject("Not Authorized");
+          }
+      }
+      else{
+          if (SessionService.isAuthorized(role) === true) {
+            return true;
+          } else {
+            return $q.reject("Not Authorized");
+          }
       }
     },
 

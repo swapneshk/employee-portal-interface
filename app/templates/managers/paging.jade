@@ -1,0 +1,10 @@
+.col-md-6
+.col-md-6.align-right
+  #products-table_paginate.dataTables_paginate.paging_simple_numbers
+    ul.pagination
+      li#products-table_previous.paginate_button.previous(aria-controls="products-table", tabindex="0",ng-click="previous()", ng-disabled="isPreviousDisabled")
+        a Previous
+      li.paginate_button.active(aria-controls="products-table", tabindex="0",ng-repeat="i in navButtons")
+        a(ng-class="offset == i * perPage && 'active'", ng-click="getoffset(i * perPage)") {{i+1}}
+      li#products-table_next.paginate_button.next(aria-controls="products-table", tabindex="0",ng-click="next()", ng-disabled="isNextDisabled")
+        a Next

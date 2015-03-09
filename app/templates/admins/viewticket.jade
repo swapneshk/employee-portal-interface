@@ -1,0 +1,45 @@
+.m-b-20.clearfix
+  .page-title.pull-left
+    h3.pull-left
+      strong Tickets Listing
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        .col-md-12
+          .DTTT_container
+            a.btn.btn-success.m-t-10(href="/addticket")
+              i.fa.fa-plus.p-r-10
+              | Add Ticket
+      .panel-body
+        .row
+          .col-md-12.col-sm-12.col-xs-12.table-responsive(ng-if="haveResult")
+            table.table.table-striped.table-hover
+              thead.no-bd
+                tr
+                  th
+                    strong Event
+                  th
+                    strong Account
+                  th.text-center
+                    strong Shift
+                  th.text-center
+                    strong Date
+                  th.text-center
+                    strong Number of Tickets
+                  th.text-center
+                    strong Action
+              tbody.no-bd-y
+                tr(ng-repeat="t in allTickets")
+                  td(ng-bind="t.event.name")
+                  td(ng-bind="t.account.name")
+                  td.text-center(ng-bind="t.shift")
+                  td.text-center(ng-bind="t.date | date: 'shortDate'")
+                  td.text-center(ng-bind="t.number_of_ticket")
+                  td.text-center
+                    a.btn.btn-primary(ng-click="printDiv('main-content');") Print
+            .row
+              include paging.jade
+          .alert.alert-info.fade.in.text-center(ng-if="!haveResult")
+            h3
+              | No Tickets for you this time.

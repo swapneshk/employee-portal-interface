@@ -1,0 +1,117 @@
+#modal-basic.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+    .modal-dialog
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-hidden='true') X
+            h4#myModalLabel.modal-title
+              | Assign an Event
+          .modal-body
+            form#form1.form-horizontal(name="eventForm")
+                .form-group
+                  label.col-sm-3.control-label
+                    | Select Event
+                    span.asterisk *
+                  .col-sm-7
+                    select.btn(ng-model="EventAssignment.event_id", ng-options="event_id.name for event_id in allEvents")
+                     input(ng-model="EventAssignment.assigned_date" type="hidden")
+                     input(ng-model="EventAssignment.assigned_shift" type="hidden")
+                     input(ng-model="EventAssignment.assigned_index" type="hidden")
+          .modal-footer
+            button.btn.btn-default(type='button', data-dismiss='modal') Close
+            button.btn.btn-danger(ng-if='showRemoveButton && date_status', type='button', data-dismiss='modal', ng-click="removeAssignment(EventAssignment)") Remove Assignment
+            button.btn.btn-success(ng-if='date_status', type='button', data-dismiss='modal', ng-click="saveAssignment(EventAssignment)") Save changes
+.m-b-20.clearfix
+  .page-title.pull-left
+    h3.pull-left
+      strong {{userdetail.first_name}} Availability
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title
+          strong Edit Employee Availability 
+      .panel-body
+        form#form1.form-horizontal(name="availableRangeForm", novalidate="")
+          .form-group
+            .col-sm-3
+              input.datepicker.form-control(type="text", placeholder="Start Date", ng-model="dateRange.start_date", style="padding: 8px 12px;")
+            .col-sm-3
+              input.datepicker.form-control(type="text", placeholder="End Date", ng-model="dateRange.end_date", style="padding: 8px 12px;")
+            .col-md-3
+                button.btn.btn-success(href="#" ng-click="fetchRangeData(dateRange)")
+                  i.fa.fa-check
+                  | Submit
+            .col-md-3
+                a(href="/eventcalendar")
+                  i.flaticon-calendar5
+                  span(style='padding-left:5px') Event Calendar
+          .col-lg-13
+            table.table.table-striped.table-hover.table-bordered(ng-if="sevenWeekDayArr")
+              thead.no-bd
+                tr
+                  th
+                    strong Day Of the Week
+                  th
+                    strong Shift
+                  th
+                    strong Employee Availability
+                  th
+                    strong Schedule
+              tbody.no-bd-y
+                tr(ng-repeat-start="a in sevenWeekDayArr")
+                  td {{a | date: 'shortDate'}}
+                  td Morning:
+                  td(ng-if="a.differ<-1")
+                    input(type="checkbox", ng-model="availability[$index].is_morning_scheduled", ng-checked="availability[$index].is_morning_scheduled", ng-click="updateEmployeeavailability(a,'morning',$index,$event)", "disabled"="true")
+                  td(ng-if="a.differ >= -1")
+                    input(type="checkbox", ng-model="availability[$index].is_morning_scheduled", ng-checked="availability[$index].is_morning_scheduled", ng-click="updateEmployeeavailability(a,'morning',$index,$event)")                
+                  td(ng-if='availability[$index].is_morning_scheduled_confirmation == true && a.differ >= -1')
+                    button.btn.btn-success(data-toggle="modal" data-target="#modal-basic" ng-click="assignedData(a,'morning',availability[$index].is_morning_scheduled_event,$index,a.differ)") Assignment
+                  td(ng-if='(availability[$index].is_morning_scheduled_confirmation == undefined || availability[$index].is_morning_scheduled_confirmation == false) && (a.differ >= -1)')
+                    button.btn.btn-info(data-toggle="modal" data-target="#modal-basic" ng-click="assignedData(a,'morning','new', $index,a.differ)") Assignment
+                  td(ng-if='a.differ<-1')
+                    button.btn.btn-info.disabled() Assignment
+                    
+                tr
+                  td
+                  td Afternoon:
+                  td(ng-if="a.differ<-1")
+                    input(type="checkbox", ng-model="availability[$index].is_afternoon_scheduled", ng-checked="availability[$index].is_afternoon_scheduled", ng-click="updateEmployeeavailability(a,'afternoon',$index,$event)", "disabled"="true")
+                  td(ng-if="a.differ >= -1")
+                    input(type="checkbox", ng-model="availability[$index].is_afternoon_scheduled", ng-checked="availability[$index].is_afternoon_scheduled", ng-click="updateEmployeeavailability(a,'afternoon',$index,$event)")
+                  td(ng-if='availability[$index].is_afternoon_scheduled_confirmation == true && a.differ >= -1')
+                    button.btn.btn-success(data-toggle="modal" data-target="#modal-basic" ng-click="assignedData(a,'afternoon',availability[$index].is_afternoon_scheduled_event,$index,a.differ)") Assignment
+                  td(ng-if='(availability[$index].is_afternoon_scheduled_confirmation == undefined || availability[$index].is_afternoon_scheduled_confirmation == false) && (a.differ >= -1)')
+                    button.btn.btn-info(data-toggle="modal" data-target="#modal-basic" ng-click="assignedData(a,'afternoon','new',$index,a.differ)") Assignment
+                  td(ng-if='a.differ<-1')
+                    button.btn.btn-info.disabled() Assignment
+                tr
+                  td
+                  td Night:
+                  td(ng-if="a.differ<-1")
+                    input(type="checkbox", ng-model="availability[$index].is_night_scheduled", ng-checked="availability[$index].is_night_scheduled", ng-click="updateEmployeeavailability(a,'night',$index,$event)", "disabled"="true")
+                  td(ng-if="a.differ >= -1")
+                    input(type="checkbox", ng-model="availability[$index].is_night_scheduled", ng-checked="availability[$index].is_night_scheduled", ng-click="updateEmployeeavailability(a,'night',$index,$event)")
+                  td(ng-if='availability[$index].is_night_scheduled_confirmation == true && a.differ >= -1')
+                    button.btn.btn-success(data-toggle="modal" data-target="#modal-basic" ng-click="assignedData(a,'night',availability[$index].is_night_scheduled_event,$index,a.differ)") Assignment
+                  td(ng-if='(availability[$index].is_night_scheduled_confirmation == undefined || availability[$index].is_night_scheduled_confirmation == false) && (a.differ >= -1)')
+                    button.btn.btn-info(data-toggle="modal" data-target="#modal-basic" ng-click="assignedData(a,'night','new',$index,a.differ)") Assignment
+                  td(ng-if='a.differ<-1')
+                    button.btn.btn-info.disabled() Assignment
+                tr(ng-repeat-end="")
+                  td
+                  td Late Night:
+                  td(ng-if="a.differ<-1")
+                    input(type="checkbox", ng-model="availability[$index].is_late_night_scheduled", ng-checked="availability[$index].is_late_night_scheduled", ng-click="updateEmployeeavailability(a,'latenight',$index,$event)", "disabled"="true")
+                  td(ng-if="a.differ >= -1")
+                    input(type="checkbox", ng-model="availability[$index].is_late_night_scheduled", ng-checked="availability[$index].is_late_night_scheduled", ng-click="updateEmployeeavailability(a,'latenight',$index,$event)")
+                  td(ng-if='availability[$index].is_late_night_scheduled_confirmation == true && a.differ >= -1')
+                    button.btn.btn-success(data-toggle="modal" data-target="#modal-basic" ng-click="assignedData(a,'latenight',availability[$index].is_late_night_scheduled_event,$index,a.differ)") Assignment
+                  td(ng-if='(availability[$index].is_late_night_scheduled_confirmation == undefined || availability[$index].is_late_night_scheduled_confirmation == false) && (a.differ >= -1)')
+                    button.btn.btn-info(data-toggle="modal" data-target="#modal-basic" ng-click="assignedData(a,'latenight','new',$index,a.differ)") Assignment
+                  td(ng-if='a.differ<-1')
+                    button.btn.btn-info.disabled() Assignment
+          .col-md-12.m-t-20.m-b-40.align-center
+            //button.btn.btn-success.m-t-10(ng-click="submitAvailability(availability)",ng-if="sevenWeekDayArr")
+              //i.fa.fa-check
+              //| Schedule Availability

@@ -1,0 +1,71 @@
+.page-title
+  h3 
+    strong Manage Time Slots
+.row(ng-show="visibility")
+  .col-md-12
+    .tabcordion
+      #myTabContent.tab-content
+        #product_general.tab-pane.fade.active.in
+          .row
+            .col-md-12 
+              form#form1.form-horizontal(name="timeslotForm") 
+                .form-group 
+                  label.col-sm-3.control-label 
+                    | Morning 
+                    span.asterisk * 
+                  .col-sm-3
+                    select.btn#repeatval(ng-model="slot.morning_start_time", ng-options="morning_start_time.value as morning_start_time.name for morning_start_time in slottime", ng-init="slot.morning_start_time= slot.morning_start_time || slottime[5].value")
+                    | &nbsp;
+                    select.btn#repeatval(ng-model="slot.morning_start_period", ng-options="morning_start_period.value as morning_start_period.name for morning_start_period in period", ng-init="slot.morning_start_period= slot.morning_start_period || period[0].value")
+                  .col-sm-1
+                    | TO
+                  .col-sm-3  
+                    select.btn#repeatval(ng-model="slot.morning_end_time", ng-options="morning_end_time.value as morning_end_time.name for morning_end_time in slottime", ng-init="slot.morning_end_time= slot.morning_end_time || slottime[9].value") 
+                    | &nbsp;
+                    select.btn#repeatval(ng-model="slot.morning_end_period", ng-options="morning_end_period.value as morning_end_period.name for morning_end_period in period", ng-init="slot.morning_end_period= slot.morning_end_period || period[0].value")
+                .form-group 
+                  label.col-sm-3.control-label 
+                    | Afternoon
+                    span.asterisk * 
+                  .col-sm-3
+                    select.btn#repeatval(ng-model="slot.afternoon_start_time", ng-options="afternoon_start_time.value as afternoon_start_time.name for afternoon_start_time in slottime", ng-init="slot.afternoon_start_time=slot.afternoon_start_time || slottime[9].value")
+                    | &nbsp;
+                    select.btn#repeatval(ng-model="slot.afternoon_start_period", ng-options="afternoon_start_period.value as afternoon_start_period.name for afternoon_start_period in period", ng-init="slot.afternoon_start_period=slot.afternoon_start_period || period[0].value")
+                  .col-sm-1
+                    | TO
+                  .col-sm-3  
+                    select.btn#repeatval(ng-model="slot.afternoon_end_time", ng-options="afternoon_end_time.value as afternoon_end_time.name for afternoon_end_time in slottime", ng-init="slot.afternoon_end_time= slot.afternoon_end_time || slottime[3].value") 
+                    | &nbsp;
+                    select.btn#repeatval(ng-model="slot.afternoon_end_period", ng-options="afternoon_end_period.value as afternoon_end_period.name for afternoon_end_period in period", ng-init="slot.afternoon_end_period= slot.afternoon_end_period || period[1].value")
+                .form-group 
+                  label.col-sm-3.control-label 
+                    | Night 
+                    span.asterisk * 
+                  .col-sm-3
+                    select.btn#repeatval(ng-model="slot.night_start_time", ng-options="night_start_time.value as night_start_time.name for night_start_time in slottime", ng-init="slot.night_start_time=slot.night_start_time || slottime[3].value")
+                    | &nbsp;
+                    select.btn#repeatval(ng-model="slot.night_start_period", ng-options="night_start_period.value as night_start_period.name for night_start_period in period", ng-init="slot.night_start_period=slot.night_start_period || period[1].value")
+                  .col-sm-1
+                    | TO
+                  .col-sm-3  
+                    select.btn#repeatval(ng-model="slot.night_end_time", ng-options="night_end_time.value as night_end_time.name for night_end_time in slottime", ng-init="slot.night_end_time=slot.night_end_time || slottime[9].value") 
+                    | &nbsp;
+                    select.btn#repeatval(ng-model="slot.night_end_period", ng-options="night_end_period.value as night_end_period.name for night_end_period in period", ng-init="slot.night_end_period= slot.night_end_period || period[1].value")
+                .form-group 
+                  label.col-sm-3.control-label 
+                    | Late Night
+                    span.asterisk * 
+                  .col-sm-3
+                    select.btn#repeatval(ng-model="slot.late_night_start_time", ng-options="late_night_start_time.value as late_night_start_time.name for late_night_start_time in slottime", ng-init="slot.late_night_start_time= slot.late_night_start_time || slottime[9].value")
+                    | &nbsp;
+                    select.btn#repeatval(ng-model="slot.late_night_start_period", ng-options="late_night_start_period.value as late_night_start_period.name for late_night_start_period in period", ng-init="slot.late_night_start_period= slot.late_night_start_period || period[1].value")
+                  .col-sm-1
+                    | TO
+                  .col-sm-3  
+                    select.btn#repeatval(ng-model="slot.late_night_end_time", ng-options="late_night_end_time.value as late_night_end_time.name for late_night_end_time in slottime", ng-init="slot.late_night_end_time= slot.late_night_end_time || slottime[1].value") 
+                    | &nbsp;
+                    select.btn#repeatval(ng-model="slot.late_night_end_period", ng-options="late_night_end_period.value as late_night_end_period.name for late_night_end_period in period", ng-init="slot.late_night_end_period= slot.late_night_end_period || period[0].value")
+              .col-md-12.m-t-20.m-b-40.align-center
+                button.btn.btn-success.m-t-10(href="#" ng-click="saveTimeSlot(slot)") 
+                  i.fa.fa-check 
+                  | Save Time Slots

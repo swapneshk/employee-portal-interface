@@ -1,0 +1,28 @@
+.row
+  .col-md-12.col-sm-12.col-xs-12
+    .panel
+      .panel-heading.no-bd
+            h3.panel-title(style="width:100%")
+              i.fa.fa-list-alt
+              | Profile Information ( 
+              a(href="" ng-click="changeview('/adminprofile')" style="cursor:pointer;text-decoration:underline;color:#0090d9") Click here
+              |  to update profile information)
+      .panel-body
+        ul.list-unstyled.profile-nav.col-md-4
+          li
+            img.img-responsive(alt="profil", src="assets/img/avatars/avatar2_big.png", ng-if="((!user.prof_image) || (user.prof_image == 'test'))") 
+            img.img-responsive(src="{{siteurl}}:3030/public/{{user.prof_image}}", ng-if="((user.prof_image) && (user.prof_image !== 'test'))")
+        .col-md-8
+          .row
+            .col-md-12.profile-info
+              h1 {{user.first_name}} {{user.last_name}}
+              h4 Address
+              address
+                | {{user.address.line1}} {{user.address.line2}}, {{user.address.city}} {{user.address.state}} {{user.address.zip}}
+              contact(ng-if = "user.phone")
+                i.glyph-icon.flaticon-mobile26
+                span {{user.phone}}
+              br
+              email(ng-if = "user.email")
+                i.glyph-icon.flaticon-messages5
+                span {{user.email}}

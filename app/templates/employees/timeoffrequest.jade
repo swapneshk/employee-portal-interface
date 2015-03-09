@@ -1,0 +1,86 @@
+.page-title
+  h3
+    strong Time Off Request
+.row
+  .col-md-12
+    .tabcordion
+      #myTabContent.tab-content
+        #product_general.tab-pane.fade.active.in
+          .row
+            .col-md-12
+              form#form1.form-horizontal(name="timeOffRequestForm")
+                .form-group
+                  label.col-sm-3.control-label
+                    | Day Type
+                    span.asterisk *
+                  .col-sm-1
+                    input.form-control(type="radio", name="is_active", ng-model="timeoff.daytype", value="Full") 
+                    | &nbsp;&nbsp;Full
+                  .col-sm-3
+                    input.form-control(type="radio", name="is_active", ng-model="timeoff.daytype", value="Partial") 
+                    | &nbsp;&nbsp;Partial
+                div(ng-show="timeoff.daytype === 'Full'")
+                    .form-group
+                      label.col-sm-3.control-label
+                        | Start Date
+                        span.asterisk *
+                      .col-sm-2
+                        input.datepicker.form-control(type="text", placeholder="mm/dd/yyyy", ng-model="timeoff.startdate", required="required", style="padding: 8px 12px;")
+                      label.col-sm-1.control-label
+                        | End Date
+                        span.asterisk *
+                      .col-sm-2
+                        input.datepicker.form-control(type="text", placeholder="mm/dd/yyyy", ng-model="timeoff.enddate", required="required", style="padding: 8px 12px;")
+                div(ng-show="timeoff.daytype === 'Partial'")
+                    .form-group
+                      label.col-sm-3.control-label
+                        | Date
+                        span.asterisk *
+                      .col-sm-2
+                        input.datepicker.form-control(type="text", placeholder="mm/dd/yyyy", ng-model="timeoff.startdate", required="required", style="padding: 8px 12px;")
+                        input.form-control(type="text", placeholder="mm/dd/yyyy", ng-model="timeoff.enddate", style="padding: 8px 12px;display:none", ng-init="timeoff.enddate = 'test'")
+                      label.col-sm-1.control-label
+                        | Shift
+                        span.asterisk *
+                      .col-sm-2
+                        select.btn(ng-options = "shift.value as shift.name for shift in shifts", ng-model="timeoff.shift", ng-init="timeoff.shift = timeoff.shift || shifts[0].value")
+                .form-group
+                  label.col-sm-3.control-label
+                    | Description
+                    span.asterisk *
+                  .col-sm-7
+                    textarea.form-control(placeholder="Description", ng-model="timeoff.description", rows="6", required="required")
+            .col-md-12.m-t-20.m-b-40.align-center
+                button.btn.btn-default.m-r-10.m-t-10(href="#", ng-click="cleardata()")
+                  i.fa.fa-reply
+                  | Clear
+                button.btn.btn-success.m-t-10(href="#" ng-click="sendTimeOffRequest(timeoff)")
+                  i.fa.fa-check
+                  | Send Request
+            table.table.table-striped.table-hover(ng-if="haveResult")
+              thead.no-bd
+                tr
+                  th
+                    strong From
+                  th
+                    strong To
+                  th
+                    strong Reason
+                  th
+                    strong Status
+                  th
+                    strong Request Type
+                  th
+                    strong Comments
+              tbody.no-bd-y
+                tr(ng-repeat="timeoff in allTimeoffs")
+                  td(ng-bind="timeoff.startdate | date: 'yyyy-MM-dd'")
+                  td(ng-bind="timeoff.enddate | date: 'yyyy-MM-dd'")
+                  td(ng-bind="timeoff.description")
+                  td(ng-if = "timeoff.status == 'approve'")
+                    i.fa.fa-check
+                  td(ng-if = "timeoff.status == 'reject'")
+                    i.fa.fa-times
+                  td(ng-if = "!timeoff.status")
+                  td(ng-bind="timeoff.daytype")
+                  td(ng-bind="timeoff.manager_comment")  

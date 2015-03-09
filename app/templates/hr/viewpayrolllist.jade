@@ -1,0 +1,41 @@
+.m-b-20.clearfix
+  .page-title.pull-left
+    h3.pull-left
+      strong Payrolls Listing
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        .col-md-12
+          .DTTT_container
+            a.btn.btn-success.m-t-10(href="/addpayroll")
+              i.fa.fa-plus.p-r-10
+              | Add Payroll
+      .panel-body
+        .row
+          .col-md-12.col-sm-12.col-xs-12.table-responsive(ng-if="haveResult")
+            table.table.table-striped.table-hover
+              thead.no-bd
+                tr
+                  th
+                    strong Employee
+                  th.text-center
+                    strong Time From
+                  th.text-center
+                    strong Time To
+                  th.text-center
+                    strong Pay Rate
+                  th.text-center
+                    strong Total Hours
+              tbody.no-bd-y
+                tr(ng-repeat="t in allPayrolls")
+                  td(ng-bind="t.emp_id.first_name")
+                  td.text-center(ng-bind="t.time_from | date: 'shortDate'")
+                  td.text-center(ng-bind="t.time_to | date: 'shortDate'")
+                  td.text-center(ng-bind="t.pay_rate")
+                  td.text-center(ng-bind="t.total_hours")
+            .row
+              include paging.jade
+        .alert.alert-info.fade.in.text-center(ng-if="!haveResult")
+            h3
+              | No Payrolls for you this time.

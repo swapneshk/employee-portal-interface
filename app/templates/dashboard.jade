@@ -1,3 +1,177 @@
-.container
-  h1 Welcome {{ session.currentUser.first_name + " " + session.currentUser.last_name }}
-  include test.html
+// h1 Welcome {{ userFullData.first_name }}
+.alert.alert-warning.fade.in(ng-if="!password_change")
+  button.close(type="button", data-dismiss="alert", aria-hidden="true") &#215;
+  strong Please update your password!
+.row
+  .col-md-12.col-sm-12.col-xs-12
+    .alert.alert-success.fade.in
+      button.close(type="button", data-dismiss="alert", aria-hidden="true") &#215;
+      strong Welcome {{ userFullData.first_name }} {{ userFullData.last_name }}
+      p
+.row.m-b-10
+  .m-t-10
+  .col-md-6(ng-if="role != 'hr'")
+    .panel
+      .panel-heading.no-bd.bg-dark
+            h3.panel-title
+              i.fa.fa-list-alt
+              | Profile Information
+      .panel-body
+        ul.list-unstyled.profile-nav.col-md-4
+          li
+            img.animated.flipInY(ng-src="assets/img/avatars/avatar2_big.png", alt="avatar 2", ng-if="((prof_image == 'test') || (!prof_image))")
+            img.animated.flipInY(ng-src="{{siteurl}}:3030/public/{{prof_image}}", alt="user avatar", ng-if="((prof_image !== 'test') && (prof_image))")
+        .col-md-8
+          .row
+            .col-md-12.profile-info
+              h1 {{user.first_name}} {{user.last_name}}
+              h4 Address
+              address
+                | {{user.address.line1}} {{user.address.line2}}, {{user.address.city}} {{user.address.state}} {{user.address.zip}}
+  .col-md-12(ng-if="role == 'hr'")
+    .panel
+      .panel-body
+        ul.list-unstyled.profile-nav.col-md-4
+          li
+            img.animated.flipInY(ng-src="/img/avatars/avatar4_big.png", alt="avatar 4", ng-if="prof_image == 'test'")
+            img.animated.flipInY(ng-src="{{siteurl}}:3030/public/{{prof_image}}", alt="user avatar", ng-if="prof_image !== 'test'")
+        .col-md-8
+          .row
+            .col-md-12.profile-info
+              h1 {{user.first_name}}
+              h4 Address
+              address
+                | {{user.address.line1}} {{user.address.line2}}, {{user.address.city}} {{user.address.state}} {{user.address.zip}}
+  .col-md-6(ng-if = "role == 'employee'")
+    .col-md-12
+      .row
+        .panel.panel-default.company-memo
+          .panel-heading.no-bd.bg-dark
+            h3.panel-title
+              i.fa.fa-list-alt
+              | Company Memos
+          .panel-body.withScroll
+            ul(ng-if="haveResult")
+              li.left.clearfix(ng-repeat="memo in allMemos", ng-if="$index<2")
+                .chat-body.clearfix
+                  .header
+                    strong
+                        a.primary-font(href="/memo/{{memo._id}}", rel="tooltip", title="Read Memo", type="button", ng-click="markRead(memo._id)") {{memo.title}}
+                    small.pull-right.text-muted.mark_read
+                      input(type="checkbox", "disabled"="true", ng-checked="checkRead(user._id, memo.sent_to)")
+                      | Mark as read
+                  p
+                    | {{memo.description}}
+              li.left.clearfix(ng-repeat="memo in allMemos", ng-if="$index==2")
+                strong
+                  a.primary-font(href="/memolist", rel="tooltip", title="Read Memo", type="button", style="text-decoration:underline;float:right") View All
+            .alert.alert-info.fade.in.text-center(ng-if="!haveResult")
+              h3
+                | No memo for you this time.
+  .col-md-6(ng-if = "role == 'admin' || role == 'manager'")
+    .col-md-12
+      .row
+        .panel.panel-default.company-memo
+          .panel-heading.no-bd.bg-dark
+            h3.panel-title(style="width:70%")
+              i.fa.fa-list-alt
+              | List of Employees ({{employeelist.length}})
+              br
+              span(style='font-size:14px') -- Who don't mark their availability of current week.  
+          .panel-body(style="height:200px !important")
+            .row
+              .col-md-12.col-sm-12.col-xs-12
+                .withScroll.mCustomScrollbar._mCS_172(data-height='200', style='height: 200px;')
+                  #mCSB_172.mCustomScrollBox.mCS-dark-2(style='position:relative; height:100%; overflow:hidden; max-width:100%;')
+                    .mCSB_container(style='position:relative; top:0;')
+                      strong.message-item.media(ng-repeat="empl in employeelist")
+                          .pull-left
+                            span(popover-label='{{$index+1}} : {{empl.first_name}}  {{empl.last_name}}',imgval='{{empl.prof_image}}', popover-placement='right', popover-html='{{empl.prof_image}} <span style="float:right;padding-left:10px"> {{empl.first_name}} {{empl.last_name}} </br> <i class="glyph-icon flaticon-mobile26"></i> {{empl.phone}} </span>', custom-popover='')
+                      .mCSB_scrollTools(style='position: absolute; display: block; opacity: 0;')
+                        .mCSB_draggerContainer
+                          .mCSB_dragger(oncontextmenu='return false;', style='position: absolute; height: 280px; top: 0px;')
+                            .mCSB_dragger_bar(style='position: relative; line-height: 280px;')
+                          .mCSB_draggerRail
+                        .mCSB_draggerRail
+br       
+.row.m-b-10(ng-if = "role != 'hr'")
+  .col-md-6(ng-if = "role != 'employee'")
+    .col-md-14
+      .panel.panel-default
+       .panel-heading.no-bd.bg-dark
+            h3.panel-title(style="width:70%")
+              i.fa.fa-list-alt
+              | Contacts ({{loggedemployeelist.length}})
+        .panel-body.messages
+          .row
+            .col-md-12.col-sm-12.col-xs-12
+                  .withScroll.mCustomScrollbar._mCS_172(data-height='360', style='height: 360px;')
+                    #mCSB_172.mCustomScrollBox.mCS-dark-2(style='position:relative; height:100%; overflow:hidden; max-width:100%;')
+                      .mCSB_container(style='position:relative; top:0;')
+                        a.message-item.media(ng-repeat="log_empl in loggedemployeelist | orderBy : 'logged_in' : true")
+                          .media
+                            img.pull-left(width='35', alt='avatar 1', src='{{log_empl.prof_image}}')
+                            .media-body
+                              .pull-left
+                                p.c-dark.m-0
+                                  strong {{log_empl.first_name}}  {{log_empl.last_name}} 
+                                  i.fa.fa-circle(style="color:{{log_empl.logged_in}}")
+                                p.c-gray.m-0 {{log_empl.email}}
+                              .pull-right.f-18.p-t-10(ng-if = "log_empl.phone")
+                                i.fa.fa-phone(style="color:#0090d9;")
+                                {{log_empl.phone}}
+                        .mCSB_scrollTools(style='position: absolute; display: block; opacity: 0;')
+                          .mCSB_draggerContainer
+                            .mCSB_dragger(oncontextmenu='return false;', style='position: absolute; height: 280px; top: 0px;')
+                              .mCSB_dragger_bar(style='position: relative; line-height: 280px;')
+                            .mCSB_draggerRail
+                          .mCSB_draggerRail
+  .col-md-6(ng-if = "role == 'employee'")
+    .panel
+      .panel-heading.no-bd.bg-dark
+        h3.panel-title
+          i.fa.fa-clock-o
+          | Hours Worked
+      .panel-body
+        fieldset.ui-controlgroup.ui-controlgroup-horizontal.ui-group-theme-b.ui-corner-all(data-role='controlgroup', data-theme='b', data-type='horizontal')
+          .row
+            .col-lg-8.col-lg-offset-2.col-md-12
+              chart(xkey='xkey', ykeys='ykeys', labels='labels', data='myModel', chk='chk', id="chart" )
+  .col-md-6(ng-if = "role == 'admin' || role == 'manager'")
+    .panel
+      .panel-heading.no-bd.bg-dark
+        h3.panel-title(style="width:80%")
+          i.fa.fa-clock-o
+          | Scheduled Counts
+          br
+          span(style='font-size:14px') -- Events that scheduled for today/ a week/ a month.  
+      .panel-body
+        fieldset.ui-controlgroup.ui-controlgroup-horizontal.ui-group-theme-b.ui-corner-all(data-role='controlgroup', data-theme='b', data-type='horizontal')
+          .ui-controlgroup-controls
+            .ui-checkbox(ng-click="worktype('today')")
+              label.ui-btn.ui-corner-all.ui-btn-active.ui-first-child(for='radio-choice-t-6a',id="today") Today
+            .ui-checkbox(ng-click="worktype('week')")
+              label.ui-btn.ui-corner-all(for='radio-choice-t-6b', id="week") Week
+            .ui-checkbox(ng-click="worktype('month')")
+              label.ui-btn.ui-corner-all(for='radio-choice-t-6c', id="month") Month
+          h4 Scheduled Counts : {{todayevents.length}}
+          .col-md-12.col-sm-12.col-xs-12
+            .withScroll.mCustomScrollbar._mCS_172(data-height='200', style='height: 200px;')
+              #mCSB_172.mCustomScrollBox.mCS-dark-2(style='position:relative; height:100%; overflow:hidden; max-width:100%;')
+                .mCSB_container(style='position:relative; top:0;')
+                  span.message-item.media(ng-repeat="tevent in todayevents")
+                      a.primary-font(href="/event/edit/{{tevent._id}}", rel="tooltip", title="Edit Event", type="button") {{$index+1}} : {{tevent.name}}  =>  {{tevent.shiftstarttime}} - {{tevent.shiftendtime}}
+                  .mCSB_scrollTools(style='position: absolute; display: block; opacity: 0;')
+                    .mCSB_draggerContainer
+                      .mCSB_dragger(oncontextmenu='return false;', style='position: absolute; height: 280px; top: 0px;')
+                        .mCSB_dragger_bar(style='position: relative; line-height: 280px;')
+                      .mCSB_draggerRail
+                    .mCSB_draggerRail      
+//             
+  .row.m-b-10(ng-if = "role != 'hr' && role != 'employee'")
+    .col-lg-6.m-b-20
+      .panel.panel-default.rating
+        .panel-heading.clearfix.pos-rel
+          .pos-abs.top-12.l-15.f-18.c-gray
+            i.fa.fa-star-o
+          h2.panel-title.width-100p.c-red.text-center.w-500.f-20.carrois Reviews

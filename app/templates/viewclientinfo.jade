@@ -1,0 +1,194 @@
+.row
+  // BEGIN PROFIL SIDEBAR
+  .col-md-3.profil-sidebar
+    .p-20
+      .profil-sidebar-element
+        h4 General Info
+        p.m-t-0
+          span.c-blue
+            strong Name: 
+          | {{client.name}}  
+        p.m-t-0
+          span.c-blue
+            strong Street 1: 
+          | {{client.address.street1}}  
+        p.m-t-0
+          span.c-blue
+            strong Street 2: 
+          | {{client.address.street2}} 
+        p.m-t-0
+          span.c-blue
+            strong City: 
+          | {{client.address.city}}
+      .profil-sidebar-element
+        h4 Contact Info
+        p.m-t-0
+          span.c-blue
+            strong Contact Name: 
+          | {{client.contact_name}}
+        p.m-t-0
+          span.c-blue
+            strong Contact Email: 
+          | {{client.contact_email}} 
+        p.m-t-0
+          span.c-blue
+            strong Contact Phone: 
+          | {{client.contact_phone}} 
+        p.m-t-0
+          span.c-blue
+            strong Contact Fax: 
+          | {{client.contact_fax}}   
+      .profil-sidebar-element
+        h4 Other Details
+        p.m-t-0
+          span.c-blue
+            strong Account: 
+          | {{client.is_account}}
+        p.m-t-0
+          span.c-blue
+            strong Active: 
+          | {{client.is_active}}
+        p.m-t-0
+          span.c-blue
+            strong Created Date:
+          | {{client.created_date | date: 'yyyy-MM-dd'}}
+        p.m-t-0
+          span.c-blue
+            strong Modified On:
+          | {{client.modified_on | date: 'yyyy-MM-dd'}}                  
+  // END PROFIL SIDEBAR
+  // BEGIN PROFIL CONTENT
+  .col-md-9.profil-content.m-t-20
+    h2
+      span.c-blue {{client.name}}
+    .row
+      .col-md-12.profil-presentation
+        p
+          i.fa.fa-quote-left.c-blue
+          |  {{client.description}}  
+          i.fa.fa-quote-right.c-blue
+    .row
+    h4 MY REVIEWS
+    .row.profil-review
+      .col-md-6
+        .p-20
+          .row
+            .col-xs-3.col-md-3.p-r-10
+              img.img-rounded.img-responsive(alt="review 1", src="assets/img/profil_page/review1.png")
+            .col-xs-9.col-md-9.section-box
+              h2
+                | My Magazine
+                a(target="_blank", href="#")
+              p
+                | Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra l&#225; , depois divoltis.
+              hr
+              .row.rating-desc
+                .col-md-12
+                  .stars
+                    span.fa.fa-star.fa-star
+                    span.fa.fa-star.fa-star
+                    span.fa.fa-star.fa-star
+                    span.fa.fa-star.fa-star
+                    span.fa.fa-star.fa-star-o
+                  | (36)
+                  span.separator |
+                  i.fa.fa-comments-o
+                  | 100 Comments
+      .col-md-6
+        .p-20
+          .row
+            .col-xs-3.col-md-3.p-r-10
+              img.img-rounded.img-responsive(alt="jQuery2DotNet", src="assets/img/profil_page/review2.png")
+            .col-xs-9.col-md-9.section-box
+              h2
+                | My 2nd review
+                a(target="_blank", href="#")
+              p
+                | Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra l&#225; , depois divoltis.
+              hr
+              .row.rating-desc
+                .col-md-12
+                  .stars
+                    span.fa.fa-star.fa-star
+                    span.fa.fa-star.fa-star
+                    span.fa.fa-star.fa-star
+                    span.fa.fa-star.fa-star-o
+                    span.fa.fa-star.fa-star-o
+                  | (18)
+                  span.separator |
+                  i.fa.fa-comments-o
+                  | 54 Comments
+      .col-md-6
+        .p-20
+          .row
+            .col-xs-3.col-md-3.p-r-10
+              img.img-rounded.img-responsive(alt="jQuery2DotNet", src="assets/img/profil_page/review2.png")
+            .col-xs-9.col-md-9.section-box
+              h2
+                | My 2nd review
+                a(target="_blank", href="#")
+              p
+                | Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra l&#225; , depois divoltis.
+              hr
+              .row.rating-desc
+                .col-md-12
+                  .stars
+                    span.fa.fa-star.fa-star
+                    span.fa.fa-star.fa-star
+                    span.fa.fa-star.fa-star
+                    span.fa.fa-star.fa-star-o
+                    span.fa.fa-star.fa-star-o
+                  | (18)
+                  span.separator |
+                  i.fa.fa-comments-o
+                  | 54 Comments                  
+      .col-md-6
+        .p-20
+          .row
+            .col-xs-3.col-md-3.p-r-10
+              img.img-rounded.img-responsive(alt="review 1", src="assets/img/profil_page/review1.png")
+            .col-xs-9.col-md-9.section-box
+              h2
+                | My Magazine
+                a(target="_blank", href="#")
+              p
+                | Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra l&#225; , depois divoltis.
+              hr
+              .row.rating-desc
+                .col-md-12
+                  .stars
+                    span.fa.fa-star.fa-star
+                    span.fa.fa-star.fa-star
+                    span.fa.fa-star.fa-star
+                    span.fa.fa-star.fa-star
+                    span.fa.fa-star.fa-star-o
+                  | (36)
+                  span.separator |
+                  i.fa.fa-comments-o
+                  | 100 Comments
+      .col-md-6
+        .p-20
+          .row
+            .col-xs-3.col-md-3.p-r-10
+              img.img-rounded.img-responsive(alt="review 1", src="assets/img/profil_page/review1.png")
+            .col-xs-9.col-md-9.section-box
+              h2
+                | My Magazine
+                a(target="_blank", href="#")
+              p
+                | Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra l&#225; , depois divoltis.
+              hr
+              .row.rating-desc
+                .col-md-12
+                  .stars
+                    span.fa.fa-star.fa-star
+                    span.fa.fa-star.fa-star
+                    span.fa.fa-star.fa-star
+                    span.fa.fa-star.fa-star
+                    span.fa.fa-star.fa-star-o
+                  | (36)
+                  span.separator |
+                  i.fa.fa-comments-o
+                  | 100 Comments                  
+      .col-md-12.border-bottom.p-t-20
+  // END PROFIL CONTENT

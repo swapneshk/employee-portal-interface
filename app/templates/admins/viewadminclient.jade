@@ -1,0 +1,65 @@
+.m-b-20.clearfix
+  .page-title.pull-left
+    h3.pull-left
+      strong Client Listing
+.row(ng-show="visibility")
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        .col-md-3
+              input.form-control(ng-model='searchText', placeholder='Enter a keyword')
+        .col-md-9
+          .DTTT_container
+            a.btn.btn-success.m-t-10(href="/addclient")
+              i.fa.fa-plus.p-r-10
+              | Add Client
+      .panel-body
+        .row
+          .col-md-12.col-sm-12.col-xs-12.table-responsive(ng-if="haveResult")
+            table.table.table-striped.table-hover
+              thead.no-bd
+                tr
+                  th
+                    a(href="", ng-click="reverse=!reverse;order('name', reverse)")
+                      strong Name
+                  th
+                    a(href="", ng-click="reverse=!reverse;order('address.city', reverse)")
+                      strong City
+                  th
+                    a(href="", ng-click="reverse=!reverse;order('address.state', reverse)")
+                      strong State
+                  th
+                    a(href="", ng-click="reverse=!reverse;order('contact_name', reverse)")
+                      strong Contact Name
+                  th
+                    a(href="", ng-click="reverse=!reverse;order('contact_email', reverse)")
+                      strong Email
+                  th
+                    a(href="", ng-click="reverse=!reverse;order('is_account', reverse)")
+                      strong Is Account
+                  th
+                    a(href="", ng-click="reverse=!reverse;order('is_active', reverse)")
+                      strong Is Active
+                  //
+                    th
+                      a(href="", ng-click="reverse=!reverse;order('modified_on', reverse)")
+                        strong Updated At
+              tbody.no-bd-y
+                tr(ng-repeat="client in clientData | filter:searchText" ng-click="showClient(client._id)" style="cursor:pointer")
+                  td(ng-bind="client.name")
+                  td(ng-bind="client.address.city")
+                  td(ng-bind="client.address.state")
+                  td(ng-bind="client.contact_name")
+                  td(ng-bind="client.contact_email")
+                  td(ng-bind="client.is_account")
+                  // td {{client.is_active}}
+                  td(ng-if="client.is_active == true")
+                    | Active
+                  td(ng-if="client.is_active !== true")
+                    .label.label-danger In Active  
+                  //td(ng-bind="client.modified_on | date: 'yyyy-MM-dd'")
+            .row
+              include paging.jade
+          .alert.alert-info.fade.in.text-center(ng-if="!haveResult")
+            h3
+              | No Clients for you this time.

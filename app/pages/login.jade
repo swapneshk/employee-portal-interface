@@ -1,0 +1,46 @@
+doctype html
+head
+  title Event Manager :: Login
+  link(href="/favicon.ico", rel="shortcut icon", type="image/x-icon")
+  link(rel="stylesheet",type="text/css",href="/css/app.css" media="all")
+  script(src="/js/vendor.js", type="text/javascript")
+  script(src="/js/app.js", type="text/javascript") 
+  script(src="assets/plugins/ang-file-upload/angular-file-upload.js")
+
+body(ng-app="app", ng-controller="MainController", ng-cloak, class="ng-cloak")
+
+  .page-container
+    #page-content(ng-view)
+        .verticalcenter
+          h1.brand
+            i.fa.fa-th-large
+            | Event
+            b Manager
+          .panel.login
+            .panel-body
+              h4.text-center(style="margin-bottom: 25px") Log in to get started
+              form.form-horizontal(style="margin-bottom: 0px;", ng-submit="login()", autocomplete="on")
+                .form-group
+                  .col-sm-12
+                    .input-group
+                      span.input-group-addon
+                        i.fa.fa-user
+                      input.form-control(type="email", placeholder="user@example.com", ng-model="credentials.email", autofocus="autofocus", required="required")
+                .form-group
+                  .col-sm-12
+                    .input-group
+                      span.input-group-addon
+                        i.fa.fa-lock
+                      input.form-control(type="password", placeholder="password", ng-model="credentials.password", required="required")
+                .pull-right
+                  button.btn.btn-primary(type="submit") Log In
+              .forget
+                a#forgetpassword(href="/forgetpassword") Forget Password 
+  // script(src="/js/vendor.js", type="text/javascript")
+  // script(src="/js/app.js", type="text/javascript")
+  // script(src="assets/plugins/ang-file-upload/angular-file-upload.js")
+
+  script.
+    //set minimum height of page
+    var dh=($(document).height()-51);
+    $("#page-content, nav").css("min-height",dh+"px");

@@ -1,25 +1,25 @@
 .verticalcenter
   h1.brand
     i.fa.fa-th-large
-    |  Event<b>Manager</b>
-
+    | Event
+    b Manager
   .panel.login
     .panel-body
       h4.text-center(style="margin-bottom: 25px") Log in to get started
-
-      form.form-horizontal(style="margin-bottom: 0px;", ng-submit="login()")
+      form.form-horizontal(style="margin-bottom: 0px;", ng-submit="login()", autocomplete="on")
         .form-group
           .col-sm-12
             .input-group
               span.input-group-addon
                 i.fa.fa-user
-              input.form-control(placeholder="user@example.com", type="email", ng-model="credentials.email", autofocus="autofocus", required)
+              input.form-control(type="email", placeholder="user@example.com", ng-model="credentials.email", autofocus="autofocus", required="required")
         .form-group
           .col-sm-12
             .input-group
               span.input-group-addon
                 i.fa.fa-lock
-              input.form-control(placeholder="password", type="password", ng-model="credentials.password", required)
-
+              input.form-control(type="password", placeholder="password", ng-model="credentials.password", required="required")
         .pull-right
           button.btn.btn-primary(type="submit") Log In
+      .forget
+        a#forgetpassword(href="/forgetpassword") Forgot Password ?

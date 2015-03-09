@@ -1,0 +1,77 @@
+nav#sidebar
+  #main-menu
+    ul.sidebar-nav
+      li.current
+        a(href="index.html")
+          i.fa.fa-dashboard
+          span.sidebar-text Dashboard
+      li
+        a(href="#")
+          i.glyph-icon.flaticon-account
+          span.sidebar-text UserProfile
+          span.fa.arrow
+        ul.submenu.collapse
+          li
+            a(href="profil.html")
+              span.sidebar-text User Profile
+          li
+            a(href="profil_edit.html")
+              span.sidebar-text Profil Edit
+          li
+            a(href="login.html")
+              span.sidebar-text Login
+          li
+            a(href="signup.html")
+              span.sidebar-text Signup
+          li
+            a(href="password_forgot.html")
+              span.sidebar-text Password recover
+          li
+            a(href="lockscreen.html")
+              span.sidebar-text Lockscreen
+          li
+            a(href="session_timeout.html")
+              span.sidebar-text Session Timeout
+      li
+        a(href="../frontend/index.html", target="_blank")
+          i.fa.fa-check-circle
+          span.sidebar-text Availability
+      li
+        a(href="#")
+          i.glyph-icon.flaticon-email
+          span.sidebar-text Time off request
+          span.fa.arrow
+        ul.submenu.collapse
+          li
+            a(href="mailbox.html")
+              span.sidebar-text Inbox
+          li
+            a(href="email_compose.html")
+              span.sidebar-text Write a Message
+      li
+        a(href="#")
+          i.fa.fa-table
+          span.sidebar-text Schedule Notes
+          span.fa.arrow
+        ul.submenu.collapse
+          li
+            a(href="tables.html")
+              span.sidebar-text Style Tables
+          li
+            a(href="tables_editable.html")
+              span.sidebar-text Editable Tables
+          li
+            a(href="tables_dynamic.html")
+              span.sidebar-text Dynamic Tables
+      br
+  .footer-widget
+    .footer-gradient
+    .sidebar-footer.clearfix
+      a.pull-left(href="profil_edit.html", rel="tooltip", data-placement="top", data-original-title="Settings")
+        i.glyph-icon.flaticon-settings21
+      a.pull-left.toggle_fullscreen(href="#", rel="tooltip", data-placement="top", data-original-title="Fullscreen")
+        i.glyph-icon.flaticon-fullscreen3
+      a.pull-left(href="lockscreen.html", rel="tooltip", data-placement="top", data-original-title="Lockscreen")
+        i.glyph-icon.flaticon-padlock23
+      a.pull-left(href="login.html", rel="tooltip", data-placement="top", data-original-title="Logout")
+        i.fa.fa-power-off

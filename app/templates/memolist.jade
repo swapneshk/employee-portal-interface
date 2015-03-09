@@ -1,0 +1,55 @@
+.m-b-20.clearfix
+  .page-title.pull-left
+    h3.pull-left
+      strong Memo List  
+.top-menu
+  a.btn(ng-click="inbox()", ng-class="colorInb")
+    strong Inbox
+    span.label.label-danger.m-l-10(ng-bind="msgsCount" ng-if="msgsCount>0")
+  | &nbsp;  
+  a.btn(ng-click="sent()", ng-class="colorSnt", ng-if="userPriv")
+    strong Sent Memos
+| &nbsp;
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        .col-md-6
+        .col-md-6
+          .DTTT_container(ng-if="userPriv")
+            a.btn.btn-success.m-t-10(href="/addmemo")
+              i.fa.fa-plus.p-r-10
+              | Add Memo
+      .panel-body
+        .row
+          .col-md-12.col-sm-12.col-xs-12.table-responsive(ng-if="haveResult")
+            table.table.table-striped.table-hover
+              thead.no-bd
+                tr
+                  th
+                    a(href="", ng-click="reverse=!reverse;order('title', reverse)")
+                      strong Title
+                  //
+                    th
+                      a(href="", ng-click="reverse=!reverse;order('description', reverse)")
+                        strong Description
+                  th
+                    a(href="", ng-click="reverse=!reverse;order('created_date', reverse)")
+                      strong Created date
+                  //
+                    th.text-center
+                      strong Action
+              tbody.no-bd-y
+                tr(ng-repeat="memo in allMemos")
+                  td(ng-bind="memo.title")
+                  //td(ng-bind="memo.description")
+                  td(ng-bind="memo.created_date | date: 'yyyy-MM-dd'")
+                  td.text-center(ng-if="userRole === 'admin'")
+                    a.btn(href="/memo/{{memo._id}}", rel="tooltip", title="Read Memo", type="button", ng-click="markRead(memo._id)", ng-class="memo.admin_checked?'btn-info':'btn-warning'") Read 
+                  td.text-center(ng-if="userRole === 'other'")
+                    a.btn(href="/memo/{{memo._id}}", rel="tooltip", title="Read Memo", type="button", ng-click="markRead(memo._id)", ng-class="checkRead(user._id, memo.sent_to)?'btn-info':'btn-warning'") Read
+            .row
+              include paging.jade 
+          .alert.alert-info.fade.in.text-center(ng-if="!haveResult")
+            h3
+              | No memo for you this time.

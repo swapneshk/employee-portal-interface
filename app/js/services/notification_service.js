@@ -7,6 +7,10 @@ angular.module("app").factory("NotificationService", function(toastr) {
         case "error":
           toastr.error(msg);
           break;
+        
+        case "warning":
+          toastr.warning(msg);
+          break;
 
         case "success":
           toastr.success(msg);

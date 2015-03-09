@@ -1,0 +1,64 @@
+.m-b-20.clearfix
+  .page-title.pull-left
+    h3.pull-left
+      strong Employee Availability
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title
+          strong Mark Availability   
+      .panel-body
+        //
+          .row
+            div(data-inline="true", datepicker, data-date="{{Date.now}}") 
+        .row
+          .col-lg-2
+            ul
+              li 
+                button.btn.bg-blue(ng-click="showNextWeek(nextSevenWeekDayArr)")
+                  | {{nextSevenWeekDayArr | date: 'shortDate'}}
+          .col-lg-8
+            table.table.table-striped.table-hover.table-bordered
+              thead.no-bd
+                tr
+                  th
+                    strong Days of a week
+                  th(colspan="4")
+                    strong Availability
+              tbody.no-bd-y
+                tr(ng-repeat-start="a in sevenWeekDayArr")
+                  td {{a | date: 'shortDate'}}
+                  td Morning:
+                  td {{slot.morning_start_time}} {{slot.morning_start_period}} - {{slot.morning_end_time}} {{slot.morning_end_period}}
+                  td  
+                    input(type="checkbox")
+                  td
+                    | 9/29/14 7:30 AM 
+                    label.label.label-info
+                      | Scheduled  
+                tr
+                  td
+                  td Afternoon:
+                  td {{slot.afternoon_start_time}} {{slot.afternoon_start_period}} - {{slot.afternoon_end_time}} {{slot.afternoon_end_period}}
+                  td
+                    input(type="checkbox")
+                  td
+                tr
+                  td
+                  td Night:
+                  td {{slot.night_start_time}} {{slot.night_start_period}} - {{slot.night_end_time}} {{slot.night_end_period}}
+                  td
+                    input(type="checkbox")
+                  td
+                tr(ng-repeat-end="")
+                  td
+                  td Late Night:
+                  td {{slot.late_night_start_time}} {{slot.late_night_start_period}} - {{slot._late_night_end_time}} {{slot.late_night_end_period}}
+                  td
+                    input(type="checkbox")
+                  td
+          .col-md-12.m-t-20.m-b-40.align-center
+            button.btn.btn-success.m-t-10(ng-click="submitAvailability(availability)")
+              i.fa.fa-check
+              | Submit Availability 

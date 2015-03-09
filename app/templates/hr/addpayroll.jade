@@ -1,0 +1,52 @@
+.page-title
+  h3
+    strong Add Payroll
+.row
+  .col-md-12
+    .tabcordion
+      #myTabContent.tab-content
+        #product_general.tab-pane.fade.active.in
+          .row
+            .col-md-12
+              form#form1.form-horizontal(name="payrollForm", novalidate)
+                    .form-group
+                      label.col-sm-3.control-label
+                        | Select Employee
+                        span.asterisk *
+                      .col-sm-7
+                        select.btn(ng-options = "emp.first_name+' '+emp.last_name for emp in allEmps", ng-model="payroll.emp_id", ng-init="payroll.emp_id = allEmps[0].value")
+                    .form-group
+                      label.col-sm-3.control-label
+                        | Time From
+                        span.asterisk *
+                      .col-sm-2
+                        input.datepicker.form-control(type="text", placeholder="mm/dd/yyyy", ng-model="payroll.time_from", required="required", style="padding: 8px 12px;")
+                      label.col-sm-3.control-label
+                        | Time To
+                        span.asterisk *
+                      .col-sm-2
+                        input.datepicker.form-control(type="text", placeholder="mm/dd/yyyy", ng-model="payroll.time_to", required="required", style="padding: 8px 12px;")
+                    .form-group
+                      label.col-sm-3.control-label
+                        | Total Hours
+                        span.asterisk *
+                      .col-sm-2
+                        input.form-control(placeholder="Total Hours", ng-model="payroll.total_hours", required="required")
+                      label.col-sm-3.control-label
+                        | Pay Rate
+                        span.asterisk *
+                      .col-sm-2
+                        input.form-control(placeholder="Pay Rate", ng-model="payroll.pay_rate", required="required")
+                    .form-group
+                      label.col-sm-3.control-label
+                        | Description
+                        span.asterisk *
+                      .col-sm-7
+                        textarea.form-control(placeholder="Description", ng-model="payroll.description", rows="6", required="required")
+            .col-md-12.m-t-20.m-b-40.align-center
+                button.btn.btn-default.m-r-10.m-t-10(href="#", ng-click="cleardata()")
+                  i.fa.fa-reply
+                  | Clear
+                button.btn.btn-success.m-t-10(href="#" ng-click="addPayroll(payroll)")
+                  i.fa.fa-check
+                  |Save 

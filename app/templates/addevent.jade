@@ -1,0 +1,347 @@
+.page-title
+  h3
+    strong Add Event
+.row
+  .col-md-12
+    .tabcordion
+      #myTabContent.tab-content
+        #product_general.tab-pane.fade.active.in
+          .row
+            .col-md-12
+              form#form1.form-horizontal(name="eventForm", novalidate)
+                .form-group
+                  label.col-sm-3.control-label
+                    | Event Name
+                    span.asterisk *
+                  .col-sm-7
+                    input.form-control(type="text", placeholder="Music Concert at Las Vegas", ng-model="event.name", required="required")
+                .form-group
+                  label.col-sm-3.control-label
+                    | Description
+                    span.asterisk
+                  .col-sm-7
+                    input.form-control(type="textarea", placeholder="Enter Event Description", ng-model="event.description")
+                .form-group
+                  label.col-sm-3.control-label
+                    | Start Date
+                    span.asterisk *
+                  .col-sm-7
+                    input.datepicker.form-control(type="text", placeholder="mm/dd/yyyy", ng-model="event.start_date", style="padding: 8px 12px;", required="required")
+                .form-group
+                  label.col-sm-3.control-label
+                    | End Date
+                    span.asterisk *
+                  .col-sm-7
+                    input.datepicker.form-control(type="text", placeholder="mm/dd/yyyy", ng-model="event.end_date", style="padding: 8px 12px;", required="required")
+                .form-group
+                  label.col-sm-3.control-label
+                    | Is Active
+                    span.asterisk *
+                  .col-sm-1
+                    input(type="radio", name="is_active", ng-model="event.is_active", value="yes") 
+                    | &nbsp;&nbsp;Yes
+                  .col-sm-1
+                    input(type="radio", name="is_active", ng-model="event.is_active", value="no") 
+                    | &nbsp;&nbsp;No
+                .form-group
+                  label.col-sm-3.control-label
+                    | Event Type
+                  .col-sm-7
+                    input.form-control(type="text", placeholder="Event Type", ng-model="event.event_data.event_type")
+                .form-group
+                  label.col-sm-3.control-label
+                    | Repeat
+                  .col-sm-7
+                    select.btn#repeatval(ng-model="event.repeat", ng-options="repeat.value as repeat.name for repeat in repeats", ng-init="event.repeat = event.repeat || repeats[0].value") 
+                .form-group(ng-show="event.repeat === 2")
+                  label.col-sm-3.control-label
+                    | &nbsp;
+                  .col-sm-2(style="width:13%")
+                    input(type="radio", name="everyday", ng-model="event.everyday", value="forever", ng-init="event.everyday='forever'") 
+                    | &nbsp;&nbsp;Forever
+                  .col-sm-3(style="width:22%")
+                    input(type="radio", name="everyday", ng-model="event.everyday", value="dayselval")
+                    | &nbsp;&nbsp;For 
+                    select#selday.btn(ng-model="event.selday", ng-options="day.value as day.name for day in days", ng-init="event.selday = event.day || days[0].value")
+                    | &nbsp;Days
+                  .col-sm-4 
+                    input(type="radio", name="everyday", ng-model="event.everyday", value="pickdate") 
+                    | &nbsp;&nbsp;Until 
+                    input.datepicker.form-control(type="text", placeholder="mm/dd/yyyy", ng-model="event.everydaypick", style="padding: 8px 12px;width:35%")   
+                .form-group(ng-show="event.repeat === 3")
+                  label.col-sm-3.control-label
+                    | &nbsp;
+                  .col-sm-2(style="width:13%")
+                    input(type="radio", name="everyweek", ng-model="event.everyweek", value="forever", ng-init="event.everyweek='forever'") 
+                    | &nbsp;&nbsp;Forever
+                  .col-sm-3(style="width:22%")
+                    input(type="radio", name="everyweek", ng-model="event.everyweek", value="dayselval")
+                    | &nbsp;&nbsp;For 
+                    select#selday.btn(ng-model="event.selweekday", ng-options="day.value as day.name for day in days", ng-init="event.selweekday = event.day || days[0].value")
+                    | &nbsp;weeks
+                  .col-sm-4  
+                    input(type="radio", name="everyweek", ng-model="event.everyweek", value="pickdate") 
+                    | &nbsp;&nbsp;Until 
+                    input.datepicker.form-control(type="text", placeholder="mm/dd/yyyy", ng-model="event.everyweekpick", style="padding: 8px 12px;width:35%")   
+                .form-group(ng-show="event.repeat === 4")
+                  label.col-sm-3.control-label
+                    | &nbsp;
+                  .col-sm-2(style="width:13%")
+                    input(type="radio", name="everymonth", ng-model="event.everymonth", value="forever", ng-init="event.everymonth='forever'") 
+                    | &nbsp;&nbsp;Forever
+                  .col-sm-3(style="width:22%")
+                    input(type="radio", name="everymonth", ng-model="event.everymonth", value="dayselval")
+                    | &nbsp;&nbsp;For 
+                    select#selday.btn(ng-model="event.selmonthday", ng-options="day.value as day.name for day in days", ng-init="event.selmonthday = event.day || days[0].value")
+                    | &nbsp;months
+                  .col-sm-4 
+                    input(type="radio", name="everymonth", ng-model="event.everymonth", value="pickdate") 
+                    | &nbsp;&nbsp;Until 
+                    input.datepicker.form-control(type="text", placeholder="mm/dd/yyyy", ng-model="event.everymonthpick", style="padding: 8px 12px;width:35%")   
+                .form-group(ng-show="event.repeat === 5")
+                  label.col-sm-3.control-label
+                    | &nbsp;
+                  .col-sm-2(style="width:13%")
+                    input(type="radio", name="everyyear", ng-model="event.everyyear", value="forever", ng-init="event.everyyear='forever'") 
+                    | &nbsp;&nbsp;Forever
+                  .col-sm-3(style="width:22%")
+                    input(type="radio", name="everyyear", ng-model="event.everyyear", value="dayselval")
+                    | &nbsp;&nbsp;For 
+                    select#selday.btn(ng-model="event.selyearday", ng-options="day.value as day.name for day in days", ng-init="event.selyearday = event.day || days[0].value")
+                    | &nbsp;years
+                  .col-sm-4  
+                    input(type="radio", name="everyyear", ng-model="event.everyyear", value="pickdate") 
+                    | &nbsp;&nbsp;Until 
+                    input.datepicker.form-control(type="text", placeholder="mm/dd/yyyy", ng-model="event.everyyearpick", style="padding: 8px 12px;width:35%")   
+                .form-group(ng-if="event.repeat !== 1")
+                  label.col-sm-3.control-label
+                    | Select Account
+                  .col-sm-7
+                    select.btn(ng-model="event.accounttype", ng-options="account.value as account.name for account in clientData", ng-init="event.accounttype = clientData[0].value", ng-change="fillAcntCnct(event.accounttype)")
+                .form-group(ng-if="event.accounttype === 'ota'")
+                  label.col-sm-3.control-label
+                    | Account Name
+                  .col-sm-7
+                    input.form-control(type="text", name="event.accountname")
+                .form-group
+                  label.col-sm-3.control-label
+                    | Number Of People
+                  .col-sm-7
+                    input.form-control(type="number", placeholder="25", ng-model="event.event_data.number_of_people")
+                .form-group
+                  label.col-sm-3.control-label
+                    | Contact Name
+                  .col-sm-7
+                    input.form-control(type="text", placeholder="John Rambo", ng-model="event.event_data.contact_name", ng-readonly="truefalse")
+                .form-group
+                  label.col-sm-3.control-label
+                    | Contact Phone
+                  .col-sm-7
+                    input.form-control(type="text", placeholder="9087654321", ng-model="event.event_data.contact_phone", ng-readonly="truefalse")
+                .form-group
+                  label.col-sm-3.control-label
+                    | Contact Email
+                  .col-sm-7
+                    input.form-control(type="email", placeholder="user@test.com", ng-model="event.event_data.contact_email", ng-readonly="truefalse")
+                .form-group
+                  label.col-sm-3.control-label
+                    | Paid Valet
+                    span.asterisk *
+                  .col-sm-1
+                    input(type="radio", ng-model="event.event_data.paid_valet", value="yes") 
+                    | &nbsp;&nbsp;Yes
+                  .col-sm-1
+                    input(type="radio", ng-model="event.event_data.paid_valet", value="no") 
+                    | &nbsp;&nbsp;No
+                .form-group
+                  label.col-sm-3.control-label
+                    | After Call
+                    span.asterisk *
+                  .col-sm-1
+                    input(type="radio", name="after_call", ng-model="event.event_data.after_call", value="yes", checked="checked") 
+                    | &nbsp;&nbsp;Yes
+                  .col-sm-1
+                    input(type="radio", name="after_call", ng-model="event.event_data.after_call", value="no") 
+                    | &nbsp;&nbsp;No
+                .form-group
+                  label.col-sm-3.control-label
+                    | Billed
+                    span.asterisk *
+                  .col-sm-1
+                    input(type="radio", ng-model="event.event_data.billed", value="yes", checked="checked") 
+                    | &nbsp;&nbsp;Yes
+                  .col-sm-1
+                    input(type="radio", name="paid_valet", ng-model="event.event_data.billed", value="no") 
+                    | &nbsp;&nbsp;No
+                .form-group
+                  label.col-sm-3.control-label
+                    | Date Billed
+                    span.asterisk *
+                  .col-sm-7
+                    input.datepicker.form-control(type="text", placeholder="mm/dd/yyyy", ng-model="event.event_data.date_billed", style="padding: 8px 12px;", required="required")
+                .form-group
+                  label.col-sm-3.control-label
+                    | Paid
+                    span.asterisk *
+                  .col-sm-1
+                    input(type="radio", ng-model="event.event_data.paid", value="yes") 
+                    | &nbsp;&nbsp;Yes
+                  .col-sm-1
+                    input(type="radio", ng-model="event.event_data.paid", value="no") 
+                    | &nbsp;&nbsp;No
+                .form-group
+                  label.col-sm-3.control-label
+                    | Require Setup
+                    span.asterisk *
+                  .col-sm-1
+                    input(type="radio", ng-model="event.event_data.require_setup", value="yes") 
+                    | &nbsp;&nbsp;Yes
+                  .col-sm-1
+                    input(type="radio", ng-model="event.event_data.require_setup", value="no") 
+                    | &nbsp;&nbsp;No
+                .form-group
+                  label.col-sm-3.control-label
+                    | Date Called
+                    span.asterisk *
+                  .col-sm-7
+                    input.datepicker.form-control(type="text", placeholder="mm/dd/yyyy", ng-model="event.event_data.date_called", style="padding: 8px 12px;",required="required")
+                .form-group
+                  label.col-sm-3.control-label
+                    | Ready Time For Valet
+                    span.asterisk *
+                  .col-sm-7
+                    input.datetimepicker.form-control(type="text", placeholder="mm/dd/yyyy", ng-model="event.event_data.ready_time_for_valet", style="padding: 8px 12px;",required="required")
+                .form-group
+                  label.col-sm-3.control-label
+                    | Number Of Cars
+                    span.asterisk 
+                  .col-sm-7
+                    input.form-control(type="number", placeholder="25", ng-model="event.event_data.number_of_cars")
+                .form-group
+                  label.col-sm-3.control-label
+                    | Number Of Valets Needed
+                    span.asterisk 
+                  .col-sm-7
+                    input.form-control(type="number", placeholder="25", ng-model="event.event_data.number_of_valets_needed")
+                .form-group
+                  label.col-sm-3.control-label
+                    | Notes
+                  .col-sm-7
+                    input.form-control(type="text", placeholder="Write Notes", ng-model="event.event_data.notes")
+                .form-group
+                  label.col-sm-3.control-label
+                    | Quotes
+                    span.asterisk
+                  .col-sm-7
+                    input.form-control(type="text", placeholder="Write Quotes", ng-model="event.event_data.quotes")
+                .form-group
+                  label.col-sm-3.control-label
+                    | Hear About Us
+                    span.asterisk
+                  .col-sm-7
+                    input.form-control(type="text", placeholder="How you heard about us ?", ng-model="event.event_data.hear_about_us")
+                .form-group
+                  label.col-sm-3.control-label
+                    b Location Address
+                  .col-sm-7
+                .form-group
+                  label.col-sm-3.control-label
+                    | Street One
+                    span.asterisk
+                  .col-sm-7
+                    input.form-control(type="text", placeholder="Street 1", ng-model="event.location_address.street1") 
+                .form-group
+                  label.col-sm-3.control-label
+                    | Street Two
+                    span.asterisk
+                  .col-sm-7
+                    input.form-control(type="text", placeholder="Street 2", ng-model="event.location_address.street2") 
+                .form-group
+                  label.col-sm-3.control-label
+                    | City
+                    span.asterisk
+                  .col-sm-7
+                    input.form-control(type="text", placeholder="City", ng-model="event.location_address.city")
+                .form-group
+                  label.col-sm-3.control-label
+                    | State
+                    span.asterisk
+                  .col-sm-7
+                    input.form-control(type="text", placeholder="State", ng-model="event.location_address.state")
+                .form-group
+                  label.col-sm-3.control-label
+                    | Zip
+                    span.asterisk
+                  .col-sm-7
+                    input.form-control(type="text", placeholder="Zip", ng-model="event.location_address.zip")
+                .form-group
+                  label.col-sm-3.control-label
+                    b Billing Address
+                  .col-sm-7
+                .form-group
+                  label.col-sm-3.control-label
+                    | Street One
+                    span.asterisk
+                  .col-sm-7
+                    input.form-control(type="text", placeholder="Street 1", ng-model="event.billing_address.street1") 
+                .form-group
+                  label.col-sm-3.control-label
+                    | Street Two
+                    span.asterisk
+                  .col-sm-7
+                    input.form-control(type="text", placeholder="Street 2", ng-model="event.billing_address.street2") 
+                .form-group
+                  label.col-sm-3.control-label
+                    | City
+                    span.asterisk
+                  .col-sm-7
+                    input.form-control(type="text", placeholder="City", ng-model="event.billing_address.city")
+                .form-group
+                  label.col-sm-3.control-label
+                    | State
+                    span.asterisk
+                  .col-sm-7
+                    input.form-control(type="text", placeholder="State", ng-model="event.billing_address.state")
+                .form-group
+                  label.col-sm-3.control-label
+                    | Zip
+                    span.asterisk
+                  .col-sm-7
+                    input.form-control(type="text", placeholder="Zip", ng-model="event.billing_address.zip")
+                .form-group
+                  label.col-sm-3.control-label
+                    | Shift Start Time
+                  .col-sm-7 
+                    select.btn#timeslotval(ng-model="event.shiftstarttime", ng-options="timeslot.value as timeslot.name for timeslot in timeslots", ng-init="event.shiftstarttime = timeslots[11].value") 
+                .form-group
+                  label.col-sm-3.control-label
+                    | Shift End Time
+                  .col-sm-7 
+                    select.btn#timeslotval(ng-model="event.shiftendtime", ng-options="timeslot.value as timeslot.name for timeslot in timeslots", ng-init="event.shiftendtime = timeslots[12].value") 
+                
+                .form-group#addCnct
+                  label.col-sm-3.control-label
+                    button.btn.btn-warning.m-t-10(ng-click="addShiftCnt()")
+                      i.fa
+                      | Add Shift &#43;
+                  .col-sm-7
+                    | &nbsp;
+                .form-group(ng-repeat="item in shiftitems")
+                  label.col-sm-3.control-label
+                    | Shift {{$index + 1}} Start Time
+                  .col-sm-7
+                    select.btn#timeslotval(ng-model="shiftstart[$index]", ng-options="timeslot.value as timeslot.name for timeslot in timeslots", ng-init="shiftstart[$index] = timeslots[11].value") 
+                  label.col-sm-3.control-label
+                    | Shift {{$index + 1}} End Time
+                  .col-sm-7
+                    select.btn#timeslotval(ng-model="shiftend[$index]", ng-options="timeslot.value as timeslot.name for timeslot in timeslots", ng-init="shiftend[$index] = timeslots[11].value") 
+                  .col-sm-1
+                    img.remCls(src="http://img.informer.com/icons/png/16/3225/3225535.png", ng-click="remShift($index)")   
+                   
+              .col-md-12.m-t-20.m-b-40.align-center
+                button.btn.btn-default.m-r-10.m-t-10(href="#", ng-click="cleardata()")
+                  i.fa.fa-reply
+                  | Clear
+                button.btn.btn-success.m-t-10(href="#" ng-click="addEvent(event)")
+                  i.fa.fa-check
+                  | Save changes

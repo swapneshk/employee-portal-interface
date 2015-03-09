@@ -1,0 +1,124 @@
+.page-title
+  i.icon-custom-left
+  h2
+    | Edit Employee
+.row
+  .col-md-12
+    form#settings.form-horizontal(name="employeeForm", novalidate)
+      // BEGIN TABS
+      .tabbable.tabbable-custom.form
+        .tab-content
+          .space20
+          #general_settings.tab-pane.active
+            .row.profile
+              .col-md-12
+                .row
+                  .col-md-12
+                    .col-md-12
+                .row.profile-classic
+                  .col-md-12.m-t-20
+                    .panel
+                      .panel-title.line
+                        .caption
+                          i.fa.fa-phone.c-gray.m-r-10
+                          | CONTACT
+                      .panel-body
+                        .row
+                          .control-label.c-gray.col-md-3 Email:
+                            span.asterisk *
+                          .col-md-6
+                            input#field-1.form-control(type="email", placeholder="useremail@example.com", ng-model="employee.email", required="required")
+                        .row
+                          .control-label.c-gray.col-md-3 Phone:
+                          .col-md-6
+                            input#field-1.form-control(type="text", placeholder="9087654321", ng-model="employee.phone")
+                .row.profile-classic
+                  .col-md-12
+                    .panel
+                      .panel-title.line
+                        .caption
+                          i.fa.fa-info.c-gray.m-r-10
+                          | ABOUT
+                      .panel-body
+                        .row
+                          .control-label.col-md-3 First Name:
+                            span.asterisk *
+                          .col-md-6
+                            input#field-1.form-control(type="text", placeholder="John", ng-model="employee.first_name", required="required")
+                        .row
+                          .control-label.col-md-3 Last Name:
+                          .col-md-6
+                            input#field-1.form-control(type="text", placeholder="Doe", ng-model="employee.last_name")
+                        .row(ng-if="role == 'admin'")
+                          .control-label.col-md-3 Role:
+                          .col-md-6
+                            select.btn(ng-model="employee.emp_role")
+                              option Employee
+                              option Manager
+                              option Hr
+                .row.profile-classic
+                  .col-md-12
+                    .panel
+                      .panel-title.line
+                        .caption
+                          i.fa.fa-home.c-gray.m-r-10
+                          | ADDRESS
+                      .panel-body
+                        .row
+                          .control-label.col-md-3 Address Line 1:
+                          .col-md-6
+                            input#field-1.form-control(type="text", placeholder="Address Line 1", ng-model="employee.address.line1")
+                        .row
+                          .control-label.col-md-3 Address Line 2:
+                          .col-md-6
+                            input#field-1.form-control(type="text", placeholder="Address Line 2", ng-model="employee.address.line2")
+                        .row
+                          .control-label.col-md-3 City:
+                          .col-md-6
+                            input#field-1.form-control(type="text", placeholder="Chicago", ng-model="employee.address.city")
+                        .row
+                          .control-label.col-md-3 State:
+                          .col-md-6
+                            input#field-1.form-control(type="text", placeholder="Illinois", ng-model="employee.address.state")
+                        .row
+                          .control-label.col-md-3 Zip:
+                          .col-md-6
+                            input#field-1.form-control(type="text", placeholder="123456", ng-model="employee.address.zip")
+                .row.profile-classic
+                  .col-md-12
+                    .panel
+                      .panel-title.line
+                        .caption
+                          i.fa.fa-bar-chart-o.c-gray.m-r-10
+                          | PERSONAL INFORMATION
+                      .panel-body
+                        .row
+                          .control-label.col-md-3 Driver License:
+                          .col-md-6
+                            input#field-1.form-control(type="text", placeholder="S4-XXX-XXXX", ng-model="employee.driver_license")
+                        .row
+                          .control-label.col-md-3 Date Of Birth:
+                          .col-md-6
+                            input.datepicker.form-control(type="text", placeholder="MM/DD/YYYY: 01/13/2013", ng-model="employee.date_of_birth", style="padding: 8px 12px;")
+                        .row(ng-if="activate")
+                          .control-label.col-md-3 Is Active:
+                          .col-md-6
+                            input(type="radio", name="active", ng-model="employee.active", value="true" ng-checked="is_active_yes")
+                            | &nbsp; Yes &nbsp;
+                            input(type="radio", name="active", ng-model="employee.active", value="false" ng-checked="is_active_no")
+                            | &nbsp; No
+                        .row
+                          .control-label.col-md-3 Image:
+                          .col-md-6
+                            input#field-1.form-controlinput(type="file", file-model="myFile")
+                        .row(ng-if="employee.prof_image")
+                          .col-md-4
+                            img(src="{{siteurl}}:3030/public/{{employee.prof_image}}")
+                .col-sm-12
+                  .align-center
+                    button.btn.btn-primary.m-r-20(href="#", ng-click="cleardata()")
+                      i.fa.fa-reply 
+                      | Clear
+                    button.btn.btn-success(href="#", ng-click="updateEmployee(employee)")
+                      i.fa.fa-check 
+                      | Save changes

@@ -18,5 +18,9 @@
   "scripts": {
     "start": "lineman run",
     "test": "lineman spec-ci"
+  },
+  "dependencies": {
+    "jade": "^1.4.2",
+    "nodemailer": "^1.0.4"
   }
 }

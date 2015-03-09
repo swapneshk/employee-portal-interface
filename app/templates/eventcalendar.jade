@@ -1,0 +1,42 @@
+#main-content(data-ng-init="init()")
+  // BEGIN MODAL
+  #event-modal.modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type="button", data-dismiss="modal", aria-hidden="true") &#215;
+          h4.modal-title(style='text-align:center') Event Details
+        .modal-body
+            |  Event Name : {{scheduledData[0].eventName}}
+            br
+            |  Event Description : {{scheduledData[0].description}}
+            br
+            |  Event Start Date : {{start_date | date:'short'}}
+            br
+            |  Event End Date : {{end_date | date:'short'}}
+            br
+            |  Event Location : {{scheduledData[0].location}}
+            br
+            |  Contact Number : {{scheduledData[0].contactPhone}}
+            br
+            |  Shifts Details :
+            br
+            span(style="padding-left:15px")
+              |  {{'-- '+ scheduledData[0].shiftStartTime + '--' + scheduledData[0].shiftEndTime}}
+            br
+            span(ng-repeat="shift in shiftData", style="padding-left:15px")
+              |  {{'-- '+ shift.start_time + ' -- ' + shift.end_time}}
+              br
+            |  Employees On this event :
+            br
+            span(ng-repeat="emp in sameemployees", style="padding-left:15px")
+              |  {{'-- '+ emp.employee_id.first_name + ' ' + emp.employee_id.last_name}}
+              br
+        .modal-footer
+          button.btn.btn-default(type="button", data-dismiss="modal") Close
+.col-md-13.p-0.no-bd
+    .widget.bg-white
+      .widget-body
+        .row
+          .col-md-13.col-sm-13.col-xs-13
+            #calendar

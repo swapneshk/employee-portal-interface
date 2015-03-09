@@ -1,0 +1,220 @@
+/usr/local/bin/lineman: lineman: line 2: syntax error near unexpected token `'coffee-script''
+/usr/local/bin/lineman: lineman: line 2: `require('coffee-script');'
+[4mRunning "common" task[24m
+[0;35mTask 'common' took 3ms[0m
+
+[4mRunning "jade:templates" (jade) task[24m
+Warning: missing space before text for line 27 of jade file.
+Warning: missing space before text for line 27 of jade file.
+Warning: missing space before text for line 58 of jade file.
+Warning: missing space before text for line 59 of jade file.
+Warning: missing space before text for line 58 of jade file.
+Warning: missing space before text for line 59 of jade file.
+File "generated/template/jade.js" created.
+
+[4mRunning "bower:install" (bower) task[24m
+[32m>> [39mInstalled bower packages
+
+[4mRunning "coffeelint:app" (coffeelint) task[24m
+[32m>> [39m0 files lint free.
+
+[4mRunning "coffee:compile" (coffee) task[24m
+[31m>> [39mDestination (generated/js/app.coffee.js) not written because compiled files were empty.
+[31m>> [39mDestination (generated/js/spec.coffee.js) not written because compiled files were empty.
+[31m>> [39mDestination (generated/js/spec-helpers.coffee.js) not written because compiled files were empty.
+
+[4mRunning "less:compile" (less) task[24m
+[31m>> [39mDestination not written because no source files were found.
+File [36mgenerated/css/app.less.css[39m created.
+
+[4mRunning "jshint:files" (jshint) task[24m
+Linting app/js/controllers/dashboard_controller.js ...[31mERROR[39m
+[31m[[39m[33mL9[39m[31m:[39m[33mC9[39m[31m][39m [33mW116[39m[31m:[39m [33mExpected '{' and instead saw '$scope'.[39m
+    $scope[31m[7m.[27m[39mrole = 'admin';
+Linting app/js/controllers/dashboard_controller.js ...[31mERROR[39m
+[31m[[39m[33mL11[39m[31m:[39m[33mC9[39m[31m][39m [33mW116[39m[31m:[39m [33mExpected '{' and instead saw '$scope'.[39m
+    $scope[31m[7m.[27m[39mrole = 'manager';
+Linting app/js/controllers/dashboard_controller.js ...[31mERROR[39m
+[31m[[39m[33mL13[39m[31m:[39m[33mC9[39m[31m][39m [33mW116[39m[31m:[39m [33mExpected '{' and instead saw '$scope'.[39m
+    $scope[31m[7m.[27m[39mrole = 'employee';
+
+[33mWarning: Task "jshint:files" failed. [4mUsed --force, continuing.[24m[39m
+
+[4mRunning "handlebars:compile" (handlebars) task[24m
+[31m>> [39mDestination not written because compiled files were empty.
+
+[4mRunning "jst:compile" (jst) task[24m
+[31m>> [39mDestination not written because compiled files were empty.
+
+[4mRunning "concat_sourcemap:js" (concat_sourcemap) task[24m
+File "generated/js/app.js" created.
+[0;35mTask 'concat_sourcemap:js' took 50ms[0m
+
+[4mRunning "concat_sourcemap:spec" (concat_sourcemap) task[24m
+File "generated/js/spec.js" created.
+
+[4mRunning "concat_sourcemap:css" (concat_sourcemap) task[24m
+File "generated/css/app.css" created.
+[0;35mTask 'concat_sourcemap:css' took 200ms[0m
+
+[4mRunning "concat_sourcemap:jsVendor" (concat_sourcemap) task[24m
+File "generated/js/vendor.js" created.
+[0;35mTask 'concat_sourcemap:jsVendor' took 1110ms[0m
+
+[4mRunning "copy:dev" (copy) task[24m
+Created [36m1[39m directories, copied [36m1[39m files
+[0;35mTask 'copy:dev' took 4ms[0m
+
+[4mRunning "images:dev" (images) task[24m
+Copying images to 'generated/img'
+
+[4mRunning "webfonts:dev" (webfonts) task[24m
+Copying webfonts to 'generated/fonts'
+[0;35mTask 'webfonts:dev' took 9ms[0m
+
+[4mRunning "pages:dev" (pages) task[24m
+
+[4mRunning "copy:dev" (copy) task[24m
+Created [36m1[39m directories, copied [36m1[39m files
+
+[4mRunning "copy:dist" (copy) task[24m
+Created [36m1[39m directories, copied [36m1[39m files
+
+[4mRunning "copy:main" (copy) task[24m
+Created [36m68[39m directories, copied [36m1550[39m files
+[0;35mTask 'copy:main' took 1635ms[0m
+
+[4mRunning "dev" task[24m
+
+[4mRunning "bower:install" (bower) task[24m
+[32m>> [39mInstalled bower packages
+
+[4mRunning "coffeelint:app" (coffeelint) task[24m
+[32m>> [39m0 files lint free.
+[0;35mTask 'coffeelint:app' took 4ms[0m
+
+[4mRunning "jade:pagesDev" (jade) task[24m
+File "generated/dashboard-layout-25-07-2014.html" created.
+File "generated/dashboard-layout.html" created.
+File "generated/index-23-07-2014.html" created.
+File "generated/index.html" created.
+[0;35mTask 'jade:pagesDev' took 656ms[0m
+
+[4mRunning "server" task[24m
+Proxying API requests prefixed with 'api' to localhost:3030
+Starting express web server in 'generated' on port 8000
+Simulating HTML5 pushState: Serving up 'generated/index.html' for all other unmatched paths
+[0;35mTask 'server' took 110ms[0m
+
+[4mRunning "watch" task[24m
+Waiting...
+PushState: '/adminprofile' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/user.profile_image' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/login' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/login' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/httptest.php' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/httptest.php' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/httptest.php' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/httptest.php' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/search' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/search' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/search' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/search' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/login' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/assets/plugins/retina.js' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+adminNav
+
+PushState: '/img/avatars/avatar13_big.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/avatars/avatar12_big.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/avatars/avatar4_big.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/avatars/avatar11_big.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/avatars/avatar10_big.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/assets/plugins/retina.js' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/avatars/avatar9_big.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/avatars/avatar8_big.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/avatars/avatar7_big.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/favicon.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/user.profile_image' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/favicon.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/favicon.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/user.profile_image' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/favicon.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/favicon.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/favicon.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/favicon.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/favicon.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/favicon.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/favicon.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/login' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/login' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/favicon.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/avatars/avatar13_big.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/avatars/avatar12_big.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/avatars/avatar11_big.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/avatars/avatar9_big.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/avatars/avatar10_big.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/avatars/avatar4_big.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/avatars/avatar8_big.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/avatars/avatar7_big.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/user.profile_image' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/avatars/avatar11_big.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/avatars/avatar12_big.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/avatars/avatar9_big.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/avatars/avatar4_big.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/avatars/avatar10_big.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/avatars/avatar8_big.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/avatars/avatar7_big.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'
+
+PushState: '/img/avatars/avatar13_big.png' not found in /home/bigdata/public_html/epi-2/generated - Serving up 'generated/index.html'

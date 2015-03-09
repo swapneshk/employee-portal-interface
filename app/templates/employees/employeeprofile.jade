@@ -1,0 +1,108 @@
+.page-title
+  i.icon-custom-left
+  h2
+    | Edit Profile
+.row
+  .col-md-12
+    form#settings.form-horizontal(name="userForm", enctype="multipart/form-data")
+      // BEGIN TABS
+      .tabbable.tabbable-custom.form
+        .tab-content
+          .space20
+          #general_settings.tab-pane.active
+            .row.profile
+              .col-md-12
+                .row
+                  .col-md-12
+                    .col-md-12
+                .row.profile-classic
+                  .col-md-12
+                    .panel
+                      .panel-title.line
+                        .caption
+                          i.fa.fa-info.c-gray.m-r-10
+                          | ABOUT
+                      .panel-body
+                        .row
+                          .control-label.col-md-3 First Name:
+                            span.asterisk *
+                          .col-md-6
+                            input#field-1.form-control(name="first_name", type="text", placeholder="First Name", ng-model="user.first_name", required)
+                        .row
+                          .control-label.col-md-3 Last Name:
+                            span.asterisk *
+                          .col-md-6
+                            input#field-1.form-control(name="last_name", type="text", placeholder="Last Name", ng-model="user.last_name", required)
+                .row.profile-classic
+                  .col-md-12
+                    .panel
+                      .panel-title.line
+                        .caption
+                          i.fa.fa-home.c-gray.m-r-10
+                          | ADDRESS
+                      .panel-body
+                        .row
+                          .control-label.col-md-3 Address Line 1:
+                            span.asterisk *
+                          .col-md-6
+                            input#field-1.form-control(name="address-line1", type="text", placeholder="Street Address", ng-model="user.address.line1", required)
+                        .row
+                          .control-label.col-md-3 Address Line 2:
+                          .col-md-6
+                            input#field-1.form-control(name="address-line2", type="text", placeholder="Apt. #, Suite #", ng-model="user.address.line2")
+                        .row
+                          .control-label.col-md-3 City:
+                            span.asterisk *
+                          .col-md-6
+                            input#field-1.form-control(name="city", type="text", placeholder="City", ng-model="user.address.city", required)
+                        .row
+                          .control-label.col-md-3 State:
+                            span.asterisk *
+                          .col-md-6
+                            input#field-1.form-control(name="state", type="text", placeholder="State", maxlength="2", ng-model="user.address.state", required)
+                        .row
+                          .control-label.col-md-3 Zip:
+                            span.asterisk *
+                          .col-md-6
+                            input#field-1.form-control(name="zip", type="text", placeholder="Zip", ng-model="user.address.zip", required)                                                                                    
+                .row.profile-classic
+                  .col-md-12.m-t-20
+                    .panel
+                      .panel-title.line
+                        .caption
+                          i.fa.fa-phone.c-gray.m-r-10
+                          | CONTACT
+                      .panel-body
+                        .row
+                          .control-label.c-gray.col-md-3 Email:
+                            span.asterisk *
+                          .col-md-6
+                            input#field-1.form-control(name="email", type="email", placeholder="Email", ng-model="user.email", required)
+                        .row
+                          .control-label.c-gray.col-md-3 Phone:
+                            span.asterisk *
+                          .col-md-6
+                            input#field-1.form-control(name="phone", type="phone", placeholder="(xxx) xxx-xxxx", ng-model="user.phone", required)
+                .row.profile-classic
+                  .col-md-12
+                    .panel
+                      .panel-title.line
+                        .caption
+                          i.fa.fa-image.c-gray.m-r-10
+                          | My Image
+                      .panel-body
+                        .row
+                          .control-label.col-md-3 Image:
+                          .col-md-6
+                            input.btn#field-1.form-controlinput(type="file", file-model="myFile")
+                        .row(ng-if="user.prof_image")
+                          .col-md-4
+                            img(src="{{siteurl}}:3030/public/{{user.prof_image}}")
+                .col-sm-12
+                  .align-center
+                    button.btn.btn-primary.m-r-20(ng-click="cancel()")
+                      i.fa.fa-reply 
+                      | Clear
+                    button.btn.btn-success(ng-click="update(user)", ng-disabled="userForm.$invalid")
+                      i.fa.fa-check 
+                      | Save changes

@@ -1,0 +1,294 @@
+#main-content.dashboard
+  .row
+    .col-md-12.col-sm-12.col-xs-12
+      .alert.alert-success.fade.in
+        button.close(type="button", data-dismiss="alert", aria-hidden="true") &#215;
+        strong Welcome to Event Manager!
+        p
+          | Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries
+  .row.m-b-10
+    .m-t-10
+    .col-md-6
+      .panel
+        .panel-body
+          ul.list-unstyled.profile-nav.col-md-4
+            li
+              img.animated.flipInY(src="assets/img/avatars/avatar4_big.png", alt="avatar 4")
+          .col-md-8
+            .row
+              .col-md-12.profile-info
+                h1 Bob Nilson
+                h4 Address
+                address
+                  | 36th Edward Street, Ringstone state Country 23514
+    .col-md-6
+      .col-md-12
+        .row
+          .panel.panel-default.company-memo
+            .panel-heading.no-bd.bg-dark
+              h3.panel-title
+                i.fa.fa-list-alt
+                | Company Memos
+            .panel-body.withScroll
+              ul
+                li.left.clearfix
+                  .chat-body.clearfix
+                    .header
+                      strong.primary-font John Smith
+                      small.pull-right.text-muted.mark_read
+                        input(type="checkbox")
+                        | Mark as read
+                    p
+                      | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                li.left.clearfix
+                  .chat-body.clearfix
+                    .header
+                      strong.primary-font Mike Mills
+                      small.pull-right.text-muted.mark_read
+                        input(type="checkbox")
+                        | Mark as read
+                    p
+                      | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                li.left.clearfix
+                  .chat-body.clearfix
+                    .header
+                      strong.primary-font Mike Mills
+                      small.pull-right.text-muted.mark_read
+                        input(type="checkbox")
+                        | Mark as read
+                    p
+                      | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                li.left.clearfix
+                  .chat-body.clearfix
+                    .header
+                      strong.primary-font John Smith
+                      small.pull-right.text-muted.mark_read
+                        input(type="checkbox")
+                        | Mark as read
+                    p
+                      | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                li.left.clearfix
+                  .chat-body.clearfix
+                    .header
+                      strong.primary-font John Smith
+                      small.pull-right.text-muted.mark_read
+                        input(type="checkbox")
+                        | Mark as read
+                    p
+                      | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                li.left.clearfix
+                  .chat-body.clearfix
+                    .header
+                      strong.primary-font John Smith
+                      small.pull-right.text-muted.mark_read
+                        input(type="checkbox")
+                        | Mark as read
+                    p
+                      | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+  .row.m-b-10
+    .col-md-6
+      .panel
+        .panel-body
+          .row
+            .col-md-12
+              #graph-wrapper
+                .graph-info.p-r-10
+                  a.btn.bg-green(href="javascript:void(0)") Visitors
+                  a.btn.bg-blue(href="javascript:void(0)") Returning Visitors
+                  button#bars.btn(href="#", disabled="")
+                    span
+                  button#lines.btn.active(href="#", disabled="")
+                    span
+                .h-300
+                  #graph-lines.h-300(style="width:100%")
+                  #graph-bars.h-300(style="width:100%")
+    .col-md-6
+      .panel
+        .panel-heading.no-bd.bg-dark
+          h3.panel-title
+            i.fa.fa-clock-o
+            | Hours Worked
+        .panel-body
+          .row
+            .col-lg-8.col-lg-offset-2.col-md-12
+              #donut-chart1.m-t-m30.m-b-m20
+  .row.m-b-10
+    .col-lg-5.m-b-20
+      .panel.panel-default.rating
+        .panel-heading.clearfix.pos-rel
+          .pos-abs.top-12.l-15.f-18.c-gray
+            i.fa.fa-star-o
+          h2.panel-title.width-100p.c-red.text-center.w-500.f-20.carrois Reviews
+          //
+            <div class="pos-abs t-10 r-5 f-18 c-red cursor-pointer">
+                                            <div class="glyph-icon flaticon-plus16 f-32"></div>
+                                        </div>
+        .panel-body.messages
+          .row
+            .col-md-12.col-sm-12.col-xs-12
+              .withScroll(data-height="368")
+                a.message-item.media(href="#")
+                  .media
+                    img.pull-left(src="assets/img/avatars/avatar13_big.png", alt="avatar 13", width="50")
+                    .media-body
+                      small.pull-right 23 Sept
+                      h5.c-dark
+                        strong John Snow
+                      p.f-14.c-gray.italic Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                      .stars.rating
+                        i.fa.fa-star
+                        i.fa.fa-star
+                        i.fa.fa-star
+                        i.fa.fa-star
+                        i.fa.fa-star
+                a.message-item.media(href="#")
+                  .media
+                    img.pull-left(src="assets/img/avatars/avatar12_big.png", alt="avatar 12", width="50")
+                    .media-body
+                      small.pull-right 23 Sept
+                      h5.c-dark
+                        strong Jerry Smith
+                      p.f-14.c-gray.italic
+                        | Hello Steve, I have added new files in your Dropbox in order to show you how to...
+                      .stars.rating
+                        i.fa.fa-star
+                        i.fa.fa-star
+                        i.fa.fa-star
+                        i.fa.fa-star-half-o
+                        i.fa.fa-star-o
+                a.message-item.media(href="#")
+                  .media
+                    img.pull-left(src="assets/img/avatars/avatar11_big.png", alt="avatar 11", width="50")
+                    .media-body
+                      small.pull-right 23 Sept
+                      h5.c-dark
+                        strong John Snow
+                      p.f-14.c-gray.italic Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                      .stars.rating
+                        i.fa.fa-star
+                        i.fa.fa-star
+                        i.fa.fa-star
+                        i.fa.fa-star-o
+                        i.fa.fa-star-o
+                a.message-item.media(href="#")
+                  .media
+                    img.pull-left(src="assets/img/avatars/avatar10_big.png", alt="avatar 10", width="50")
+                    .media-body
+                      small.pull-right 23 Sept
+                      h5.c-dark
+                        strong Jerry Smith
+                      p.f-14.c-gray.italic
+                        | Hello Steve, I have added new files in your Dropbox in order to show you how to...
+                      .stars.rating
+                        i.fa.fa-star
+                        i.fa.fa-star
+                        i.fa.fa-star
+                        i.fa.fa-star-half-o
+                        i.fa.fa-star-o
+                a.message-item.media(href="#")
+                  .media
+                    img.pull-left(src="assets/img/avatars/avatar9_big.png", alt="avatar 9", width="50")
+                    .media-body
+                      small.pull-right 23 Sept
+                      h5.c-dark
+                        strong John Snow
+                      p.f-14.c-gray.italic Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                      .stars.rating
+                        i.fa.fa-star
+                        i.fa.fa-star
+                        i.fa.fa-star
+                        i.fa.fa-star
+                        i.fa.fa-star-half-o
+                a.message-item.media(href="#")
+                  .media
+                    img.pull-left(src="assets/img/avatars/avatar8_big.png", alt="avatar 8", width="50")
+                    .media-body
+                      small.pull-right 23 Sept
+                      h5.c-dark
+                        strong Jerry Smith
+                      p.f-14.c-gray.italic
+                        | Hello Steve, I have added new files in your Dropbox in order to show you how to...
+                      .stars.rating
+                        i.fa.fa-star
+                        i.fa.fa-star
+                        i.fa.fa-star
+                        i.fa.fa-star
+                        i.fa.fa-star-half-o
+                a.message-item.media(href="#")
+                  .media
+                    img.pull-left(src="assets/img/avatars/avatar7_big.png", alt="avatar 7", width="50")
+                    .media-body
+                      small.pull-right 23 Sept
+                      h5.c-dark
+                        strong John Snow
+                      p.f-14.c-gray.italic Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                      .stars.rating
+                        i.fa.fa-star
+                        i.fa.fa-star
+                        i.fa.fa-star
+                        i.fa.fa-star
+                        i.fa.fa-star-half-o
+    .col-lg-7.m-b-20
+      .panel.panel-default
+        .panel-heading.clearfix.pos-rel
+          .pos-abs.top-12.l-15.f-18.c-gray
+            i.fa.fa-calendar
+          h2.panel-title.width-100p.c-red.text-center.w-500.f-20.carrois Schedule Calendar
+          //
+            <div class="pos-abs t-10 r-5 f-18 c-red cursor-pointer">
+                                            <div class="glyph-icon flaticon-plus16 f-32"></div>
+                                        </div>
+        .panel-body
+          .row
+            .col-md-12.col-sm-12.col-xs-12
+              table.table.table-striped
+                thead
+                  tr
+                    th #
+                    th Day
+                    th Date
+                    th Location
+                    th Shift
+                tbody
+                  tr
+                    td 1
+                    td Sunday
+                    td June 20, 2014
+                    td Australia
+                    td 9:00am - 4:00pm
+                  tr
+                    td 2
+                    td Monday
+                    td May 14, 2014
+                    td Poland
+                    td 10:00am - 7:00pm
+                  tr
+                    td 3
+                    td Tuesday
+                    td April 13, 2014
+                    td India
+                    td 4:00pm - 12:00am
+                  tr
+                    td 4
+                    td Wednesday
+                    td July 01, 2014
+                    td South Africa
+                    td 1:00pm - 9:00pm
+                  tr
+                    td 5
+                    td Thursday
+                    td April 11, 2014
+                    td USA
+                    td 11:00am - 6:00pm
+                  tr
+                    td 6
+                    td Friday
+                    td June 24, 2014
+                    td Brazil
+                    td 9:00pm - 6:00am
+                  tr
+                    td 7
+                    td Saturday
+                    td June 27, 2014
+                    td China
+                    td 9:00am - 4:00pm

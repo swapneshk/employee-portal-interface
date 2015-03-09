@@ -1,0 +1,131 @@
+.page-title
+  i.icon-custom-left
+  h2
+    | Edit Client
+.row
+  .col-md-12
+    form#settings.form-horizontal(name="clientForm", novalidate)
+      // BEGIN TABS
+      .tabbable.tabbable-custom.form
+        .tab-content
+          .space20
+          #general_settings.tab-pane.active
+            .row.profile
+              .col-md-12
+                .row
+                  .col-md-12
+                    .col-md-12
+                .row.profile-classic
+                  .col-md-12
+                    .panel
+                      .panel-title.line
+                        .caption
+                          i.fa.fa-info.c-gray.m-r-10
+                          | ABOUT
+                      .panel-body
+                        .row
+                          .control-label.col-md-3 Name:
+                            span.asterisk *
+                          .col-md-6
+                            input#field-1.form-control(type="text", placeholder="John", ng-model="client.name", required="required")
+                        .row
+                          .control-label.col-md-3 Description:
+                            span.asterisk *
+                          .col-md-6
+                            input#field-1.form-control(type="text", placeholder="Description text", ng-model="client.description", required="required")
+                .row.profile-classic
+                  .col-md-12
+                    .panel
+                      .panel-title.line
+                        .caption
+                          i.fa.fa-home.c-gray.m-r-10
+                          | ADDRESS
+                      .panel-body
+                        .row
+                          .control-label.col-md-3 Street 1:
+                            span.asterisk *
+                          .col-md-6
+                            input#field-1.form-control(type="text", placeholder="street 1", ng-model="client.address.street1", required="required")
+                        .row
+                          .control-label.col-md-3 Street 2:
+                            span.asterisk *
+                          .col-md-6
+                            input#field-1.form-control(type="text", placeholder="Street 2", ng-model="client.address.street2", required="required")
+                        .row
+                          .control-label.col-md-3 City:
+                            span.asterisk *
+                          .col-md-6
+                            input#field-1.form-control(type="text", placeholder="California", ng-model="client.address.city", required="required")                              
+                .row.profile-classic
+                  .col-md-12.m-t-20
+                    .panel
+                      .panel-title.line
+                        .caption
+                          i.fa.fa-phone.c-gray.m-r-10
+                          | CONTACT
+                      .panel-body
+                        .row
+                          .control-label.c-gray.col-md-3 Contact Name:
+                            span.asterisk *
+                          .col-md-6
+                            input#field-1.form-control(type="text", placeholder="John Major", ng-model="client.contact_name", required="required")
+                        .row
+                          .control-label.c-gray.col-md-3 Contact Email:
+                            span.asterisk *
+                          .col-md-6
+                            input#field-1.form-control(type="text", placeholder="John Major", ng-model="client.contact_email", required="required")
+                        //
+                          .row
+                            .control-label.c-gray.col-md-3 Contact Phone:
+                              span.asterisk *
+                            .col-md-6
+                              input#field-1.form-control(type="text", placeholder="John Major", ng-model="client.contact_phone", required="required")
+                          .row
+                            .control-label.c-gray.col-md-3 Contact Fax:
+                              span.asterisk *
+                            .col-md-6
+                              input#field-1.form-control(type="text", placeholder="John Major", ng-model="client.contact_fax", required="required")
+                        .row#addCnct(ng-click="addCnt()")
+                          .control-label.c-gray.col-md-3
+                            button.btn.btn-warning.m-t-10
+                              i.fa
+                              | Add Contact &#43;
+                          .col-md-6
+                            | &nbsp;
+                        .row(ng-repeat="item in items")
+                          .control-label.c-gray.col-md-3
+                            | Contact Number {{$index + 1}}
+                          .col-sm-5
+                            input.form-control(type="text", ng-model="cnctnum[$index]") 
+                          .col-sm-2
+                            select.btn(ng-options="type.value as type.name for type in types", ng-init="cncttype[$index] = cncttype[$index] || types[0].value", ng-model="cncttype[$index]")
+                          .col-sm-1
+                            img.remCls(src="http://img.informer.com/icons/png/16/3225/3225535.png", ng-click="remCl($index)")                   
+                .row.profile-classic
+                  .col-md-12
+                    .panel
+                      .panel-title.line
+                        .caption
+                          i.fa.fa-bar-chart-o.c-gray.m-r-10
+                          | OTHER DETAILS
+                      .panel-body
+                        .row
+                          .control-label.col-md-3 Is Account:
+                          .col-md-6
+                            select.btn(ng-model="client.is_account", ng-init="Yes")
+                              option Yes
+                              option No
+                        .row
+                          .control-label.col-md-3 Is Active:
+                          .col-md-6
+                            select.btn(ng-model="client.is_active")
+                              option Yes
+                              option No
+                .col-sm-12
+                  .align-center
+                    button.btn.btn-primary.m-r-20(href="#", ng-click="cleardata()")
+                      i.fa.fa-reply 
+                      | Clear
+                    button.btn.btn-success(href="#", ng-click="editClient(client)")
+                      i.fa.fa-check 
+                      | Save changes

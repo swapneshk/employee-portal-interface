@@ -1,0 +1,53 @@
+.page-title
+  h3
+    strong Generate Tickets
+.row
+  .col-md-12
+    .tabcordion
+      #myTabContent.tab-content
+        #product_general.tab-pane.fade.active.in
+          .row
+            .col-md-12
+              form#form1.form-horizontal(name="ticketSysForm")
+                    .form-group
+                      label.col-sm-3.control-label
+                        | Select Event
+                        span.asterisk *
+                      .col-sm-7
+                        select.btn(ng-options = "event.name for event in allEvents", ng-model="ticket.event_id", ng-init="ticket.event_id = ticket.event_id || allEvents[0].value")
+                    .form-group
+                      label.col-sm-3.control-label
+                        | Select Account
+                        span.asterisk *
+                      .col-sm-7
+                        select.btn(ng-options = "client.name for client in allClients", ng-model="ticket.client_id", ng-init="ticket.client_id = ticket.client_id || allClients[0].value")
+                    .form-group
+                      label.col-sm-3.control-label
+                        | Shift
+                        span.asterisk *
+                      .col-sm-7
+                        select.btn(ng-options = "shift.value as shift.name for shift in shifts", ng-model="ticket.shift", ng-init="ticket.shift = ticket.shift || shifts[0].value")
+                    .form-group
+                      label.col-sm-3.control-label
+                        | Date
+                        span.asterisk *
+                      .col-sm-2
+                        input.datepicker.form-control(type="text", placeholder="mm/dd/yyyy", ng-model="ticket.date", required="required", style="padding: 8px 12px;")
+                      label.col-sm-3.control-label
+                        | Number of Tickets
+                        span.asterisk *
+                      .col-sm-2
+                        input.form-control(type="number", placeholder="Number of Tickets", required="required", ng-model="ticket.number_of_ticket")
+                    .form-group
+                      label.col-sm-3.control-label
+                        | Description
+                        span.asterisk *
+                      .col-sm-7
+                        textarea.form-control(placeholder="Description", ng-model="ticket.description", required="required", rows="6")
+            .col-md-12.m-t-20.m-b-40.align-center
+                button.btn.btn-default.m-r-10.m-t-10(href="#", ng-click="cleardata()")
+                  i.fa.fa-reply
+                  | Clear
+                button.btn.btn-success.m-t-10(href="#" ng-click="generateTicket(ticket)")
+                  i.fa.fa-check
+                  | Generate

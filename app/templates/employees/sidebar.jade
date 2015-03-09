@@ -1,0 +1,44 @@
+nav#sidebar
+  #main-menu
+    ul.sidebar-nav
+      li(ng-class="{current:isActive('/dashboard')}")
+        a(href="/dashboard", ng-click="pagetitle('Dashboard')")
+          i.fa.fa-dashboard
+          span.sidebar-text Dashboard
+        li(ng-class="{current:isActive('/myavailability') || isActive('/timeoffrequest')}")
+          a(href="/myavailability", ng-click="pagetitle('My Availability')")
+            i.glyph-icon.flaticon-calendar53
+            span.sidebar-text My Availability
+        li(ng-class="{current:isActive('/viewschedule')}")
+          a(href="/viewschedule", id="scheduleId", ng-click="pagetitle('My Schedule')")
+            i.glyph-icon.flaticon-account
+            span.sidebar-text My Schedule
+        li(ng-class="{current:isActive('/memolist')}")
+          a(href="/memolist", ng-click="pagetitle('Memos')")
+            i.glyph-icon.flaticon-email
+            span.sidebar-text Memos
+      //
+        li
+          a(href="/viewschedule")
+            i.glyph-icon.flaticon-account
+            span.sidebar-text Past Events
+      //
+        li
+          a(href="../frontend/index.html", target="_blank")
+            i.fa.fa-check-circle
+            span.sidebar-text My Availability
+      br
+  .footer-widget
+    .footer-gradient
+    .sidebar-footer.clearfix
+      //
+        a.pull-left(href="profil_edit.html", rel="tooltip", data-placement="top", data-original-title="Settings")
+          i.glyph-icon.flaticon-settings21
+      //
+        a.pull-left.toggle_fullscreen(href="#", rel="tooltip", data-placement="top", data-original-title="Fullscreen")
+          i.glyph-icon.flaticon-fullscreen3
+      //
+        a.pull-left(href="lockscreen.html", rel="tooltip", data-placement="top", data-original-title="Lockscreen")
+          i.glyph-icon.flaticon-padlock23
+      a.pull-left(href="#", title="Logout", ng-click="logout()", ng-controller="LogoutController")
+        i.fa.fa-power-off

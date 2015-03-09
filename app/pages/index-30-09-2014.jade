@@ -1,0 +1,283 @@
+doctype html
+//
+  if lt IE 7html.no-js.sidebar-large.lt-ie9.lt-ie8.lt-ie7
+//
+  if IE 7html.no-js.sidebar-large.lt-ie9.lt-ie8
+//
+  if IE 8html.no-js.sidebar-large.lt-ie9
+//if gt IE 8
+  | if gt IE 8| [if gt IE 8]
+html.no-js.sidebar-large
+  // <![endif]
+  head
+    // BEGIN META SECTION
+    meta(charset="utf-8")
+    title Event Manager
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    meta(content="", name="description")
+    meta(content="themes-lab", name="author")
+    <base href="/">
+    link(rel="shortcut icon", href="img/favicon.png")
+    link(rel="stylesheet", type="text/css", href="assets/css/icons/icons.min.css")
+    link(rel="stylesheet", type="text/css", href="assets/css/bootstrap.min.css")
+    link(rel="stylesheet", type="text/css", href="assets/css/plugins.min.css")
+    link(rel="stylesheet", type="text/css", href="assets/css/style.css")
+    link#theme-color(href="#", rel="stylesheet")
+    link(rel="stylesheet", type="text/css", href="assets/plugins/fullcalendar/fullcalendar.css")
+    link(rel="stylesheet", type="text/css", href="assets/plugins/metrojs/metrojs.css")
+    link(rel="stylesheet", type="text/css", href="http://codeseven.github.io/toastr/toastr.css")
+    link(href="assets/plugins/datetimepicker/jquery.datetimepicker.css", rel="stylesheet")
+    script(src="assets/plugins/modernizr/modernizr-2.6.2-respond-1.1.0.min.js")
+  body(data-page="dashboard", ng-app="app", ng-controller="DashboardController", ng-cloak)
+    // BEGIN TOP MENU
+    nav.navbar.navbar-inverse.navbar-fixed-top(role="navigation")
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle(type="button", data-toggle="collapse", data-target="#sidebar")
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a#menu-medium.sidebar-toggle.tooltips
+            i.fa.fa-outdent
+          a.navbar-brand(href="/dashboard")
+        .navbar-center(ng-bind="title")
+        .navbar-collapse.collapse
+          // BEGIN TOP NAVIGATION MENU
+          //
+          ul.nav.navbar-nav.pull-right.header-menu
+            // BEGIN NOTIFICATION DROPDOWN
+              li#notifications-header.dropdown
+                a.dropdown-toggle(href="", data-toggle="dropdown", data-hover="dropdown", data-close-others="true")
+                  i.glyph-icon.flaticon-notifications
+                  span.badge.badge-danger.badge-header 6
+                ul.dropdown-menu
+                  li.dropdown-header.clearfix
+                    p.pull-left Notifications
+                  li
+                    ul.dropdown-menu-list.withScroll(data-height="220")
+                      li
+                        a(href="#")
+                          i.fa.fa-star.p-r-10.f-18.c-orange
+                          | Steve have rated your photo
+                          span.dropdown-time Just now
+                      li
+                        a(href="#")
+                          i.fa.fa-heart.p-r-10.f-18.c-red
+                          | John added you to his favs
+                          span.dropdown-time 15 mins
+                      li
+                        a(href="#")
+                          i.fa.fa-file-text.p-r-10.f-18
+                          | New document available
+                          span.dropdown-time 22 mins
+                      li
+                        a(href="#")
+                          i.fa.fa-picture-o.p-r-10.f-18.c-blue
+                          | New picture added
+                          span.dropdown-time 40 mins
+                      li
+                        a(href="#")
+                          i.fa.fa-bell.p-r-10.f-18.c-orange
+                          | Meeting in 1 hour
+                          span.dropdown-time 1 hour
+                      li
+                        a(href="#")
+                          i.fa.fa-bell.p-r-10.f-18
+                          | Server 5 overloaded
+                          span.dropdown-time 2 hours
+                      li
+                        a(href="#")
+                          i.fa.fa-comment.p-r-10.f-18.c-gray
+                          | Bill comment your post
+                          span.dropdown-time 3 hours
+                      li
+                        a(href="#")
+                          i.fa.fa-picture-o.p-r-10.f-18.c-blue
+                          | New picture added
+                          span.dropdown-time 2 days
+                  li.dropdown-footer.clearfix
+                    a.pull-left(href="#") See all notifications
+                    a.pull-right(href="#")
+                      i.fa.fa-cog
+            // END NOTIFICATION DROPDOWN
+            // BEGIN MESSAGES DROPDOWN
+            //
+              li#messages-header.dropdown
+                a.dropdown-toggle(href="#", data-toggle="dropdown", data-hover="dropdown", data-close-others="true")
+                  i.glyph-icon.flaticon-email
+                  span.badge.badge-primary.badge-header 8
+                ul.dropdown-menu
+                  li.dropdown-header.clearfix
+                    p.pull-left Messages
+                  li.dropdown-body
+                    ul.dropdown-menu-list.withScroll(data-height="220")
+                      li.clearfix
+                        span.pull-left.p-r-5
+                          img(src="assets/img/avatars/avatar3.png", alt="avatar 3")
+                        .clearfix
+                          div
+                            strong Alexa Johnson
+                            small.pull-right.text-muted
+                              span.glyphicon.glyphicon-time.p-r-5
+                              | 12 mins ago
+                          p Lorem ipsum dolor sit amet, consectetur...
+                      li.clearfix
+                        span.pull-left.p-r-5
+                          img(src="assets/img/avatars/avatar4.png", alt="avatar 4")
+                        .clearfix
+                          div
+                            strong John Smith
+                            small.pull-right.text-muted
+                              span.glyphicon.glyphicon-time.p-r-5
+                              | 47 mins ago
+                          p Lorem ipsum dolor sit amet, consectetur...
+                      li.clearfix
+                        span.pull-left.p-r-5
+                          img(src="assets/img/avatars/avatar5.png", alt="avatar 5")
+                        .clearfix
+                          div
+                            strong Bobby Brown
+                            small.pull-right.text-muted
+                              span.glyphicon.glyphicon-time.p-r-5
+                              | 1 hour ago
+                          p Lorem ipsum dolor sit amet, consectetur...
+                      li.clearfix
+                        span.pull-left.p-r-5
+                          img(src="assets/img/avatars/avatar6.png", alt="avatar 6")
+                        .clearfix
+                          div
+                            strong James Miller
+                            small.pull-right.text-muted
+                              span.glyphicon.glyphicon-time.p-r-5
+                              | 2 days ago
+                          p Lorem ipsum dolor sit amet, consectetur...
+                  li.dropdown-footer.clearfix
+                    a.pull-left(href="mailbox.html") See all messages
+                    a.pull-right(href="#")
+                      i.fa.fa-cog
+            // END MESSAGES DROPDOWN
+            // BEGIN USER DROPDOWN
+            li#user-header.dropdown
+              a.dropdown-toggle.c-white(href="javascript:void(0);", data-toggle="dropdown", data-hover="dropdown", data-close-others="true")
+                img.p-r-5(src="assets/img/avatars/avatar2.png", alt="user avatar", width="30", ng-if="prof_image == 'test'")
+                img.p-r-5(ng-src="{{siteurl}}:3030/public/{{prof_image}}", alt="user avatar", width="30", ng-if="prof_image !== 'test'")
+                span.username(ng-bind="fullName")
+                i.fa.fa-angle-down.p-r-10
+              ul.dropdown-menu
+                li(ng-switch on="role")
+                  a(ng-switch-when="admin", href="/viewadminprofile", ng-click="pagetitle('My Profile')")
+                    i.glyph-icon.flaticon-account
+                    | My Profile
+                  a(ng-switch-when="manager", href="/viewmanagerprofile", ng-click="pagetitle('My Profile')")
+                    i.glyph-icon.flaticon-account
+                    | My Profile
+                  a(ng-switch-when="employee", href="/viewemployeeprofile", ng-click="pagetitle('My Profile')")
+                    i.glyph-icon.flaticon-account
+                    | My Profile
+                //
+                  li
+                    a(href="calendar.html")
+                      i.glyph-icon.flaticon-calendar
+                      | My Calendar
+                //
+                  li
+                    a(href="profil_edit.html")
+                      i.glyph-icon.flaticon-settings21
+                      | Account Settings
+                li.dropdown-footer.clearfix
+                  //
+                    a.toggle_fullscreen(href="javascript:;", title="Fullscreen")
+                      i.glyph-icon.flaticon-fullscreen3
+                  //
+                    a(href="lockscreen.html", title="Lock Screen")
+                      i.glyph-icon.flaticon-padlock23
+                  a(href="/editpassword", title="Change Password", ng-click="pagetitle('Change Password')")
+                    i.glyph-icon.flaticon-settings21
+                  a(href="#", title="Logout", ng-click="logout()", ng-controller="LogoutController")
+                    i.fa.fa-power-off
+            // END USER DROPDOWN
+            // BEGIN CHAT HEADER
+            //
+              li#chat-header
+                a#chat-toggle.c-white(href="#")
+                  i.glyph-icon.flaticon-speech76.f-24
+                  span#chat-notification.notification.notification-danger.hide(data-delay="2000")
+                #chat-popup.chat-popup.hide(data-delay="2000")
+                  .arrow-up
+                  .chat-popup-inner.bg-blue
+                    div
+                      .clearfix.w-600
+                        img.pull-left.img-circle.p-r-5(src="assets/img/avatars/avatar3.png", alt="avatar 3", width="30")
+                        | Alexa Johnson
+                      .message.m-t-5 Hey you there?
+            // END CHAT HEADER
+          // END TOP NAVIGATION MENU
+    // END TOP MENU
+    // BEGIN WRAPPER
+    #wrapper
+      // BEGIN MAIN SIDEBAR
+      ng-include(ng-if="role==='admin'", src="'/adminNav'")
+      ng-include(ng-if="role==='employee'", src="'/employeeNav'")
+      ng-include(ng-if="role==='manager'", src="'/managerNav'")
+      // END MAIN SIDEBAR
+      // BEGIN MAIN CONTENT
+      div(id="main-content", class="dashboard", ng-view="", ng-class="tabclass")
+      // END MAIN CONTENT
+    // END WRAPPER
+    // BEGIN CHAT MENU
+    // END CHAT MENU
+    // BEGIN MANDATORY SCRIPTS
+    script(src="assets/plugins/mandatoryJs.min.js")
+    // END MANDATORY SCRIPTS
+    // BEGIN PAGE LEVEL SCRIPTS
+    script(src="assets/plugins/metrojs/metrojs.min.js")
+    script(src="assets/plugins/fullcalendar/moment.min.js")
+    script(src="assets/plugins/fullcalendar/fullcalendar.min.js")
+    script(src="assets/plugins/simple-weather/jquery.simpleWeather.min.js")
+    //
+          <script src="assets/plugins/google-maps/markerclusterer.js"></script>
+          <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+          <script src="assets/plugins/google-maps/gmaps.js"></script>
+    script(src="assets/plugins/charts-flot/jquery.flot.js")
+    script(src="assets/plugins/charts-flot/jquery.flot.animator.min.js")
+    script(src="assets/plugins/charts-flot/jquery.flot.resize.js")
+    script(src="assets/plugins/charts-flot/jquery.flot.time.min.js")
+    script(src="assets/plugins/charts-morris/raphael.min.js")
+    script(src="assets/plugins/charts-morris/morris.min.js")
+    script(src="assets/plugins/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js")
+    script(src="assets/js/calendar.js")
+    script(src="assets/js/dashboard.js")
+    script(src="assets/plugins/bootstrap/bootstrap.min.js")
+    script(src="assets/plugins/bootstrap-dropdown/bootstrap-hover-dropdown.min.js")
+    script(src="assets/plugins/bootstrap-select/bootstrap-select.js")
+    // END  PAGE LEVEL SCRIPTS 
+    script(src="assets/plugins/jquery-1.11.js")
+    script(src="assets/plugins/datetimepicker/jquery.datetimepicker.js")
+    script(src="assets/plugins/bootstrap-datepicker/bootstrap-datepicker.js")
+    script(src="assets/js/application.js")
+    script
+      |  $(document).ready(function(){
+      |  if ($('.datepicker').length && $.fn.datepicker) {
+      |  $('.datepicker').each(function () {
+      |  var datepicker_inline = $(this).data('inline') ? $(this).data('inline') : false;
+      |  $(this).datepicker({
+      |  inline: datepicker_inline,
+      |  formatDate:'Y-m-d'
+      |  });
+      |  });
+      |  }
+      |  if ($('.datetimepicker').length && $.fn.datetimepicker) {
+      |  $('.datetimepicker').each(function () {
+      |  var datetimepicker_inline = $(this).data('inline') ? $(this).data('inline') : false;
+      |  $(this).datetimepicker({
+      |  inline: datetimepicker_inline,
+      |  formatDate:'Y-m-d'
+      |  });
+      |  });
+      |  }
+      |  });
+    script(src="/js/vendor.js")
+    script(src="/js/app.js")
+    script(src="http://codeseven.github.io/toastr/toastr.js")
+    script(src="assets/plugins/ang-file-upload/angular-file-upload.js")

@@ -1,0 +1,75 @@
+.m-b-20.clearfix
+  .page-title.pull-left
+    h3.pull-left
+      strong Employee Availability
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title
+          strong Mark Availability   
+      .panel-body
+        //
+          .row
+            div(data-inline="true", datepicker, data-date="{{Date.now}}") 
+        .row
+          .col-lg-3
+            ul
+              li(ng-repeat="a in weeklist", style="margin-bottom: 3px;") 
+                button.btn.label-success(ng-click="showWeekDays(a[0], a[1],$event)", style="width:178px;" id="{{a[0] | date: 'shortDate'}}", ng-if='$index == 0')
+                  | {{a[0] | date: 'shortDate'}} - {{a[1] | date: 'shortDate'}}
+                button.btn.bg-blue(ng-click="showWeekDays(a[0], a[1],$event)", style="width:178px;" id="{{a[0] | date: 'shortDate'}}", ng-if='$index!= 0')
+                  | {{a[0] | date: 'shortDate'}} - {{a[1] | date: 'shortDate'}}
+          .col-lg-8
+            table.table.table-striped.table-hover.table-bordered
+              thead.no-bd
+                tr
+                  th
+                    strong Days of a weeks
+                  th(colspan="4")
+                    strong Availability
+              tbody.no-bd-y
+                tr(ng-repeat-start="a in sevenWeekDayArr")
+                  td(ng-model="availability[$index].currDate", ng-init="availability[$index].currDate = a") {{a | date: 'shortDate'}}
+                  td Morning:
+                  td {{slot.morning_start_time}} {{slot.morning_start_period}} - {{slot.morning_end_time}} {{slot.morning_end_period}}
+                  td  
+                    input(type="checkbox", ng-model="availability[$index].is_morning_scheduled", ng-checked="availability[$index].is_morning_scheduled")                
+                  td(ng-if='availability[$index].is_morning_scheduled_confirmation == true')
+                    label.label.label-info
+                      | Scheduled
+                  td(ng-if='availability[$index].is_morning_scheduled_confirmation == undefined || availability[$index].is_morning_scheduled_confirmation == false')
+                tr
+                  td
+                  td Afternoon:
+                  td {{slot.afternoon_start_time}} {{slot.afternoon_start_period}} - {{slot.afternoon_end_time}} {{slot.afternoon_end_period}}
+                  td
+                    input(type="checkbox", ng-model="availability[$index].is_afternoon_scheduled", ng-checked="availability[$index].is_afternoon_scheduled")
+                  td(ng-if='availability[$index].is_afternoon_scheduled_confirmation == true')
+                    label.label.label-info
+                      | Scheduled
+                  td(ng-if='availability[$index].is_afternoon_scheduled_confirmation == false || availability[$index].is_afternoon_scheduled_confirmation == undefined')
+                tr
+                  td
+                  td Night:
+                  td {{slot.night_start_time}} {{slot.night_start_period}} - {{slot.night_end_time}} {{slot.night_end_period}}
+                  td
+                    input(type="checkbox", ng-model="availability[$index].is_night_scheduled", ng-checked="availability[$index].is_night_scheduled")
+                  td(ng-if='availability[$index].is_night_scheduled_confirmation == true')
+                    label.label.label-info
+                      | Scheduled
+                  td(ng-if='availability[$index].is_night_scheduled_confirmation == false || availability[$index].is_night_scheduled_confirmation == undefined')
+                tr(ng-repeat-end="")
+                  td
+                  td Late Night:
+                  td {{slot.late_night_start_time}} {{slot.late_night_start_period}} - {{slot._late_night_end_time}} {{slot.late_night_end_period}}
+                  td
+                    input(type="checkbox", ng-model="availability[$index].is_late_night_scheduled", ng-checked="availability[$index].is_late_night_scheduled")
+                  td(ng-if='availability[$index].is_late_night_scheduled_confirmation == true')
+                    label.label.label-info
+                      | Scheduled
+                  td(ng-if='availability[$index].is_late_night_scheduled_confirmation == false || availability[$index].is_late_night_scheduled_confirmation == undefined')
+          .col-md-12.m-t-20.m-b-40.align-center
+            button.btn.btn-success.m-t-10(ng-click="submitAvailability(availability)")
+              i.fa.fa-check
+              | Submit Availability 

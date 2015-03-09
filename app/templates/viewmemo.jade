@@ -1,0 +1,20 @@
+.m-b-20.clearfix
+  .pull-right
+    a.btn.btn-success.m-t-10(href="/memolist")
+      i.fa.fa-reply.p-r-10
+      | Back
+.row
+  .col-lg-12
+    .panel.panel-default
+      .panel-body
+        h1(ng-bind="title")
+        p.lead
+          | by 
+          btn(class="btn btn-info btn-transparent", ng-bind="creator_name")
+        hr
+        p
+          i.fa.fa-calendar
+          | &nbsp;{{created_date | date:'medium'}}
+        hr
+        p.lead(ng-bind="description")
+          

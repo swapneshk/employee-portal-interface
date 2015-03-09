@@ -1,0 +1,99 @@
+#main-content(data-ng-init="init()")
+  // BEGIN MODAL
+  #event-modal.modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type="button", data-dismiss="modal", aria-hidden="true") &#215;
+          h4.modal-title(style='text-align:center') Assignment Details
+            
+        .modal-body
+          p(ng-if = "scheduledData.morning_schedule_details && shiftData == 'morning'")
+            strong Morning Event schedule:
+            br
+            |  Event Name : {{scheduledData.morning_schedule_details.event.name}}
+            br
+            |  Start Date : {{scheduledData.morning_schedule_details.event.start_date}}
+            br
+            |  Start Time : {{scheduledData.morning_schedule_details.event.shiftstarttime}}
+            br
+            |  End Date : {{scheduledData.morning_schedule_details.event.end_date}}
+            br
+            |  End Time : {{scheduledData.morning_schedule_details.event.shiftendtime}}
+            br
+            |  Event Location : {{scheduledData.morning_schedule_details.event.location_address.city}}
+            br
+            |  Other employees :
+            br
+            span(ng-repeat="emp in sameemployees", style="padding-left:15px")
+              |  {{'-- '+ emp.employee_id.first_name + ' ' + emp.employee_id.last_name}}
+              br
+          p(ng-if = "scheduledData.afternoon_schedule_details && shiftData == 'afternoon'")
+            strong Afternoon Event schedule:
+            br
+            |  Event Name : {{scheduledData.afternoon_schedule_details.event.name}}
+            br
+            |  Start Date : {{scheduledData.afternoon_schedule_details.event.start_date}}
+            br
+            |  Start Time : {{scheduledData.afternoon_schedule_details.event.shiftstarttime}}
+            br
+            |  End Date : {{scheduledData.afternoon_schedule_details.event.end_date}}
+            br
+            |  End Time : {{scheduledData.afternoon_schedule_details.event.shiftendtime}}
+            br
+            |  Event Location : {{scheduledData.afternoon_schedule_details.event.location_address.city}}
+            br
+            |  Other employees :
+            br
+            span(ng-repeat="emp in sameemployees", style="padding-left:15px")
+              |  {{'-- '+ emp.employee_id.first_name + ' ' + emp.employee_id.last_name}}
+              br
+          p(ng-if = "scheduledData.night_schedule_details && shiftData == 'night'")
+            strong Night Event schedule :
+            br
+            |  Event Name : {{scheduledData.night_schedule_details.event.name}}
+            br
+            |  Start Date : {{scheduledData.night_schedule_details.event.start_date}}
+            br
+            |  Start Time : {{scheduledData.night_schedule_details.event.shiftstarttime}}
+            br
+            |  End Date : {{scheduledData.night_schedule_details.event.end_date}}
+            br
+            |  End Time : {{scheduledData.night_schedule_details.event.shiftendtime}}
+            br
+            |  Event Location : {{scheduledData.night_schedule_details.event.location_address.city}}
+            br
+            |  Other employees :
+            br
+            span(ng-repeat="emp in sameemployees", style="padding-left:15px")
+              |  {{'-- '+ emp.employee_id.first_name + ' ' + emp.employee_id.last_name}}
+              br
+          p(ng-if = "scheduledData.late_night_schedule_details && shiftData == 'latenight'")
+            strong Late Night Event schedule:
+            br
+            |  Event Name : {{scheduledData.late_night_schedule_details.event.name}}
+            br
+            |  Start Date : {{scheduledData.late_night_schedule_details.event.start_date}}
+            br
+            |  Start Time : {{scheduledData.late_night_schedule_details.event.shiftstarttime}}
+            br
+            |  End Date : {{scheduledData.late_night_schedule_details.event.end_date}}
+            br
+            |  End Time : {{scheduledData.late_night_schedule_details.event.shiftendtime}}
+            br
+            |  Event Location : {{scheduledData.late_night_schedule_details.event.location_address.city}}
+            br
+            |  Other employees :
+            br
+            span(ng-repeat="emp in sameemployees", style="padding-left:15px")
+              |  {{'-- '+ emp.employee_id.first_name + ' ' + emp.employee_id.last_name}}
+              br
+        .modal-footer
+          button.btn.btn-default(type="button", data-dismiss="modal") Close
+  // END MODAL
+  .col-md-12.p-0.no-bd
+      .widget.bg-white
+        .widget-body
+          .row
+            .col-md-12.col-sm-12.col-xs-12
+              #calendar

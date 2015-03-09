@@ -1,0 +1,75 @@
+#modal-basic.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+    .modal-dialog
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-hidden='true') X
+            h4#myModalLabel.modal-title
+              | Aligned Employees on this event
+          .modal-body
+            span(ng-repeat="emp in sameemployees", style="padding-left:15px" ng-if="havealignResult")
+                |  {{emp.employee_id.first_name + ' ' + emp.employee_id.last_name}}
+                br
+            .alert.alert-info.fade.in.text-center(ng-if="!havealignResult")
+              h3
+                | No Employees aligned.
+          .modal-footer
+            button.btn.btn-default(type='button', data-dismiss='modal') Close
+.m-b-20.clearfix
+  .page-title.pull-left
+    h3.pull-left
+      strong Manage Events
+.row(ng-show="visibility")
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        .col-md-3
+              input.form-control(ng-model='searchText', placeholder='Enter a keyword')
+        .col-md-9
+          .DTTT_container
+            a.btn.btn-success.m-t-10(href="/addevent")
+              i.fa.fa-plus.p-r-10
+              | Add an Event
+      .panel-body
+        .row
+          .col-md-12.col-sm-12.col-xs-12.table-responsive(ng-if="haveResult")
+            table.table.table-striped.table-hover
+              thead.no-bd
+                tr
+                  th(width="15%")
+                    a(href="", ng-click="reverse=!reverse;order('name', reverse)")
+                      strong Name
+                  th(width="15%")
+                    a(href="", ng-click="reverse=!reverse;order('description', reverse)")
+                      strong Description
+                  th
+                    a(href="", ng-click="reverse=!reverse;order('start_date', reverse)")
+                      strong Start date
+                  th
+                    a(href="", ng-click="reverse=!reverse;order('end_date', reverse)")
+                      strong End date
+                  th
+                    a(href="", ng-click="reverse=!reverse;order('event_data.number_of_people', reverse)")
+                      strong People
+                  th.text-center
+                    a(href="", ng-click="reverse=!reverse;order('event_data.contact_name', reverse)")
+                      strong Contact Name
+                  th.text-center
+                    a(href="")
+                      strong Actions
+              tbody.no-bd-y
+                tr(ng-repeat="event in allEvents | filter:searchText")
+                  td(ng-bind="event.name")
+                  td(ng-bind="event.description")
+                  td(ng-bind="event.start_date")
+                  td(ng-bind="event.end_date")
+                  td(ng-bind="event.event_data.number_of_people")
+                  td.text-center(ng-bind="event.event_data.contact_name")
+                  td.text-center
+                    button.btn.btn-info(ng-click="showEvent(event._id)", rel="tooltip", title="Edit this Event", type="button") Edit
+                    &nbsp;  
+                    button.btn.btn-info(data-toggle="modal" data-target="#modal-basic" ng-click="showemplist(event._id)") View Alignment
+            .row
+              include paging.jade
+          .alert.alert-info.fade.in.text-center(ng-if="!haveResult")
+            h3
+              | No Events for you this time.

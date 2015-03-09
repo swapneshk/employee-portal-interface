@@ -1,0 +1,50 @@
+.m-b-20.clearfix
+  .page-title.pull-left
+    h3.pull-left
+      strong Time Off Requests
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-12.col-sm-12.col-xs-12.table-responsive(ng-if="haveResult")
+            table.table.table-striped.table-hover
+              thead.no-bd
+                tr
+                  th
+                    a(href="")
+                      strong Image
+                  th
+                    a(href="")
+                      strong First Name
+                  th
+                    a(href="")
+                      strong Last Name
+                  th
+                    a(href="")
+                      strong From
+                  th
+                    a(href="")
+                      strong To
+                  th
+                    a(href="")
+                      strong Status
+                  th.text-center
+                    a(href="")
+                      strong Actions
+              tbody.no-bd-y
+                tr(ng-repeat="emp in allTimeoffs")
+                  td
+                    img.img-responsive(src="{{siteurl}}:3030/public/{{emp.employee_id.prof_image}}", width="120", height="120", ng-if="emp.prof_image")
+                  td {{emp.employee_id.first_name}}
+                  td {{emp.employee_id.last_name}}
+                  td {{emp.startdate | date: 'yyyy-MM-dd'}}
+                  td {{emp.enddate | date: 'yyyy-MM-dd'}}
+                  td {{emp.status}}
+                  td.text-center
+                    a.btn.btn-info(href="/timeoffdetail/:{{emp._id}}") View Details
+            .row
+              include paging.jade
+          .alert.alert-info.fade.in.text-center(ng-if="!haveResult")
+            h3
+              | No timeoff requests for you this time.
