@@ -1,0 +1,54 @@
+table.table.table-striped.table-hover
+  thead.no-bd
+    tr
+      th
+        a(href="", ng-click="reverse=!reverse;order('title', reverse)")
+          strong Date 
+      th
+        a(href="", ng-click="reverse=!reverse;order('title', reverse)")
+          strong Employee Name
+      th
+        a(href="", ng-click="reverse=!reverse;order('description', reverse)")
+          strong Morning Shift                                    
+      th
+        a(href="", ng-click="reverse=!reverse;order('description', reverse)")
+          strong Late Night Shift
+      th
+        a(href="", ng-click="reverse=!reverse;order('description', reverse)")
+          strong Afternoon Shift
+      th
+        a(href="", ng-click="reverse=!reverse;order('description', reverse)")
+          strong Night Shift   
+    tr(ng-repeat="event in data|orderBy: 'currDate':true")
+      td
+        {{event.currDate|date:"short"}}
+      td
+        {{event.employee_id.first_name}}
+      td
+        button.btn(ng-if="event.is_morning_scheduled==true && event.manager_schedule.morning_schedule_details.is_approve==true"  style="background-color:green;") Acknowledged
+
+         button.btn(ng-if="event.is_morning_scheduled==true && event.manager_schedule.morning_schedule_details.is_approve!=true" 
+         style="background-color:cyan;") Waiting For Acknowledgement
+
+        p(ng-if="event.is_morning_scheduled!=true").
+          no event scheduled
+      td
+        button.btn(ng-if="event.is_late_night_scheduled==true && event.manager_schedule.late_night_schedule_details.is_approve==true" style="background-color:green;") Acknowledged
+
+        button.btn(ng-if="event.is_late_night_scheduled==true && event.manager_schedule.late_night_schedule_details.is_approve!=true"  style="background-color:cyan;") Waiting For Acknowledgement
+
+        p(ng-if="event.is_late_night_scheduled!=true").
+          no event scheduled
+      td
+        button.btn(ng-if="event.is_afternoon_scheduled==true && event.manager_schedule.afternoon_schedule_details.is_approve==true"   style="background-color:green;") Acknowledged
+
+        button.btn(ng-if="event.is_afternoon_scheduled==true && event.manager_schedule.afternoon_schedule_details.is_approve!=true"  style="background-color:cyan;") Waiting For Acknowledgement
+
+        p(ng-if="event.is_afternoon_scheduled!=true").
+          no event scheduled
+      td
+        button.btn(ng-show="event.is_night_scheduled==true && event.manager_schedule.night_scheduled_details.is_approve==true"   style="background-color:green;") Acknowledged
+
+        button.btn(ng-show="event.is_night_scheduled==true && event.manager_schedule.night_scheduled_details.is_approve!=true"   style="background-color:cyan;") Waiting For Acknowledgement
+        p(ng-if="event.is_night_scheduled!=true").
+          no event scheduled   

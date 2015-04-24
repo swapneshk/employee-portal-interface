@@ -13,7 +13,10 @@ angular.module("app").controller("ViewManagerClientController", function($scope,
     $scope.showClient = function(clientid) {
         $location.path('/client/' + clientid);
     };
-    // Get user listing
+    
+
+    $scope.getmanagerclientdata=function(){
+        // Get user listing
     $http.post("/api/managerclients", {manager_id: SessionService.currentUser._id}).then(function(response){
         if (response.status == 200) {
             console.log(response.data.data);
@@ -27,8 +30,9 @@ angular.module("app").controller("ViewManagerClientController", function($scope,
         else {
             console.log('400');
         }
-    });
-    
+    });        
+    };
+    $scope.getmanagerclientdata();
     var orderBy = $filter('orderBy');
     
     $scope.reverse = false;
@@ -102,4 +106,14 @@ angular.module("app").controller("ViewManagerClientController", function($scope,
         $scope.buildNavButtons();
     }            
     /** Pagination Code ENDS **/  
+     //to delete client
+     $scope.delete_managerclient=function(id){
+         $http.post("/api/delmanagerclients",{clientid:id} ).then(function(response){
+            
+                console.log(response);
+            });
+            $scope.getmanagerclientdata();        
+    }
+
+
 });

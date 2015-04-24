@@ -1,4 +1,4 @@
-angular.module("app").controller("DashboardController", function($scope, SessionService,TimeSlotResource, $location, $timeout, SocketService, sidepanelactiveService, getweekService, $http, $q) {
+angular.module("app").controller("DashboardController", function($scope,$rootScope, SessionService,TimeSlotResource, $location, $timeout, SocketService, sidepanelactiveService, getweekService, $http, $q) {
 	 $("[data-toggle=popover]").popover();
          $scope.popover = {
            "title": "Title",
@@ -81,24 +81,37 @@ angular.module("app").controller("DashboardController", function($scope, Session
 		$scope.role = 'hr';
 		
 	// Code for realtime notifications
-	if (SessionService.currentUser._id) {
-			/*
-			var socket = io('http://localhost:6868');
-			socket.emit('get notifications', {user_id: SessionService.currentUser._id});
-			
-			socket.on('notification data', function(data){
-					$scope.$apply(function() {
-							$scope.notifications = data;
-							$scope.notificationCount = data.length;
-					});
-			});
-			*/
-			SocketService.emit('get notifications', {user_id: SessionService.currentUser._id});
-			SocketService.on('notification data', function(data){
-					$scope.notifications = data;
-					$scope.notificationCount = data.length;
-			});
-	}	
+		if (SessionService.currentUser._id) {
+				/*
+				var socket = io('http://localhost:6868');
+				socket.emit('get notifications', {user_id: SessionService.currentUser._id});
+				
+				socket.on('notification data', function(data){
+						$scope.$apply(function() {
+								$scope.notifications = data;
+								$scope.notificationCount = data.length;
+						});
+				});
+				*/
+				SocketService.emit('get notifications', {user_id: SessionService.currentUser._id});
+				SocketService.on('notification data', function(data){
+						$scope.notifications = data;
+						$scope.notificationCount = data.length;
+				});
+
+		}	
+
+		// Code for realtime notifications icon
+		if (SessionService.currentUser._id) 
+		{
+				SocketService.emit('get availability notification', {user_id: SessionService.currentUser._id});
+				SocketService.on('notification icon data', function(data){
+					console.log("+=+========================+");
+      					console.log(data);
+						$rootScope.availnotifications = data;
+						});		
+			}
+
 		
         if(SessionService.currentUser.roles[0] == 'employee'){
                   //Company Memos
@@ -227,7 +240,8 @@ angular.module("app").controller("DashboardController", function($scope, Session
 	$scope.worktype = function(ty) {
 		$scope.fetchdatatype = ty;    
 	}
-	if (SessionService.currentUser.roles[0] == 'admin' || SessionService.currentUser.roles[0] == 'manager') {
+	if (SessionService.currentUser.roles[0] == 'admin' || SessionService.currentUser.roles[0] == 'manager') 
+	{
 		var currWeekDates = getweekService.getCurrWeek();
 		$scope.$watch('fetchdatatype', function() {
 			var ty = $scope.fetchdatatype;

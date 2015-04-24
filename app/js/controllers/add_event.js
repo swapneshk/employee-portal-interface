@@ -1,15 +1,35 @@
 angular.module("app").controller("AddEventController", function($scope, SessionService, $http, $location) {
-    //$(document).ready(function(){
-    //     /****  Datepicker  ****/
-    //    if ($('.datepicker').length && $.fn.datepicker) {
-    //        $('.datepicker').each(function () {
-    //            var datepicker_inline = $(this).data('inline') ? $(this).data('inline') : false;
-    //            $(this).datepicker({
-    //                inline: datepicker_inline,
-    //                formatDate:'Y-m-d'
-    //            });
-    //        });
-    //    }
+
+    $('#basicExample').timepicker();
+    $('#basicExample1').timepicker();
+
+    $(document).ready(function(){
+        /****  Datepicker  ****/
+       if ($('.datepickerwed').length && $.fn.datepicker) {
+           $('.datepickerwed').each(function () {
+               var datepicker_inline = $(this).data('inline') ? $(this).data('inline') : false;
+               $(this).datepicker({
+                   inline: datepicker_inline,
+                   formatDate:'Y-m-d',
+                    beforeShowDay: function(date){ 
+                        return [(date.getDay() == 3 && date.getDate() <= 7),""]
+                       }
+               });
+           });
+       }
+        if ($('.datepickerwed1').length && $.fn.datepicker) {
+           $('.datepickerwed1').each(function () {
+               var datepicker_inline = $(this).data('inline') ? $(this).data('inline') : false;
+               $(this).datepicker({
+                   inline: datepicker_inline,
+                   formatDate:'Y-m-d',
+                    beforeShowDay: function(date){ 
+                        return [(date.getDay() == 3 && date.getDate() <= 7),""]
+                       }
+               });
+           });
+       }
+   });
     //    /****  Datetimepicker  ****/
     //    if ($('.datetimepicker').length && $.fn.datetimepicker) {
     //        $('.datetimepicker').each(function () {
@@ -41,33 +61,115 @@ angular.module("app").controller("AddEventController", function($scope, SessionS
         {name: "Every week", value: 3},
         {name: "Every month", value: 4},
         {name: "Every year", value: 5},
+        {name: "First Wednesday Of Month", value: 6},
     ];
+    $scope.everyday=[
+        {name:"monday", value:1},
+        {name:"tuesday", value:2},
+        {name:"wednesday", value:3},
+        {name:"thursday", value:4},
+        {name:"friday", value:5},
+        {name:"saturday", value:6},
+        {name:"sunday", value:7},
+    ]
     
     $scope.timeslots = [
         {name: "01:00 AM", value: "01:00 AM"},
+        {name: "01:15 AM", value: "01:15 AM"},
+        {name: "01:30 AM", value: "01:30 AM"},
+        {name: "01:45 AM", value: "01:45 AM"},
         {name: "02:00 AM", value: "02:00 AM"},
+        {name: "02:15 AM", value: "02:15 AM"},
+        {name: "02:30 AM", value: "02:30 AM"},
+        {name: "02:45 AM", value: "02:45 AM"},
         {name: "03:00 AM", value: "03:00 AM"},
+        {name: "03:15 AM", value: "03:15 AM"},
+        {name: "03:30 AM", value: "03:30 AM"},
+        {name: "03:45 AM", value: "03:45 AM"},
         {name: "04:00 AM", value: "04:00 AM"},
+        {name: "04:15 AM", value: "04:15 AM"},
+        {name: "04:30 AM", value: "04:30 AM"},
+        {name: "04:45 AM", value: "04:45 AM"},
         {name: "05:00 AM", value: "05:00 AM"},
+        {name: "05:15 AM", value: "05:15 AM"},
+        {name: "05:30 AM", value: "05:30 AM"},
+        {name: "05:45 AM", value: "05:45 AM"},
         {name: "06:00 AM", value: "06:00 AM"},
+        {name: "06:15 AM", value: "06:15 AM"},
+        {name: "06:30 AM", value: "06:30 AM"},
+        {name: "06:45 AM", value: "06:45 AM"},
         {name: "07:00 AM", value: "07:00 AM"},
+        {name: "07:15 AM", value: "07:15 AM"},
+        {name: "07:30 AM", value: "07:30 AM"},
+        {name: "07:45 AM", value: "07:45 AM"},
         {name: "08:00 AM", value: "08:00 AM"},
+        {name: "08:15 AM", value: "08:15 AM"},
+        {name: "08:30 AM", value: "08:30 AM"},
+        {name: "08:45 AM", value: "08:45 AM"},
         {name: "09:00 AM", value: "09:00 AM"},
+        {name: "09:15 AM", value: "09:15 AM"},
+        {name: "09:30 AM", value: "09:30 AM"},
+        {name: "09:45 AM", value: "09:45 AM"},
         {name: "10:00 AM", value: "10:00 AM"},
+        {name: "10:15 AM", value: "10:15 AM"},
+        {name: "10:30 AM", value: "10:30 AM"},
+        {name: "10:45 AM", value: "10:45 AM"},
         {name: "11:00 AM", value: "11:00 AM"},
+        {name: "11:15 AM", value: "11:15 AM"},
+        {name: "11:30 AM", value: "11:30 AM"},
+        {name: "11:45 AM", value: "11:45 AM"},
         {name: "12:00 PM", value: "12:00 PM"},
+        {name: "12:15 PM", value: "12:15 PM"},
+        {name: "12:30 PM", value: "12:30 PM"},
+        {name: "12:45 PM", value: "12:45 PM"},
         {name: "01:00 PM", value: "01:00 PM"},
+        {name: "01:15 PM", value: "01:15 PM"},
+        {name: "01:30 PM", value: "01:30 PM"},
+        {name: "01:45 PM", value: "01:45 PM"},
         {name: "02:00 PM", value: "02:00 PM"},
+        {name: "02:15 PM", value: "02:15 PM"},
+        {name: "02:30 PM", value: "02:30 PM"},
+        {name: "02:45 PM", value: "02:45 PM"},
         {name: "03:00 PM", value: "03:00 PM"},
+        {name: "03:15 PM", value: "03:15 PM"},
+        {name: "03:30 PM", value: "03:30 PM"},
+        {name: "03:45 PM", value: "03:45 PM"},
         {name: "04:00 PM", value: "04:00 PM"},
+        {name: "04:15 PM", value: "04:15 PM"},
+        {name: "04:30 PM", value: "04:30 PM"},
+        {name: "04:45 PM", value: "04:45 PM"},
         {name: "05:00 PM", value: "05:00 PM"},
+        {name: "05:15 PM", value: "05:15 PM"},
+        {name: "05:30 PM", value: "05:30 PM"},
+        {name: "05:45 PM", value: "05:45 PM"},
         {name: "06:00 PM", value: "06:00 PM"},
+        {name: "06:15 PM", value: "06:15 PM"},
+        {name: "06:30 PM", value: "06:30 PM"},
+        {name: "06:45 PM", value: "06:45 PM"},
         {name: "07:00 PM", value: "07:00 PM"},
+        {name: "07:15 PM", value: "07:15 PM"},
+        {name: "07:30 PM", value: "07:30 PM"},
+        {name: "07:45 PM", value: "07:45 PM"},
         {name: "08:00 PM", value: "08:00 PM"},
+        {name: "08:15 PM", value: "08:15 PM"},
+        {name: "08:30 PM", value: "08:30 PM"},
+        {name: "08:45 PM", value: "08:45 PM"},
         {name: "09:00 PM", value: "09:00 PM"},
+        {name: "09:15 PM", value: "09:15 PM"},
+        {name: "09:30 PM", value: "09:30 PM"},
+        {name: "09:45 PM", value: "09:45 PM"},
         {name: "10:00 PM", value: "10:00 PM"},
+        {name: "10:15 PM", value: "10:15 PM"},
+        {name: "10:30 PM", value: "10:30 PM"},
+        {name: "10:45 PM", value: "10:45 PM"},
         {name: "11:00 PM", value: "11:00 PM"},
-        {name: "00:00 AM", value: "00:00 AM"}
+        {name: "11:15 PM", value: "11:15 PM"},
+        {name: "11:30 PM", value: "11:30 PM"},
+        {name: "11:45 PM", value: "11:45 PM"},
+        {name: "00:00 AM", value: "00:00 AM"},
+        {name: "12:15 AM", value: "12:15 AM"},
+        {name: "12:30 AM", value: "12:30 AM"},
+        {name: "12:45 AM", value: "12:45 AM"}
     ];
     
     $scope.days = [];
@@ -177,6 +279,11 @@ angular.module("app").controller("AddEventController", function($scope, SessionS
                                 event.recurring_event_data.option_data = new Date(event.everyweekpick);
                                 console.log(event.recurring_event_data);
                             break;
+                        // case "pickday":
+                        //     event.recurring_event_data.option_sel = event.everyweek;
+                            
+                        //     event.recurring_event_data.option_data = event.selday;
+                        //     break;    
                         default:
                             
                             event.recurring_event_data.option_sel = event.everyweek;
@@ -233,7 +340,39 @@ angular.module("app").controller("AddEventController", function($scope, SessionS
                             break;
                     }
                 }
+                //for firstwedofmonth
+                if ( 6 === event.repeat ) {
+                    // var wednesdays=getwed();
+                    event.recurring_event_data.type = event.repeat;
+                    
+                    switch(event.firstwedofmonth) {
+                        case "dayselval":
+                            event.recurring_event_data.option_sel = event.firstwedofmonth;
+                            
+                            event.recurring_event_data.option_data = event.selfirstwedday;
+                            break;
+                        case "pickdate":
+                            event.recurring_event_data.option_sel = event.firstwedofmonth;
+                            
+                            if ( undefined === event.firstwedpick)
+                                event.recurring_event_data.option_data = new Date();
+                            else    
+                                event.recurring_event_data.option_data = new Date(event.firstwedpick);
+                            break;
+                        default:
+                            
+                            event.recurring_event_data.option_sel = event.firstwedofmonth;
+                            break;
+                    }
+                    event.start_date=event.firstwedofmonth1;
+                    event.end_date=event.firstwedofmonth2;
+                    console.log(event.start_date);
+                    console.log(event.end_date);
+                }
+
+
             }
+           
             /* For Recurring Data - End */
             
             event.event_data.after_call = event.event_data.after_call === "yes" ? true : false;
@@ -319,7 +458,43 @@ angular.module("app").controller("AddEventController", function($scope, SessionS
     
             }
         }
-    };
+            };
+
+             // //to get first wednesday
+             //    $scope.getwed=function(){
+             //    // function getMondays(date, noofmonths) {
+             //                var d = new Date(date),
+             //                    month = d.getMonth();
+             //                   console.log(d+'------000');
+             //              var finalmondays = [];
+             //              for(i=0;i<noofmonths;i++)
+             //              {  mondays = [];
+             //                month=month+1;
+             //                d.setDate(1);
+             //              console.log(month+'---------');
+             //              d.setMonth(month);
+             //               console.log(month+'---------');
+             //                // Get the first Monday in the month
+             //                while (d.getDay() !== 3) {
+             //                    d.setDate(d.getDate() + 1);
+             //                }
+
+             //                // Get all the other Mondays in the month
+             //                while (d.getMonth() === month) {
+             //                    mondays.push(new Date(d.getTime()));
+             //                    d.setDate(d.getDate() + 7);
+             //                }
+             //              // setTimeout(function(){
+             //                 finalmondays.push(mondays[0])
+             //              // },200)
+                            
+             //              }
+                          
+             //                return finalmondays;
+             //            }
+
+                        // console.log(getMondays(Date.now(),2));
+                // }
     
     $scope.cleardata = function(){
         toastr.info("You cleared the data.");
@@ -349,6 +524,27 @@ angular.module("app").controller("AddEventController", function($scope, SessionS
     
     // Add Shift Details by @Swapnesh on @27-08-2014 - END
     
+    //populate data of location to billing
+
+    $scope.populate=function()
+    {
+        // console.log($scope.event);
+        // console.log($scope.event.location_address.street1);
+        $scope.event.billing_address={};
+        $scope.event.billing_address.street1=$scope.event.location_address.street1;
+        $scope.event.billing_address.street2=$scope.event.location_address.street2;
+        $scope.event.billing_address.city=$scope.event.location_address.city;
+        $scope.event.billing_address.state=$scope.event.location_address.state;
+        $scope.event.billing_address.zip=$scope.event.location_address.zip;
+        // console.log("end");
+    };
+    //end
+    //change start and end date to first wed
+
+    //end
+
+
+
     // Attach Accounts/Clients to an Event @01-09-2014 - START
     $scope.truefalse = false;
     $http.get('/api/clients').then(function(response){
@@ -388,6 +584,8 @@ angular.module("app").controller("AddEventController", function($scope, SessionS
         }
     };
     // Attach Accounts/Clients to an Event @01-09-2014 - END
+    
+
     
 
 });

@@ -20,6 +20,9 @@
       .panel-heading
         .col-md-3
               input.form-control(ng-model='searchText', placeholder='Enter a keyword')
+
+        .col-sm-7
+          select.btn#emplist(ng-model="currentPage", ng-options="emplist.value as emplist.name for emplist in listemp")        
         .col-md-9
           .DTTT_container
             a.btn.btn-success.m-t-10(href="/addemployee")
@@ -42,7 +45,7 @@
                       strong Image
                   th
                     a(href="", ng-click="reverse=!reverse;order('address.line1', reverse)")
-                      strong Address
+                      strong Emp Id
                   th
                     a(href="", ng-click="reverse=!reverse;order('phone', reverse)")
                       strong Phone
@@ -55,7 +58,7 @@
                   th.text-center
                     strong Scheduling
               tbody.no-bd-y
-                tr(ng-repeat="emp in empData| filter:searchText" ng-click="showEmp(emp._id)" style="cursor:pointer")
+                tr(ng-repeat="emp in empData| filter:searchText"  style="cursor:pointer")
                   td(ng-bind="emp.first_name")
                   td(ng-bind="emp.last_name")
                   td
@@ -70,6 +73,10 @@
                     .label.label-danger In Active
                   td.text-center
                     a.btn.btn-primary(href="/employee/availibility/:{{emp._id}}") Align
+                  td.text-center
+                    a.btn.btn-primary(ng-click="delete_empl(emp._id)") Delete 
+                  td.text-center
+                    a.btn.btn-primary(ng-click="showEmp(emp._id)") View  
             .row
               include paging.jade
           .alert.alert-info.fade.in.text-center(ng-if="!haveResult")

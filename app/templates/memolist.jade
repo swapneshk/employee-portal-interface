@@ -1,3 +1,5 @@
+ 
+
 .m-b-20.clearfix
   .page-title.pull-left
     h3.pull-left
@@ -48,8 +50,37 @@
                     a.btn(href="/memo/{{memo._id}}", rel="tooltip", title="Read Memo", type="button", ng-click="markRead(memo._id)", ng-class="memo.admin_checked?'btn-info':'btn-warning'") Read 
                   td.text-center(ng-if="userRole === 'other'")
                     a.btn(href="/memo/{{memo._id}}", rel="tooltip", title="Read Memo", type="button", ng-click="markRead(memo._id)", ng-class="checkRead(user._id, memo.sent_to)?'btn-info':'btn-warning'") Read
+                  td.text-center(ng-if="userRole ==='admin' && edit == true  && memo.mins <=15")
+                    a.btn(rel="tooltip", title="Read Memo", type="button",ng-click="open_edit(memo)", ng-class="checkRead(user._id, memo.sent_to)?'btn-info':'btn-warning'") Edit
+                  td.text-center(ng-if="userRole ==='admin' && showDelete == true && memo.mins <= 15")
+                    a.btn(rel="tooltip", title="Read Memo", type="button",ng-click="delmemos(memo._id)", ng-class="checkRead(user._id, memo.sent_to)?'btn-info':'btn-warning'") Delete  
             .row
               include paging.jade 
           .alert.alert-info.fade.in.text-center(ng-if="!haveResult")
             h3
               | No memo for you this time.
+
+// BEGIN MODAL
+#get-modal.modal(style="display:block;")
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close(type="button", ng-click="closemodal()" data-dismiss="modal", aria-hidden="true") &#215;
+        h4.modal-title(style='text-align:center') Edit Memo
+              .modal-body
+                 .form-group
+                  label.col-sm-3.control-label
+                    | Memo Title
+                  .col-sm-7
+                    input.form-control(type="text", placeholder="Enter title", ng-model="currentMemo.title", required="required")
+                .form-group
+                  label.col-sm-3.control-label
+                    | Description
+                  .col-sm-7
+                    textarea.form-control(placeholder="Enter description", ng-model="currentMemo.description", rows="6")
+              .modal-footer
+                button.btn.btn-default(type='button',ng-click="closemodal()" data-dismiss='modal') Close
+                button.btn.btn-success(type='button',ng-click="save_memo()" data-dismiss='modal') Save changes    
+
+            
+    // END MODAL                

@@ -29,6 +29,14 @@ nav#sidebar
         a(href="/viewticket", ng-click="pagetitle('Ticket System')")
           i.glyph-icon.flaticon-marketing6
           span.sidebar-text Ticket System
+      li(ng-class="{current:isActive('/employeeupdatelist')}")
+        a(href="/employeeupdatelist", ng-click="pagetitle('Employee Update List')")
+          i.glyph-icon.flaticon-seo15
+          span.sidebar-text Employee Update List
+      li(ng-class="{current:isActive('/ShiftAcknowledgement')}")
+        a(href="/ShiftAcknowledgement", ng-click="pagetitle('Shift Acknowledgement')")
+          i.glyph-icon.flaticon-seo15
+          span.sidebar-text Shift Acknowledgement
       //
         li
           a(href="/schedulelist")

@@ -33,7 +33,19 @@ angular.module("app").controller("ViewAdminEmployeeController", function($scope,
     });
     
     var orderBy = $filter('orderBy');
-    
+
+    //listing of more dan 5 employees
+
+    $scope.listemp = [
+        {name: "5", value: 5},
+        {name: "10", value: 10},
+        {name: "15", value:15},
+        {name: "20", value: 20},
+        {name: "All", value:'All'},
+         ];
+
+    $scope.currentPage=5;
+
     // Get user listing
     
     $scope.visibility = false;
@@ -41,7 +53,10 @@ angular.module("app").controller("ViewAdminEmployeeController", function($scope,
     $scope.showEmp = function(empid) {
         $location.path('/employee/edit/:' + empid);
     };
-    $http.get("/api/getempl").then(function(response){
+    
+
+    $scope.getempdata=function(){
+        $http.get("/api/getempl").then(function(response){
         if (response.status == 200) {
             console.log(response.data.data);
             $scope.empData = response.data.data;
@@ -56,22 +71,14 @@ angular.module("app").controller("ViewAdminEmployeeController", function($scope,
             console.log('400');
         }
     });
-
-
+    };
+    $scope.getempdata();
     
     $scope.reverse = false;
     $scope.order = function(predicate, reverse) {
       $scope.empData = orderBy($scope.empData, predicate, reverse);
     };
-    
-    /*
-    $scope.sendmailfn = function() {
-        var data = {email: "swapneshk@smartdatainc.net"};
-        $http.post("/api/forsendmail",data).then(function(response){
-            console.log(response);
-        });  
-    };
-    */
+
     
      /* Filter in employee listing - 15-10-2014 */    
     $scope.filter = {};
@@ -110,11 +117,13 @@ angular.module("app").controller("ViewAdminEmployeeController", function($scope,
             }
         }
     };
-    
+    $scope.perPage = 5;
     /** Pagination Code START **/
     function setPagingData(datam){
         $scope.allData = {};
-        $scope.perPage = 5;
+        console.log("+++++++++");
+        console.log($scope.perPage);
+        
         //$scope.allData = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
         $scope.allData = datam;
         $scope.offset = 0;
@@ -132,7 +141,8 @@ angular.module("app").controller("ViewAdminEmployeeController", function($scope,
 
         $scope.paginate = function() {
             $scope.empData = $scope.allData.slice($scope.offset, $scope.offset + $scope.perPage);
-            //alert("Sliced Data : " + $scope.data);
+            
+            // $scope.$apply();//alert("Sliced Data : " + $scope.data);
         };
 
         $scope.previous = function() {                    
@@ -181,7 +191,60 @@ angular.module("app").controller("ViewAdminEmployeeController", function($scope,
     /** Pagination Code ENDS **/
 
 
+ $scope.$watch(function(scope,$http) 
+        { return scope.currentPage },
+      function(newValue, oldValue) 
+      {
+        console.log($http);
+        console.log("here");
+          console.log(newValue);
+          console.log(oldValue);
+          if(newValue != "All"){
+            // alert("notall");
+          $scope.perPage = parseInt(newValue);
+          }
+          else{
+                // alert("all");
+            $scope.perPage= newValue;
+        }
+          console.log("perpage");
+          console.log($scope.perPage);
+          $scope.updatepagination($http);
+      }
+     );
 
-    
+    $scope.updatepagination=function($http){
+        $http.get("/api/getempl").then(function(response){
+        if (response.status == 200) {
+            
+            
+            console.log(response.data.data);
+            $scope.empData = response.data.data;
+            if($scope.perPage=="All"){
+                $scope.perPage=$scope.empData.length;
+            }
+            console.log($scope.perPage);
+            if ($scope.empData.length > 0)
+                $scope.haveResult = true;
+            else
+                $scope.haveResult = false;
+            setPagingData($scope.empData);
+            $scope.visibility = true;
+        }
+        else {
+            console.log('400');
+        }
+    });
+    }
+
+    //to delete user
+     $scope.delete_empl=function(id){
+         $http.post("/api/delempl",{empid:id} ).then(function(response){
+            
+                console.log(response);
+            });
+            $scope.getempdata();
+    }
+
 });
 

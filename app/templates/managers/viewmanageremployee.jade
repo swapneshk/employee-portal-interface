@@ -56,7 +56,7 @@
                     a(href="")
                       strong Scheduling
               tbody.no-bd-y
-                tr(ng-repeat="emp in empData| filter:searchText" ng-click="showEmp(emp._id)" style="cursor:pointer")
+                tr(ng-repeat="emp in empData| filter:searchText" style="cursor:pointer")
                   td {{emp.first_name}}
                   td {{emp.last_name}}
                   td
@@ -70,6 +70,11 @@
                     .label.label-danger In Active
                   td.text-center
                     a.btn.btn-primary(href="/employee/availibility/:{{emp._id}}") Align
+                  td.text-center
+                    a.btn.btn-primary(ng-click="delete_managerempl(emp._id)") Delete 
+                  td.text-center
+                    a.btn.btn-primary(ng-click="showEmp(emp._id)") View   
+
             .row
               include paging.jade
           .alert.alert-info.fade.in.text-center(ng-if="!haveResult")

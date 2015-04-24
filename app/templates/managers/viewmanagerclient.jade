@@ -45,7 +45,7 @@
                       a(href="", ng-click="reverse=!reverse;order('modified_on', reverse)")
                         strong Updated At
               tbody.no-bd-y
-                tr(ng-repeat="client in clientData | filter:searchText" ng-click="showClient(client._id)" style="cursor:pointer")
+                tr(ng-repeat="client in clientData | filter:searchText" style="cursor:pointer")
                   td {{client.name}}
                   td {{client.address.city}}
                   td {{client.address.state}}
@@ -61,6 +61,10 @@
                     | Active
                   td(ng-if="client.is_active !== true")
                     .label.label-danger In Active  
+                  td.text-center
+                    a.btn.btn-primary(ng-click="delete_managerclient(client._id)") Delete 
+                  td.text-center
+                    a.btn.btn-primary(ng-click="showClient(client._id)") View  
                   //td.text-center{{client.modified_on | date: 'yyyy-MM-dd'}}
                  
             .row

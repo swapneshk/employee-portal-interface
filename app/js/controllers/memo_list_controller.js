@@ -1,6 +1,9 @@
 angular.module("app").controller("MemoListController", function($scope, SessionService, $http, $filter, sidepanelactiveService) {
-    $scope.user = SessionService.currentUser;
-
+   $("#get-modal").hide();
+   var $modal =$("#get-modal");
+   $scope.user = SessionService.currentUser;
+    $scope.showDelete=false;
+    $scope.edit=false;
     // Don't show add button to employee for adding a memo
     if ( "employee" === SessionService.currentUser.roles[0] )
         $scope.userPriv = false;
@@ -131,6 +134,7 @@ angular.module("app").controller("MemoListController", function($scope, SessionS
                     setPagingData($scope.allMemos);
                 };    
             });
+            $scope.showDelete=false;
         }
         else if ( "manager" === SessionService.currentUser.roles[0] ) {
             $http.post("/api/getmemos", {userId: SessionService.currentUser._id, action: "managerInboxMsgs"}).then(function(response){
@@ -201,7 +205,37 @@ angular.module("app").controller("MemoListController", function($scope, SessionS
                 $scope.mark_read = true;
             };
         });
+        $scope.showDelete=true;
+        $scope.edit=true;
     };
+
+    //delete memo
+    $scope.delmemos=function(ID){
+        $http.post("/api/delmemo", {Id: ID, user_role: "admin"}).then(function(response){
+            if(response.data.code=="500"){
+                alert("time has exceeded 15 mins");
+            }
+            else{
+                console.log("===del memo===");
+                console.log(response);
+                $http.post("/api/getmemos", {userId: SessionService.currentUser._id, action: "getAllCreatedByMe"}).then(function(response){
+                    console.log("GET MEMOS RESPONSE");
+                    if( "200" === response.data.status_code ) {
+                        $scope.allMemos = response.data.data;
+                        if ($scope.allMemos.length > 0)
+                            $scope.haveResult = true;
+                        else
+                            $scope.haveResult = false;
+                            $scope.mark_read = true;
+                        };
+                     });
+                    $scope.showDelete=true;
+                }
+
+            });
+            };
+
+   
     
     //Mark Read
     $scope.markRead = function(memoId) {
@@ -304,5 +338,25 @@ angular.module("app").controller("MemoListController", function($scope, SessionS
         $scope.buildNavButtons();
     }            
     /** Pagination Code ENDS **/
+    $scope.closemodal=function(){
+        $("#get-modal").hide(); 
+    }
+
+    $scope.open_edit=function(data){
+        $("#get-modal").show();
+        console.log("===memo data==");
+        console.log(data);
+
+       var curr= data;
+       $scope.currentMemo= curr;
+    }
+
+    $scope.save_memo=function(){
+         $http.post("/api/updmemo", $scope.currentMemo).then(function(response){
+            
+                console.log(response);
+            });
+         $("#get-modal").hide();
+    }
 
 });

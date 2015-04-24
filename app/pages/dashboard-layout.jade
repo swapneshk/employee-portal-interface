@@ -21,12 +21,19 @@ html.no-js.sidebar-large
     link(rel="stylesheet", type="text/css", href="assets/css/bootstrap.min.css")
     link(rel="stylesheet", type="text/css", href="assets/css/plugins.min.css")
     link(rel="stylesheet", type="text/css", href="assets/css/style.css")
+    link(rel="stylesheet", type="text/css", href="assets/css/ng-table.css")
+    link(rel="stylesheet", type="text/css", href="assets/css/ng-table.min.css")
+    // link(rel="stylesheet", type="text/css", href="assets/css/style_light.css")
     link#theme-color(href="#", rel="stylesheet")
     link(rel="stylesheet", type="text/css", href="assets/plugins/fullcalendar/fullcalendar.css")
     link(rel="stylesheet", type="text/css", href="assets/plugins/metrojs/metrojs.css")
     link(rel="stylesheet", type="text/css", href="http://codeseven.github.io/toastr/toastr.css") 
-    link(href="assets/plugins/datetimepicker/jquery.datetimepicker.css", rel="stylesheet")  
+    link(href="assets/plugins/datetimepicker/jquery.datetimepicker.css", rel="stylesheet")
+    link(href="assets/plugins/timepicker/jquery.timepicker.css", rel="stylesheet")  
     script(src="assets/plugins/modernizr/modernizr-2.6.2-respond-1.1.0.min.js")
+    script(src="assets/plugins/modernizr/modernizr-2.6.2-respond-1.1.0.min.js")
+    script(src="vendor/components/ng-table/ng-table.js")
+    script(src="vendor/components/ng-table/ng-table.min.js")
   body(data-page="dashboard", ng-app="app", ng-controller="DashboardController")
     // BEGIN TOP MENU
     nav.navbar.navbar-inverse.navbar-fixed-top(role="navigation")
@@ -242,11 +249,12 @@ html.no-js.sidebar-large
     script(src="assets/plugins/bootstrap-select/bootstrap-select.js")
     // END  PAGE LEVEL SCRIPTS 
     script(src="assets/plugins/jquery-1.11.js")
-    script(src="assets/plugins/datetimepicker/jquery.datetimepicker.js") 
+    script(src="assets/plugins/datetimepicker/jquery.datetimepicker.js")    
     script(src="assets/plugins/bootstrap-datepicker/bootstrap-datepicker.js") 
+    script(src="assets/plugins/timepicker/jquery.timepicker.min.js")
     // script(src="assets/js/application.js")   
     script
-      |  $(document).ready(function(){
+      |  $(document).ready(function(){      
       |  if ($('.datepicker').length && $.fn.datepicker) {
       |  $('.datepicker').each(function () {
       |  var datepicker_inline = $(this).data('inline') ? $(this).data('inline') : false;
@@ -265,9 +273,10 @@ html.no-js.sidebar-large
       |  formatDate:'Y-m-d'
       |  });
       |  });
-      |  }
+      |  }      
       |  }); 
     script(src="/js/vendor.js")
     script(src="/js/app.js") 
     script(src="http://codeseven.github.io/toastr/toastr.js") 
     script(src="https://raw.githubusercontent.com/theotheu/file-upload-with-MEAN/master/client/javascript/lib/angular-file-upload.js")
+    script(src="/js/controllers/shift_acknowledgement_controller")

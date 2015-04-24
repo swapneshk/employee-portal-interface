@@ -1,3 +1,4 @@
+// alert("event controller");
 angular.module("app").controller("ViewEventController", function($scope, $location, SessionService, $http, $filter, sidepanelactiveService) {
     // For table layout to work properly
     /*
@@ -12,6 +13,21 @@ angular.module("app").controller("ViewEventController", function($scope, $locati
     var orderBy = $filter('orderBy');
     
     $scope.visibility = false;
+
+
+     //listing of more dan 5 events
+
+    $scope.listevents = [
+        {name: "5", value: 5},
+        {name: "10", value: 10},
+        {name: "15", value:15},
+        {name: "20", value: 20},
+        {name: "All", value:'All'},
+         ];
+
+    $scope.currentPage=5;
+
+
     $scope.haveResult = true;
     $scope.showEvent = function(eventid) {
         $location.path('/event/edit/' + eventid);
@@ -71,10 +87,12 @@ angular.module("app").controller("ViewEventController", function($scope, $locati
         // NOT AUTHORIZED TO MAKE ANY REQUEST
     }
     
+
+     $scope.perPage = 5;
     /** Pagination Code START **/
     function setPagingData(datam){
         $scope.allData = {};
-        $scope.perPage = 5;
+       
         //$scope.allData = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
         $scope.allData = datam;
         $scope.offset = 0;
@@ -91,6 +109,7 @@ angular.module("app").controller("ViewEventController", function($scope, $locati
 
         $scope.paginate = function() {
             $scope.allEvents = $scope.allData.slice($scope.offset, $scope.offset + $scope.perPage);
+            // $scope.$apply();
         };
 
         $scope.previous = function() {
@@ -134,6 +153,59 @@ angular.module("app").controller("ViewEventController", function($scope, $locati
         $scope.buildNavButtons();
     }            
     /** Pagination Code ENDS **/
+
+        $scope.$watch(function(scope,$http) 
+        { return scope.currentPage },
+      function(newValue, oldValue) 
+      {
+        console.log($http);
+        console.log("here");
+          console.log(newValue);
+          console.log(oldValue);
+          if(newValue != "All"){
+            // alert("notall");
+          $scope.perPage = parseInt(newValue);
+          }
+          else{
+                // alert("all");
+            $scope.perPage= newValue;
+        }
+          console.log("perpage");
+          console.log($scope.perPage);
+          $scope.updatepagination($http);
+      }
+     );
+
+
+        $scope.updatepagination=function($http){
+          $http.get("/api/events").then(function(response){
+            if ( "200" === response.data.status_code) {
+                response.data.events.forEach(function(elem, key){
+                     var st_str = new Date(elem.start_date);
+                     elem.start_date = st_str.getFullYear()+'-'+st_str.getMonth()+'-'+st_str.getDate();
+                     var end_str = new Date(elem.end_date);
+                     elem.end_date = end_str.getFullYear()+'-'+end_str.getMonth()+'-'+end_str.getDate();
+                });
+                $scope.allEvents = response.data.events;
+                if($scope.perPage=="All"){
+                $scope.perPage=$scope.allEvents.length;
+                    }
+                if ($scope.allEvents.length > 0)
+                    $scope.haveResult = true;
+                else
+                    $scope.haveResult = false;
+                console.log($scope.allEvents);
+                setPagingData($scope.allEvents);
+                $scope.visibility = true;
+            }
+            else {
+                toastr.error("Unable to fetch list this time!!");
+            }
+        })
+}
+
+
+
     $scope.havealignResult = true;
     $scope.showemplist = function(eventid) {
         $http.post("/api/otherEmpOnEventsNoShift",{event:eventid}).then(function(innerresponse){

@@ -29,6 +29,7 @@ html.no-js.sidebar-large
     link(rel="stylesheet", type="text/css", href="assets/plugins/metrojs/metrojs.css")
     link(rel="stylesheet", type="text/css", href="http://codeseven.github.io/toastr/toastr.css")
     link(href="assets/plugins/datetimepicker/jquery.datetimepicker.css", rel="stylesheet")
+    link(href="assets/plugins/timepicker/jquery.timepicker.css", rel="stylesheet") 
     link(rel="stylesheet", type="text/css", href="assets/plugins/modal/css/component.css")
     link(rel="stylesheet", type="text/css", href="assets/plugins/mcustom-scrollbar/jquery.mCustomScrollbar.css")
     script(src="assets/plugins/modernizr/modernizr-2.6.2-respond-1.1.0.min.js")
@@ -51,6 +52,10 @@ html.no-js.sidebar-large
           // BEGIN TOP NAVIGATION MENU
           //
           ul.nav.navbar-nav.pull-right.header-menu
+            li(ng-switch on="role")
+              a(ng-switch-when="employee", href="/viewshifts", title="Notification")
+                    i.fa.fa-bell-o
+                     span.label.label-danger.m-l-10(ng-bind="availnotifications" ng-if="availnotifications>0")         
             // BEGIN MESSAGES DROPDOWN
             //
               li#messages-header.dropdown
@@ -119,6 +124,9 @@ html.no-js.sidebar-large
                   a(ng-switch-when="admin", href="/viewadminprofile", ng-click="pagetitle('My Profile')")
                     i.glyph-icon.flaticon-account
                     | My Profile
+                  a(ng-switch-when="admin", href="/login", target="_blank")
+                    i.glyph-icon.flaticon-account
+                    | Add Account 
                   a(ng-switch-when="manager", href="/viewmanagerprofile", ng-click="pagetitle('My Profile')")
                     i.glyph-icon.flaticon-account
                     | My Profile
@@ -148,7 +156,7 @@ html.no-js.sidebar-large
                   a(href="/editpassword", title="Change Password", ng-click="pagetitle('Change Password')")
                     i.glyph-icon.flaticon-settings21
                   a(href="#", title="Logout", ng-click="logout()", ng-controller="LogoutController")
-                    i.fa.fa-power-off
+                    i.fa.fa-power-off                      
             // END USER DROPDOWN
             // BEGIN CHAT HEADER
             //
@@ -231,6 +239,7 @@ html.no-js.sidebar-large
     //script(src="assets/js/calendar.js")
     script(src="assets/plugins/datetimepicker/jquery.datetimepicker.js")
     //script(src="assets/plugins/bootstrap-datepicker/bootstrap-datepicker.js")
+    script(src="assets/plugins/timepicker/jquery.timepicker.min.js")
     script(src="assets/plugins/modal/js/classie.js")
     script(src="assets/plugins/modal/js/modalEffects.js") 
     //script(src="assets/js/application.js")

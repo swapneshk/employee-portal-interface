@@ -64,6 +64,11 @@ angular.module("app").config(function($routeProvider, $locationProvider, $httpPr
       controller: "PasswordController",
       resolve: routeRoleChecks.user
     })
+    .when("/viewshifts", {
+      template: JST["app/templates/viewshifts"],
+      controller: "ViewShiftsController"
+      // resolve: routeRoleChecks.user
+    })
     .when("/dashboard", {
       template: JST["app/templates/dashboard"],
       controller: "DashboardController",
@@ -127,6 +132,11 @@ angular.module("app").config(function($routeProvider, $locationProvider, $httpPr
           template: JST["app/templates/employees/viewemployeeprofile"],
           controller: "ViewEmployeeProfileController",
           resolve: routeRoleChecks.user
+    }).
+     when("/ShiftAcknowledgement", {
+          template: JST["app/templates/managers/shiftAcknowledgement"],
+          controller: "ShiftAcknowledgementController",
+          //resolve: routeRoleChecks.manager
     }).
     when("/viewhrprofile", {
           template: JST["app/templates/hr/viewhrprofile"],
@@ -233,11 +243,19 @@ angular.module("app").config(function($routeProvider, $locationProvider, $httpPr
       controller: "timeoffRequestController",
       resolve: routeRoleChecks.adminManager
     })
+  
     .when("/timeoffdetail/:id", {
       template: JST["app/templates/managers/timeoffdetail"],
       controller: "timeoffRequestController",
       resolve: routeRoleChecks.adminManager
     })
+      //added on 7april
+    .when("/employeeupdatelist", {
+      template: JST["app/templates/managers/employeeupdatelist"],
+      controller: "employeeUpdateListController",
+      resolve: routeRoleChecks.adminManager
+    })
+    //end
     .when("/viewticket", {
       template: JST["app/templates/admins/viewticket"],
       controller: "ticketSysController",

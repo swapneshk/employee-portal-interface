@@ -22,8 +22,25 @@ angular.module("app").controller("ViewAdminClientController", function($scope, $
     };
     var orderBy = $filter('orderBy');
     $scope.visibility = false;
+
+     //listing of more dan 5 clients
+
+    $scope.listclient = [
+        {name: "5", value: 5},
+        {name: "10", value: 10},
+        {name: "15", value:15},
+        {name: "20", value: 20},
+        {name: "All", value:'All'},
+         ];
+
+    $scope.currentPage=5;
+
+
     
-    // Get user listing
+  
+
+    $scope.getclientdata=function(){
+          // Get user listing
     $http.get("/api/clients").then(function(response){
         if (response.status == 200) {
             //console.log(response.data);
@@ -39,16 +56,20 @@ angular.module("app").controller("ViewAdminClientController", function($scope, $
             console.log('400');
         }
     });
+    };
+    $scope.getclientdata();
     
     $scope.reverse = false;
     $scope.order = function(predicate, reverse) {
       $scope.clientData = orderBy($scope.clientData, predicate, reverse);
     };
     
+
+    $scope.perPage = 5;
     /** Pagination Code START **/
     function setPagingData(datam){
         $scope.allData = {};
-        $scope.perPage = 5;
+        // $scope.perPage = 5;
         //$scope.allData = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
         $scope.allData = datam;
         $scope.offset = 0;
@@ -66,7 +87,8 @@ angular.module("app").controller("ViewAdminClientController", function($scope, $
 
         $scope.paginate = function() {
             $scope.clientData = $scope.allData.slice($scope.offset, $scope.offset + $scope.perPage);
-            //alert("Sliced Data : " + $scope.data);
+             // $scope.$apply();
+             //alert("Sliced Data : " + $scope.data);
         };
 
         $scope.previous = function() {                    
@@ -111,4 +133,60 @@ angular.module("app").controller("ViewAdminClientController", function($scope, $
         $scope.buildNavButtons();
     }            
     /** Pagination Code ENDS **/
+
+
+    $scope.$watch(function(scope,$http) 
+        { return scope.currentPage },
+      function(newValue, oldValue) 
+      {
+        console.log($http);
+        console.log("here");
+          console.log(newValue);
+          console.log(oldValue);
+          if(newValue != "All"){
+            // alert("notall");
+          $scope.perPage = parseInt(newValue);
+          }
+          else{
+                // alert("all");
+            $scope.perPage= newValue;
+        }
+          console.log("perpage");
+          console.log($scope.perPage);
+          $scope.updatepagination($http);
+      }
+     );
+
+
+    $scope.updatepagination=function($http){
+        $http.get("/api/clients").then(function(response){
+        if (response.status == 200) {
+            console.log(response.data.data);
+            $scope.clientData = response.data.data;
+            if($scope.perPage=="All"){
+                $scope.perPage=$scope.clientData.length;
+            }
+            console.log($scope.perPage);
+            if ($scope.clientData.length > 0)
+                $scope.haveResult = true;
+            else
+                $scope.haveResult = false;
+            setPagingData($scope.clientData);
+            $scope.visibility = true;
+        }
+        else {
+            console.log('400');
+        }
+    });
+    }
+
+    //to delete client
+     $scope.delete_client=function(id){
+         $http.post("/api/delclients",{clientid:id} ).then(function(response){
+            
+                console.log(response);
+            });
+         $scope.getclientdata();
+        
+    }
 });

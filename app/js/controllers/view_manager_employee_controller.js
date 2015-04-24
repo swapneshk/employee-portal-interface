@@ -32,7 +32,9 @@ angular.module("app").controller("ViewManagerEmployeeController", function($scop
     
     var orderBy = $filter('orderBy');
     
-    // Get user listing
+    
+    $scope.getmanagerempldata=function(){
+        // Get user listing
     $http.post("/api/getmanagerempl", {manager_id: SessionService.currentUser._id}).then(function(response){
         if (response.status == 200) {
             console.log(response.data.data);
@@ -47,6 +49,8 @@ angular.module("app").controller("ViewManagerEmployeeController", function($scop
             console.log('400');
         }
     });
+    };
+    $scope.getmanagerempldata();
     
     $scope.reverse = false;
     $scope.order = function(predicate, reverse) {
@@ -161,6 +165,15 @@ angular.module("app").controller("ViewManagerEmployeeController", function($scop
     }            
     /** Pagination Code ENDS **/
 
+
+     //to delete user
+     $scope.delete_managerempl=function(id){
+         $http.post("/api/delmanagerempl",{empid:id} ).then(function(response){
+            
+                console.log(response);
+            });
+            $scope.getmanagerempldata();    
+        }
 
 
     

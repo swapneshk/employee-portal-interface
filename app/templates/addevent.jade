@@ -35,6 +35,18 @@
                     input.datepicker.form-control(type="text", placeholder="mm/dd/yyyy", ng-model="event.end_date", style="padding: 8px 12px;", required="required")
                 .form-group
                   label.col-sm-3.control-label
+                    | Start Time
+                    span.asterisk *
+                  .col-sm-7
+                    input.time.form-control(type="text", placeholder="hh/mm",id="basicExample",ng-model="event.start_time", data-scroll-default="6:00am",style="padding: 8px 12px;",required="required")
+                .form-group
+                  label.col-sm-3.control-label
+                    | End Time
+                    span.asterisk *
+                  .col-sm-7
+                    input.time.form-control(type="text", placeholder="hh/mm",id="basicExample1",ng-model="event.end_time", data-scroll-default="6:00am", style="padding: 8px 12px;", required="required")
+                .form-group
+                  label.col-sm-3.control-label
                     | Is Active
                     span.asterisk *
                   .col-sm-1
@@ -82,7 +94,7 @@
                   .col-sm-4  
                     input(type="radio", name="everyweek", ng-model="event.everyweek", value="pickdate") 
                     | &nbsp;&nbsp;Until 
-                    input.datepicker.form-control(type="text", placeholder="mm/dd/yyyy", ng-model="event.everyweekpick", style="padding: 8px 12px;width:35%")   
+                    input.datepicker.form-control(type="text", placeholder="mm/dd/yyyy", ng-model="event.everyweekpick", style="padding: 8px 12px;width:35%")     
                 .form-group(ng-show="event.repeat === 4")
                   label.col-sm-3.control-label
                     | &nbsp;
@@ -97,7 +109,7 @@
                   .col-sm-4 
                     input(type="radio", name="everymonth", ng-model="event.everymonth", value="pickdate") 
                     | &nbsp;&nbsp;Until 
-                    input.datepicker.form-control(type="text", placeholder="mm/dd/yyyy", ng-model="event.everymonthpick", style="padding: 8px 12px;width:35%")   
+                    input.datepicker.form-control(type="text", placeholder="mm/dd/yyyy", ng-model="event.everymonthpick", style="padding: 8px 12px;width:35%")    
                 .form-group(ng-show="event.repeat === 5")
                   label.col-sm-3.control-label
                     | &nbsp;
@@ -112,7 +124,34 @@
                   .col-sm-4  
                     input(type="radio", name="everyyear", ng-model="event.everyyear", value="pickdate") 
                     | &nbsp;&nbsp;Until 
-                    input.datepicker.form-control(type="text", placeholder="mm/dd/yyyy", ng-model="event.everyyearpick", style="padding: 8px 12px;width:35%")   
+                    input.datepicker.form-control(type="text", placeholder="mm/dd/yyyy", ng-model="event.everyyearpick", style="padding: 8px 12px;width:35%")
+                .form-group(ng-show="event.repeat === 6")
+                  label.col-sm-3.control-label
+                    | &nbsp;
+                  .col-sm-2(style="width:13%")
+                    input(type="radio", name="firstwedofmonth", ng-model="event.firstwedofmonth", value="forever", ng-init="event.everymonth='forever'") 
+                    | &nbsp;&nbsp;Forever
+                  .col-sm-3(style="width:22%")
+                    input(type="radio", name="firstwedofmonth", ng-model="event.firstwedofmonth", value="dayselval")
+                    | &nbsp;&nbsp;For 
+                    select#selday.btn(ng-model="event.selfirstwedday", ng-options="day.value as day.name for day in days", ng-init="event.selfirstwedday = event.day || days[0].value")
+                    | &nbsp;months
+                  .col-sm-4 
+                    input(type="radio", name="firstwedofmonth", ng-model="event.firstwedofmonth", value="pickdate") 
+                    | &nbsp;&nbsp;Until 
+                    input.datepicker.form-control(type="text", placeholder="mm/dd/yyyy", ng-model="event.firstwedpick", style="padding: 8px 12px;width:35%")
+                  label.col-sm-3.control-label
+                    | Start Date Wednesday
+                    span.asterisk *
+                  .col-sm-7
+                    input.datepickerwed.form-control(type="text", placeholder="mm/dd/yyyy", ng-model="event.firstwedofmonth1", style="padding: 8px 12px;", required="required") 
+                  label.col-sm-3.control-label
+                    | End Date Wednesday
+                    span.asterisk *
+                  .col-sm-7
+                    input.datepickerwed1.form-control(type="text", placeholder="mm/dd/yyyy", ng-model="event.firstwedofmonth2", style="padding: 8px 12px;", required="required") 
+
+
                 .form-group(ng-if="event.repeat !== 1")
                   label.col-sm-3.control-label
                     | Select Account
@@ -143,10 +182,10 @@
                     | Contact Email
                   .col-sm-7
                     input.form-control(type="email", placeholder="user@test.com", ng-model="event.event_data.contact_email", ng-readonly="truefalse")
-                .form-group
-                  label.col-sm-3.control-label
-                    | Paid Valet
-                    span.asterisk *
+                //.form-group
+                  //label.col-sm-3.control-label
+                    //| Paid Valet
+                    //span.asterisk *
                   .col-sm-1
                     input(type="radio", ng-model="event.event_data.paid_valet", value="yes") 
                     | &nbsp;&nbsp;Yes
@@ -189,10 +228,10 @@
                   .col-sm-1
                     input(type="radio", ng-model="event.event_data.paid", value="no") 
                     | &nbsp;&nbsp;No
-                .form-group
-                  label.col-sm-3.control-label
-                    | Require Setup
-                    span.asterisk *
+                //.form-group
+                  //label.col-sm-3.control-label
+                    //| Require Setup
+                    //span.asterisk *
                   .col-sm-1
                     input(type="radio", ng-model="event.event_data.require_setup", value="yes") 
                     | &nbsp;&nbsp;Yes
@@ -275,6 +314,12 @@
                   .col-sm-7
                     input.form-control(type="text", placeholder="Zip", ng-model="event.location_address.zip")
                 .form-group
+                  label.col-sm-3.control-label                   
+                  .col-sm-7
+                    input(type="radio", ng-click="populate()")
+                    | &nbsp;&nbsp;
+                    b Same as Above                   
+                .form-group
                   label.col-sm-3.control-label
                     b Billing Address
                   .col-sm-7
@@ -312,12 +357,12 @@
                   label.col-sm-3.control-label
                     | Shift Start Time
                   .col-sm-7 
-                    select.btn#timeslotval(ng-model="event.shiftstarttime", ng-options="timeslot.value as timeslot.name for timeslot in timeslots", ng-init="event.shiftstarttime = timeslots[11].value") 
+                    select.btn#timeslotval(ng-model="event.shiftstarttime", ng-options="timeslot.value as timeslot.name for timeslot in timeslots", ng-init="event.shiftstarttime = timeslots[44].value") 
                 .form-group
                   label.col-sm-3.control-label
                     | Shift End Time
                   .col-sm-7 
-                    select.btn#timeslotval(ng-model="event.shiftendtime", ng-options="timeslot.value as timeslot.name for timeslot in timeslots", ng-init="event.shiftendtime = timeslots[12].value") 
+                    select.btn#timeslotval(ng-model="event.shiftendtime", ng-options="timeslot.value as timeslot.name for timeslot in timeslots", ng-init="event.shiftendtime = timeslots[48].value") 
                 
                 .form-group#addCnct
                   label.col-sm-3.control-label
@@ -330,11 +375,11 @@
                   label.col-sm-3.control-label
                     | Shift {{$index + 1}} Start Time
                   .col-sm-7
-                    select.btn#timeslotval(ng-model="shiftstart[$index]", ng-options="timeslot.value as timeslot.name for timeslot in timeslots", ng-init="shiftstart[$index] = timeslots[11].value") 
+                    select.btn#timeslotval(ng-model="shiftstart[$index]", ng-options="timeslot.value as timeslot.name for timeslot in timeslots", ng-init="shiftstart[$index] = timeslots[44].value") 
                   label.col-sm-3.control-label
                     | Shift {{$index + 1}} End Time
                   .col-sm-7
-                    select.btn#timeslotval(ng-model="shiftend[$index]", ng-options="timeslot.value as timeslot.name for timeslot in timeslots", ng-init="shiftend[$index] = timeslots[11].value") 
+                    select.btn#timeslotval(ng-model="shiftend[$index]", ng-options="timeslot.value as timeslot.name for timeslot in timeslots", ng-init="shiftend[$index] = timeslots[48].value") 
                   .col-sm-1
                     img.remCls(src="http://img.informer.com/icons/png/16/3225/3225535.png", ng-click="remShift($index)")   
                    
